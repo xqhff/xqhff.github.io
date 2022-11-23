@@ -166,59 +166,7 @@
 <p>系统环境：Kali Linux 2、Windows</p>
 <p>网络环境：交换网络结构</p>
 <p>实验工具：Arpspoof、WireShark、BurpSuite、fcrackzip（用于zip密码破解）。</p>
-<h2 id="2-实验步骤"><a href="#2-实验步骤" class="headerlink" title="2.实验步骤"></a>2.实验步骤</h2><p>实验步骤和内容：</p>
-<p>网络嗅探部分：</p>
-<p>网络嗅探：Wireshark 监听网络流量，抓包。</p>
-<p>ARP欺骗： ArpSpoof，实施ARP欺骗。</p>
-<p>防范： 防范arp欺骗。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924.png" alt="image-20221123124648271"></p>
-<p>​                                                                                                    实验网络拓扑</p>
-<h4 id="1、A主机上外网，B运行sinffer-Wireshark-选定只抓源为A的数据-。"><a href="#1、A主机上外网，B运行sinffer-Wireshark-选定只抓源为A的数据-。" class="headerlink" title="1、A主机上外网，B运行sinffer(Wireshark)选定只抓源为A的数据)。"></a>1、A主机上外网，B运行sinffer(Wireshark)选定只抓源为A的数据)。</h4><h5 id="1-1-写出以上过滤语句。"><a href="#1-1-写出以上过滤语句。" class="headerlink" title="1.1 写出以上过滤语句。"></a><strong>1.1</strong> <strong>写出以上过滤语句。</strong></h5><p>ip.scr == 目的ip</p>
-<h5 id="1-2-在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？"><a href="#1-2-在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？" class="headerlink" title="1.2 在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？"></a><strong>1.2</strong> 在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？</h5><p>能，因为网站使用的是明文的方式传输账户和密码</p>
-<h5 id="2-1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？"><a href="#2-1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？" class="headerlink" title="2.1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？"></a>2.1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？</h5><p>冒充的是网关</p>
-<h5 id="2-2-写出arpspoof命令格式。"><a href="#2-2-写出arpspoof命令格式。" class="headerlink" title="2.2 写出arpspoof命令格式。"></a><strong>2.2</strong> 写出arpspoof命令格式。</h5><p>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</p>
-<p>arpspoof -i eth0 -t 被欺骗ip 伪装的网关ip</p>
-<h5 id="2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"><a href="#2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。" class="headerlink" title="2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"></a>2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-1.png" alt="image-20221123124902602"></p>
-<h4 id="3-FTP数据还原部分：利用WireShark打开实验实验数据data-pcapng。"><a href="#3-FTP数据还原部分：利用WireShark打开实验实验数据data-pcapng。" class="headerlink" title="3.FTP数据还原部分：利用WireShark打开实验实验数据data.pcapng。"></a>3.FTP数据还原部分：利用WireShark打开实验实验数据data.pcapng。</h4><h5 id="3-1-FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？"><a href="#3-1-FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？" class="headerlink" title="3.1 FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？"></a>3.1 FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？</h5><p>源ip为192.168.182.132给目的ip为192.168.182.1的服务器发送user为student的</p>
-<p>登录请求，所以192.168.182.1为ftp服务器。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-2.png" alt="image-20221123124941694"></p>
-<h5 id="3-2客户端登录FTP服务器的账号和密码分别是什么"><a href="#3-2客户端登录FTP服务器的账号和密码分别是什么" class="headerlink" title="3.2客户端登录FTP服务器的账号和密码分别是什么?"></a>3.2客户端登录FTP服务器的账号和密码分别是什么?</h5><p>名为“student”的用户名和“sN46i5y”的密码登录成功。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-3.png" alt="image-20221123125005815"></p>
-<p>3.3 客户端从FTP下载或查看了2个文件，一个为ZIP文件，一个为TXT文件，文件名分别是什么？<strong>提示：文件名有可能是中文。</strong></p>
-<p>使用ftp-data过滤可以看到名为“1.zip”和“复习题.txt”的文件</p>
-<p>（wireshark过滤 ftp-data 是数据传输的数据）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-4.png" alt="image-20221123125021506"></p>
-<p>（ftp则是ftp协议的控制数据，控制数据，比如登录，我要传输哪个文件等等，确定传输的文件了，那么就ftp-data了）</p>
-<h5 id="3-4-还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。"><a href="#3-4-还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。" class="headerlink" title="3.4 还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。"></a>3.4 还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。</h5><p>1、打开破解密码的工具ARCHPR</p>
-<p>2、打开加密的zip文件，根据提示在暴力破解范围选项选择“所有数字”。点击开始</p>
-<p>3、根据得到的口令“123456”解压文件即可得到名为“Penguins.jpg”的图片</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-5.png" alt="image-20221123125059161"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-6.png" alt="image-20221123125108589"></p>
-<h5 id="3-5-TXT文件的内容是什么？"><a href="#3-5-TXT文件的内容是什么？" class="headerlink" title="3.5 TXT文件的内容是什么？"></a>3.5 TXT文件的内容是什么？</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-7.png" alt="image-20221123125125284"></p>
-<h3 id="网站密码破解部分："><a href="#网站密码破解部分：" class="headerlink" title="网站密码破解部分："></a>网站密码破解部分：</h3><p>  利用人们平时常用的词、句破译，如果说暴力破解是一个一个的尝试那么字典破译就是利用人们习惯用人名、地名或者常见的词语设置成密码的习惯进行破译。字典破译速度比暴力破译更快但是有时候密码设置中包含了没有字典库中的词句就无法破解出来了，因此有好的字典是关键。</p>
-<p>以Metstable2 DVWA为目标网站，构造字典（wordlist），其中包含你的正确密码，利用burpsuite进行字典攻击，实施字典攻击，你是如何判断某个密码为破解得到的正确密码，截图。</p>
-<p>一般是通过判断长度或者响应包里的字段判断的，但是我这个都不行OvO</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-8.png" alt="image-20221123125202500"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155913.png" alt="image-20221123125217496"></p>
-<h4 id="4、MD5破解"><a href="#4、MD5破解" class="headerlink" title="4、MD5破解"></a>4、MD5破解</h4><p>  SqlMap得到某数据库用户表信息，用户口令的MD5值为7282C5050CFE7DF5E09A33CA456B94AE</p>
-<p>那么，口令的明文是什么？（提示：MD5值破解）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-9.jpg" alt="image-20221123125256264"></p>
-<h4 id="5、John-the-Ripper的作用是什么？"><a href="#5、John-the-Ripper的作用是什么？" class="headerlink" title="5、John the Ripper的作用是什么？"></a>5、John the Ripper的作用是什么？</h4><p>“John the Ripper,是一个快速的密码破解工具,用于在已知密文的情况下尝试破解出明文的破解密码软件,支持大多数的加密算法。</p>
-<h3 id="思考问题："><a href="#思考问题：" class="headerlink" title="思考问题："></a><strong>思考问题：</strong></h3><p><strong>1、 谈谈如何防止ARP攻击</strong></p>
-<p>1.使用防火墙监听网络</p>
-<p>2.IP传输使用”proxy”代理</p>
-<p>3.添加静态arp映射表，不让主机刷新设定好的映射表，该做法适用于网络中主机位置稳定，不适用在主机更换频繁的局域网中。</p>
-<p>4.停止使用arp，将arp作为永久条目保存在映射表中。</p>
-<p><strong>2、</strong> <strong>安全的密码（口令）应遵循的原则</strong></p>
-<p>1.避免使用弱口令</p>
-<p>2.密码口令位数大于等于八位</p>
-<p>3.使用字母、数字、字符组合的方法</p>
-<p>4.避免全部账号使用同一密码</p>
-<p><strong>3、</strong> <strong>谈谈字典攻击中字典的重要性</strong></p>
-<p>字典攻击破解密码的时候使用的是字典里的密码逐一破解，字典中的密码组合决定了能否破解成功</p>
-<h2 id="3-实验小结"><a href="#3-实验小结" class="headerlink" title="3.实验小结"></a>3.实验小结</h2><p>1、在设置口令时，尽量使用强口令</p>
-<p>2、保持防火墙一直开着能防止各种攻击</p>
-
+<p><strong></strong></p>
             
         </div>
     </div>
@@ -249,51 +197,7 @@
 <p>系统环境：Kali Linux 2、Windows</p>
 <p>网络环境：交换网络结构</p>
 <p>实验工具： Metasploitable2（需自行下载虚拟机镜像）；Nmap（Kali）；WinHex、数据恢复软件等</p>
-<h2 id="2-实验步骤"><a href="#2-实验步骤" class="headerlink" title="2. 实验步骤"></a>2. 实验步骤</h2><p>1-5题为被动扫描，利用搜索引擎或相关网站</p>
-<h4 id="1、用搜索引擎Google或百度搜索麻省理工学院网站中文件名包含“network-security”的pdf文档，截图搜索得到的页面。"><a href="#1、用搜索引擎Google或百度搜索麻省理工学院网站中文件名包含“network-security”的pdf文档，截图搜索得到的页面。" class="headerlink" title="1、用搜索引擎Google或百度搜索麻省理工学院网站中文件名包含“network security”的pdf文档，截图搜索得到的页面。"></a>1、用搜索引擎Google或百度搜索麻省理工学院网站中文件名包含“network security”的pdf文档，截图搜索得到的页面。</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725.png" alt="image-20221123122932132"></p>
-<h4 id="2、照片中的女生在哪里旅行？"><a href="#2、照片中的女生在哪里旅行？" class="headerlink" title="2、照片中的女生在哪里旅行？"></a>2、照片中的女生在哪里旅行？</h4><p>截图搜索到的地址信息。<img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-1.png" alt="image-20221123122949643"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-2.png" alt="image-20221123123029099"></p>
-<h4 id="3、手机位置定位。通过LAC（Location-Area-Code，位置区域码）和CID（Cell-Identity，基站编号，是个16位的数据（范围是0到65535）可以查询手机接入的基站的位置，从而初步确定手机用户的位置-获取自己手机的LAC和CID："><a href="#3、手机位置定位。通过LAC（Location-Area-Code，位置区域码）和CID（Cell-Identity，基站编号，是个16位的数据（范围是0到65535）可以查询手机接入的基站的位置，从而初步确定手机用户的位置-获取自己手机的LAC和CID：" class="headerlink" title="3、手机位置定位。通过LAC（Location Area Code，位置区域码）和CID（Cell Identity，基站编号，是个16位的数据（范围是0到65535）可以查询手机接入的基站的位置，从而初步确定手机用户的位置.获取自己手机的LAC和CID："></a>3、手机位置定位。通过LAC（Location Area Code，位置区域码）和CID（Cell Identity，基站编号，是个16位的数据（范围是0到65535）可以查询手机接入的基站的位置，从而初步确定手机用户的位置.获取自己手机的LAC和CID：</h4><p>Android 获取方法：Android： 拨号*#<em>#4636#</em>#*进入手机信息工程模式后查看!</p>
-<p>iphone获取方法：iPhone：拨号*3001#12345#*进入FieldTest</p>
-<p>Serving Cell info–&gt;LAC=Tracking Area Code –&gt;cellid = Cell identity</p>
-<p>若不能获取，用右图信息。</p>
-<p>截图你查询到的位置信息。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-3.png" alt="image-20221123123029098"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-4.jpg" alt="image-20221123123442203"></p>
-<h4 id="4、编码解码"><a href="#4、编码解码" class="headerlink" title="4、编码解码"></a>4、编码解码</h4><p>将Z29vZCBnb29kIHN0dWR5IQ==解码。截图。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-5.png" alt="image-20221123123511181"></p>
-<h4 id="5、地址信息"><a href="#5、地址信息" class="headerlink" title="5、地址信息"></a>5、地址信息</h4><h5 id="5-1内网中捕获到一个以太帧，源MAC地址为：98-CA-33-02-27-B5；目的IP地址为：202-193-64-34，回答问题：该用户使用的什么品牌的设备，访问的是什么网站？并附截图。"><a href="#5-1内网中捕获到一个以太帧，源MAC地址为：98-CA-33-02-27-B5；目的IP地址为：202-193-64-34，回答问题：该用户使用的什么品牌的设备，访问的是什么网站？并附截图。" class="headerlink" title="5.1内网中捕获到一个以太帧，源MAC地址为：98-CA-33-02-27-B5；目的IP地址为：202.193.64.34，回答问题：该用户使用的什么品牌的设备，访问的是什么网站？并附截图。"></a>5.1内网中捕获到一个以太帧，源MAC地址为：98-CA-33-02-27-B5；目的IP地址为：202.193.64.34，回答问题：该用户使用的什么品牌的设备，访问的是什么网站？并附截图。</h5><p>使用的是苹果的设备，访问的是桂林电子科技大学的网站</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-6.png" alt="image-20221123123529033"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-7.png" alt="image-20221123123537548"></p>
-<h5 id="5-2-访问https-whatismyipaddress-com得到MyIP信息，利用ipconfig-Windows-或ifconfig-Linux-查看本机IP地址，两者值相同吗？如果不相同的话，说明原因。"><a href="#5-2-访问https-whatismyipaddress-com得到MyIP信息，利用ipconfig-Windows-或ifconfig-Linux-查看本机IP地址，两者值相同吗？如果不相同的话，说明原因。" class="headerlink" title="5.2 访问https://whatismyipaddress.com得到MyIP信息，利用ipconfig(Windows)或ifconfig(Linux)查看本机IP地址，两者值相同吗？如果不相同的话，说明原因。"></a>5.2 访问<a href="https://whatismyipaddress.com得到MyIP信息，利用ipconfig(Windows)或ifconfig(Linux)查看本机IP地址，两者值相同吗？如果不相同的话，说明原因。">https://whatismyipaddress.com得到MyIP信息，利用ipconfig(Windows)或ifconfig(Linux)查看本机IP地址，两者值相同吗？如果不相同的话，说明原因。</a></h5><p>两值不相同，因为在当访问外网时，由于路由器的NAT功能把局域网的IP封装成公网的IP地址，所以在外部看和在内部看到的IP是不相同的</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-8.png" alt="image-20221123123551340"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-9.png" alt="image-20221123123557769"></p>
-<h4 id="6、NMAP使用"><a href="#6、NMAP使用" class="headerlink" title="6、NMAP使用"></a>6、NMAP使用</h4><h5 id="6-1利用NMAP扫描Metasploitable2（需下载虚拟机镜像）的端口开放情况。并附截图。说明其中四个端口的提供的服务，查阅资料，简要说明该服务的功能。"><a href="#6-1利用NMAP扫描Metasploitable2（需下载虚拟机镜像）的端口开放情况。并附截图。说明其中四个端口的提供的服务，查阅资料，简要说明该服务的功能。" class="headerlink" title="6.1利用NMAP扫描Metasploitable2（需下载虚拟机镜像）的端口开放情况。并附截图。说明其中四个端口的提供的服务，查阅资料，简要说明该服务的功能。"></a>6.1利用NMAP扫描Metasploitable2（需下载虚拟机镜像）的端口开放情况。并附截图。说明其中四个端口的提供的服务，查阅资料，简要说明该服务的功能。</h5><p>1、21端口是用于File Transfer Protocol的服务，21端口用于连接，20端口用于传输数据；FTP服务可以实现两台计算机之间文件的上传与下载。</p>
-<p>2、22端口就是ssh端口，用于通过命令行模式远程连接系统服务器</p>
-<p>3、80端口是为HTTP超文本传输协议开放的端口*</p>
-<p>4、111端口是SUN公司的RPC服务所有端口*</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-10.png" alt="image-20221123123625797"></p>
-<h5 id="6-2利用NMAP扫描Metasploitable2的操作系统类型，并附截图。"><a href="#6-2利用NMAP扫描Metasploitable2的操作系统类型，并附截图。" class="headerlink" title="6.2利用NMAP扫描Metasploitable2的操作系统类型，并附截图。"></a>6.2利用NMAP扫描Metasploitable2的操作系统类型，并附截图。</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-10.png" alt="image-20221123123712025"></p>
-<h5 id="6-3-利用NMAP穷举-Metasploitable2上dvwa的登录账号和密码。"><a href="#6-3-利用NMAP穷举-Metasploitable2上dvwa的登录账号和密码。" class="headerlink" title="6.3 利用NMAP穷举 Metasploitable2上dvwa的登录账号和密码。"></a>6.3 利用NMAP穷举 Metasploitable2上dvwa的登录账号和密码。</h5><p>由第一张图可知，账户密码在红框中，而且后面的valid代表有效，第二张图为登录后</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-11.png" alt="image-20221123123733504"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-12.png" alt="image-20221123123740217"></p>
-<h5 id="6-4-查阅资料，永恒之蓝-WannaCry蠕虫利用漏洞的相关信息。"><a href="#6-4-查阅资料，永恒之蓝-WannaCry蠕虫利用漏洞的相关信息。" class="headerlink" title="6.4 查阅资料，永恒之蓝-WannaCry蠕虫利用漏洞的相关信息。"></a>6.4 查阅资料，永恒之蓝-WannaCry蠕虫利用漏洞的相关信息。</h5><p>WannaCry利用Windows操作系统445端口存在的漏洞进行传播，并具有自我复制、主动传播的特性。“永恒之蓝”是NSA泄露的漏洞利用工具的名称，并不是该病毒的名称。永恒之蓝”是指NSA泄露的危险漏洞“EternalBlue”，此次的勒索病毒WannaCry是利用该漏洞进行传播的，当然还可能有其他病毒也通过“永恒之蓝”这个漏洞传播，因此给系统打补丁是必须的。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-13.png" alt="image-20221123123819797"></p>
-<h4 id="7、利用ZoomEye搜索一个西门子公司工控设备，并描述其可能存在的安全问题。"><a href="#7、利用ZoomEye搜索一个西门子公司工控设备，并描述其可能存在的安全问题。" class="headerlink" title="7、利用ZoomEye搜索一个西门子公司工控设备，并描述其可能存在的安全问题。"></a>7、利用ZoomEye搜索一个西门子公司工控设备，并描述其可能存在的安全问题。</h4><p>1、Muhttpd web 服务器 未授权任意文件读取漏洞：存在未授权任意文件读取漏洞，攻击者在未经身份验证的情况下可通过该漏洞读取主机上的任意文件。</p>
-<p>2、Apache HTTPd是Apache基金会开源的一款流行的HTTP服务器。Apache HTTPd官方发布安全更新，披露了Apache HTTPd 2.4.49 路径穿越漏洞。在其2.4.49版本中，引入了一个路径穿越漏洞。在路径穿越目录允许被访问的情况下，例如配置了 <Directory>Require all granted</Directory>，攻击者可利用该路径穿越漏洞读取到Web目录之外的其他文件。同时若Apache HTTPd开启了cgi支持，攻击者可构造恶意请求执行命令，控制服务器。</p>
-<p>3、任意文件读取是属于文件操作漏洞的一种，一般任意文件读取漏洞可以读取配置信息甚至系统重要文件。其中的目录遍历是由于web服务器或者web应用程序对用户输入的文件名称的安全性验证不足而导致的一种安全漏洞，使得攻击者通过利用一些特殊字符就可以绕过服务器的安全限制，访问任意的文件(可以是web根目录以外的文件)，甚至执行系统命令。更严重的，导致SSRF漏洞，进而漫游至内网。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-14.png" alt="image-20221123124219355"></p>
-<h4 id="8、Winhex简单数据恢复与取证"><a href="#8、Winhex简单数据恢复与取证" class="headerlink" title="8、Winhex简单数据恢复与取证"></a>8、Winhex简单数据恢复与取证</h4><h5 id="8-1-elephant-jpg不能打开了，利用WinHex修复，说明修复过程。"><a href="#8-1-elephant-jpg不能打开了，利用WinHex修复，说明修复过程。" class="headerlink" title="8.1 elephant.jpg不能打开了，利用WinHex修复，说明修复过程。"></a>8.1 elephant.jpg不能打开了，利用WinHex修复，说明修复过程。</h5><p>首先，用winhex打开elephant.jpg，发现其头文件为00 00 开头，通过搜索jpg的头文件可知，jpg的头文件应该为“FF D8 FF E0”,然后我们将头文件改成正确的jpg的头文件(如图二)保存即可</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-15.png" alt="image-20221123124309607"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-16.png" alt="image-20221123124317356"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-17.png" alt="image-20221123124325350"></p>
-<h5 id="8-2-笑脸背后的阴霾：图片smile有什么隐藏信息。"><a href="#8-2-笑脸背后的阴霾：图片smile有什么隐藏信息。" class="headerlink" title="8.2 笑脸背后的阴霾：图片smile有什么隐藏信息。"></a><strong>8.2 笑脸背后的阴霾：图片smile有什么隐藏信息</strong>。</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-18.png" alt="image-20221123124348302"></p>
-<h5 id="8-3-尝试使用数据恢复软件恢复你的U盘中曾经删除的文件。"><a href="#8-3-尝试使用数据恢复软件恢复你的U盘中曾经删除的文件。" class="headerlink" title="8.3 尝试使用数据恢复软件恢复你的U盘中曾经删除的文件。"></a><strong>8.3 尝试使用数据恢复软件恢复你的U盘中曾经删除的文件。</strong></h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-19.png" alt="image-20221123124404423"></p>
-<h4 id="9、讨论学校热点GUET-WiFi的安全问题，以截图说明。"><a href="#9、讨论学校热点GUET-WiFi的安全问题，以截图说明。" class="headerlink" title="9、讨论学校热点GUET-WiFi的安全问题，以截图说明。"></a>9、讨论学校热点GUET-WiFi的安全问题，以截图说明。</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-161725-20.jpg" alt="image-20221123124423390"></p>
-<p>校园网为开放状态，校园网属于子网，所有的设备都是处于同一网段，这时，很容易获得别的主机的IP，从而实施渗透攻击。</p>
-<p>所有设备处于同一网段，假如一个设备感染病毒，就会通过校园网来传播。</p>
-<h2 id="3-实验小结"><a href="#3-实验小结" class="headerlink" title="3.实验小结"></a>3.实验小结</h2><h5 id="实验报告小结需要描述Ethical-Hacking的理解。"><a href="#实验报告小结需要描述Ethical-Hacking的理解。" class="headerlink" title="实验报告小结需要描述Ethical Hacking的理解。"></a>实验报告小结需要描述Ethical Hacking的理解。</h5><p>Ethical Hacking 是专门模拟黑客攻击，来发现网络的漏洞，从而能修复存在的漏洞，因此叫做Ethical（道德的）hacking（黑客攻击）。Ethical hacker 在保护用户、企业、国家网络安全上做出了巨大的贡献，而我们学习安全方面的人员也应该是成为道德黑客而不是普遍意义上的黑客</p>
-
+<p><strong></strong></p>
             
         </div>
     </div>
@@ -323,20 +227,7 @@
             <h1 id="手机和PC连接同一热点，捕获TCP流"><a href="#手机和PC连接同一热点，捕获TCP流" class="headerlink" title="手机和PC连接同一热点，捕获TCP流"></a>手机和PC连接同一热点，捕获TCP流</h1><p> 参考：<a target="_blank" rel="noopener" href="http://anineg.space/2022/10/04/tcptest/">TCP 协议传输数据还原测试 | ANINEG の小屋</a></p>
 <p>1、首先，先使手机和pc连接同一WiFi活着电脑连接手机热点</p>
 <p>2、然后打开wireshark</p>
-<p><img src="https://img-blog.csdnimg.cn/4dae8e90676f44ac8f855ff524f7b720.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>3、打开手机点击wifi的详情来查看手机的ip，取得IP为192.168.3.35</p>
-<p> <img src="https://img-blog.csdnimg.cn/74b50c5903f74d299d709a3194999394.jpeg" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>4、在wires hark上输入 ip.scr == 192.168.3.35(这个为手机ip)</p>
-<p><img src="https://img-blog.csdnimg.cn/4dc75287c06c47b1937b9bc6cd5ee0f6.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>5、在手机上发送文件到电脑上，然后发现wireshark上出现一条后缀为PNG的包文 </p>
-<p> <img src="https://img-blog.csdnimg.cn/f82eefc9f6f3492eb707dc0e7f005b94.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>6、右击，点击“追踪流”–&gt;“TCP流”，按照下图操作，保存成任何格式都行</p>
-<p><img src="https://img-blog.csdnimg.cn/c79780701f594d0a9458514633d60d44.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>7、使用winhex或者010editor打开保存的文件，发现89504E47是PNG的包头，所以删除前面的字段后保存即可</p>
-<p> <img src="https://img-blog.csdnimg.cn/85c54ca9ec464cd5b775934a0aa9f740.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>8、此时保存的文件就是我们发送到电脑的文件</p>
-<p><img src="https://img-blog.csdnimg.cn/7d334eb66e2b49779484fff7ad61b434.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-
+<p><strong></strong></p>
             
         </div>
     </div>
@@ -368,14 +259,7 @@
 <p>虚拟机IP、子网掩码、网关：  <img src="https://img-blog.csdnimg.cn/b5899e8f56c5450f87faf45521dc1e29.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
 <p> 主机的IP、子网掩码、网关：<img src="https://img-blog.csdnimg.cn/3c1cde4d1cbb4ef884dfb2efb5b4c098.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
 <p> 可以看到虚拟机的IP和网关的网段和主机相同</p>
-<h2 id="二、NAT模式"><a href="#二、NAT模式" class="headerlink" title="二、NAT模式"></a><strong>二、NAT模式</strong></h2><p>NAT（Network Address Translation）即网络地址转换，主机网卡直接与虚拟NAT设备相连，然后虚拟NAT设备与虚拟<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=DHCP&spm=1001.2101.3001.7020">DHCP</a>服务器一起连接在虚拟交换机VMnet8上，这样就实现了虚拟机联网。简单点来说就是将虚拟机寄生到主机上或者说虚拟机在主机的后面，虚拟机发送数据给NAT适配器交由主机识别并发送出去。从外部网络看，虚拟机和主机共用一个IP，而从内部网看，主机和虚拟机IP处于不同网段。</p>
-<p><img src="https://img-blog.csdnimg.cn/5a70a0a8bfec40459c0c7aa992f67577.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>虚拟机IP、子网掩码、网关： </p>
-<p><img src="https://img-blog.csdnimg.cn/374614cd327d44be8459fa6e4a31e079.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>通过对比验证宿主机是通过VMnet8这块虚拟网卡来与虚拟机操作系统进行通信的</p>
-<p> 主机的IP、子网掩码、网关：</p>
-<p><img src="https://img-blog.csdnimg.cn/94a68a09001a4518a8130c43e088a40d.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-
+<p><strong></strong></p>
             
         </div>
     </div>
@@ -402,94 +286,12 @@
     <div class="excerpt">
         <div class="content" v-pre>
             
-            <h1 id="ZoomEye与Google-Hacking"><a href="#ZoomEye与Google-Hacking" class="headerlink" title="ZoomEye与Google Hacking"></a>ZoomEye与Google Hacking</h1><p> 前言：作业，仅作学习用</p>
-<p> 参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/huweiliyi/article/details/105442118">(23条消息) Google Hacking使用详解_Teacher.Hu的博客-CSDN博客</a></p>
+            <h1 id="ZoomEye与Google-Hacking"><a href="#ZoomEye与Google-Hacking" class="headerlink" title="ZoomEye与Google Hacking"></a>ZoomEye与Google Hacking</h1><p> 参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/huweiliyi/article/details/105442118">(23条消息) Google Hacking使用详解_Teacher.Hu的博客-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51690722/article/details/121887417">(23条消息) Zoomeye_摆烂王子Z的博客-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_57851357/article/details/121194266">(24条消息) zoomeye_埃及巴耶克的博客-CSDN博客</a></p>
 <p><img src="https://img-blog.csdnimg.cn/a39c0d36ca1e4af288b273fa21cc3788.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
 <h2 id="一、ZoomEye"><a href="#一、ZoomEye" class="headerlink" title="一、ZoomEye"></a>一、ZoomEye</h2><h3 id="1、ZoomEye的介绍"><a href="#1、ZoomEye的介绍" class="headerlink" title="1、ZoomEye的介绍"></a>1、ZoomEye的介绍</h3><p>ZoomEye 正是一个检索网络空间节点的搜索引擎。通过后端的分布式爬虫引擎（无论谁家的搜索引擎都是这样）对全球节点的分析，对每个节点的所拥有的特征进行判别，从而获得设备类型、固件版本、分布地点、开放端口服务等信息。</p>
-<h3 id="2-简单介绍ZoomEye的使用"><a href="#2-简单介绍ZoomEye的使用" class="headerlink" title="2.简单介绍ZoomEye的使用"></a>2.简单介绍ZoomEye的使用</h3><p>1、先输入<strong>“http-banner DVRDVS-Webs”</strong></p>
-<p> 2、找到这种带眼睛的</p>
-<p><img src="https://img-blog.csdnimg.cn/1da53c297f25468c865599ee8c81611b.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>3、反复尝试输入账号“admin”和密码“12345”</p>
-<p><img src="https://img-blog.csdnimg.cn/87b830532f754c8c8414be9c22ba0e8a.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p> 4、登录成功后安装个插件再设置一下即可查看摄像头了</p>
-<h2 id="二、Google-Hacking"><a href="#二、Google-Hacking" class="headerlink" title="二、Google Hacking"></a>二、Google Hacking</h2><h3 id="1-Google-Hacking概述"><a href="#1-Google-Hacking概述" class="headerlink" title="1.Google Hacking概述"></a>1.Google Hacking概述</h3><p>利用搜索引擎有争对性的搜索信息来对网络入侵的技术和行为。搜索引擎对于搜索的关键字提供了很多种语法，构造出特殊的关键字，能够快速全面的让攻击者挖掘到有价值的信息。</p>
-<h3 id="2-Google-Hacking的基本用法"><a href="#2-Google-Hacking的基本用法" class="headerlink" title="2.Google Hacking的基本用法"></a>2.Google Hacking的基本用法</h3><blockquote>
-<p>1、语法：A OR B A + B</p>
-<p>2、功能：系统查找含有检索词A、B之一，或同时包括检索词A和检索词B的信息。两者皆有，都会成为搜索结果</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/bab1f33bd523478fbf2a8b13a71219eb.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<blockquote>
-<p>1、语法：A AND B   A<em>B<br> 2、功能：可用来表示其所连接的两个检索项的交叉部分，也即交集部分。如果用AND连接     检索词A和检索词B，<br> 3、则检索式为：A AND B(或A</em>B)：表示让系统检索同时包含检索词A和检索词B的信息集合C。</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/31d2859d0e744ce688a7e1c3309c30a5.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<blockquote>
-<p>1、语法：NOT keyword -keyword</p>
-<p>2、功能：强制结果不要出现此关键字</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/47cd090b571148eabd15010837e38801.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<blockquote>
-<p>1、语法：”keyword”</p>
-<p>2、功能：强制搜索结果出现此关键字且不会对关键词切割</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/657642c935674becb3c7971ef3a5b41c.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<h3 id="3、-Google-Hacking的高级用法"><a href="#3、-Google-Hacking的高级用法" class="headerlink" title="3、 Google Hacking的高级用法"></a>3、 Google Hacking的高级用法</h3><blockquote>
-<p>1、语法：site:网址</p>
-<p>2、功能：搜索指定的域名的网页内容 、可以用来搜索子域名、跟此域名相关的内容</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/5417714b0af545f3a6e8da5913ce9b75.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>还可以输入登录 管理员登录等关键词来搜索一些不想被发现的后台入口(此图像来源于第一个链接)</p>
-<p><img src="https://img-blog.csdnimg.cn/20200410212259817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1d2VpbGl5aQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<blockquote>
-<p>1、语法： filetype:文件类型</p>
-<p>2、功能：搜索指定文件类型</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/49a84700c6c64a48bb459422c8eeeb57.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
-<p>还可以输入一下网络，来搜索特定网站所采用的技术</p>
-<blockquote>
-<p>site:xx.com filetype:asp</p>
-<p>site:xx.com filetype:php</p>
-<p>site:xx.com filetype:jsp</p>
-<p>site:xx.com filetype:aspx</p>
-</blockquote>
-<blockquote>
-<p>1、语法： inurl:keyword</p>
-<p>2、功能：搜索url网址存在特定关键字的网页、可以用来搜寻有注入点的网站</p>
-</blockquote>
-<p>搜索一下网页可以搜到一些可能包含sql注入的网址</p>
-<blockquote>
-<p>inurl:.php?id=                搜索网址中有”php?id”的网页<br> inurl:.jsp?id=                搜索网址中有”jsp?id”的网页<br> inurl:.asp?id=                搜索网址中有”asp?id”的网页</p>
-</blockquote>
-<p>也可以搜到一些登录页面或管理员页面</p>
-<blockquote>
-<p>inurl: /admin/login.php         搜索网址中有”/admin/login.php”的网页<br> inurl:login                   搜索网址中有”login”等登录网页<br> inurl:admin                  搜索网址中有”admin”等登录网页<br> inurl:config.txt</p>
-</blockquote>
-<p> <img src="https://img-blog.csdnimg.cn/b1c1a8c3534a458b912b2cdb38641f2a.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<blockquote>
-<p>1、语法 intitle:keyword</p>
-<p>2、功能：搜索标题存在特定关键字的网页</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/6c011818bfd146de8886d4258931a167.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p><strong>搜索index of 搜寻目录索引信息</strong></p>
-<blockquote>
-<p>intitle:index of             搜索此关键字相关的索引目录信息<br> intitle:index of “parent directory”     搜索根目录相关的索引目录信息<br> intitle:index of “password”          搜索密码相关的索引目录信息</p>
-</blockquote>
-<p> <img src="https://img-blog.csdnimg.cn/73b4c51651ae4fac81a3974b5e884577.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<blockquote>
-<p>1、语法 ：intext:keyword</p>
-<p>2、功能 ：搜索正文存在特定关键字的网页 </p>
-</blockquote>
-<blockquote>
-<p>intext:Powered by Discuz            搜索Discuz论坛相关的页面</p>
-<p>intext:powered by wordpress        搜索wordpress制作的博客网址</p>
-<p>intext:Powered by *CMS             搜索CMS相关的页面</p>
-<p>intext:powered by xxx inurl:login       搜索此类网址的后台登录页面</p>
-</blockquote>
-<p>也可以将两句语句结合起来</p>
-<p>例：inurl:pdf network security site:<a target="_blank" rel="noopener" href="http://www.mit.edu/">http://www.mit.edu/</a></p>
-<p><img src="https://img-blog.csdnimg.cn/ce70c04f67794490af19eadb4ede331e.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-
+<p><strong></strong></p>
             
         </div>
     </div>
