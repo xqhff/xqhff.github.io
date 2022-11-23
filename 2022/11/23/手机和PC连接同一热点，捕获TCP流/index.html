@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Hello World | 剣の魔王の小屋</title>
+        <title>剣の魔王の小屋</title>
         <meta name="author" content="剣の魔王">
         <meta name="description" content="这个网站没有描述">
         <meta name="keywords" content="">
@@ -122,32 +122,35 @@
                         
 <div class="article">
     <div>
-        <h1>Hello World </h1>
+        <h1> </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/11/22
+            2022/11/23
         </span>
         
         
     </div>
     <div class="content" v-pre>
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="手机和PC连接同一热点，捕获TCP流"><a href="#手机和PC连接同一热点，捕获TCP流" class="headerlink" title="手机和PC连接同一热点，捕获TCP流"></a>手机和PC连接同一热点，捕获TCP流</h1><p> 参考：<a target="_blank" rel="noopener" href="http://anineg.space/2022/10/04/tcptest/">TCP 协议传输数据还原测试 | ANINEG の小屋</a></p>
+<p>1、首先，先使手机和pc连接同一WiFi活着电脑连接手机热点</p>
+<p>2、然后打开wireshark</p>
+<p><img src="https://img-blog.csdnimg.cn/4dae8e90676f44ac8f855ff524f7b720.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>3、打开手机点击wifi的详情来查看手机的ip，取得IP为192.168.3.35</p>
+<p> <img src="https://img-blog.csdnimg.cn/74b50c5903f74d299d709a3194999394.jpeg" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>4、在wires hark上输入 ip.scr == 192.168.3.35(这个为手机ip)</p>
+<p><img src="https://img-blog.csdnimg.cn/4dc75287c06c47b1937b9bc6cd5ee0f6.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>5、在手机上发送文件到电脑上，然后发现wireshark上出现一条后缀为PNG的包文 </p>
+<p> <img src="https://img-blog.csdnimg.cn/f82eefc9f6f3492eb707dc0e7f005b94.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>6、右击，点击“追踪流”–&gt;“TCP流”，按照下图操作，保存成任何格式都行</p>
+<p><img src="https://img-blog.csdnimg.cn/c79780701f594d0a9458514633d60d44.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>7、使用winhex或者010editor打开保存的文件，发现89504E47是PNG的包头，所以删除前面的字段后保存即可</p>
+<p> <img src="https://img-blog.csdnimg.cn/85c54ca9ec464cd5b775934a0aa9f740.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>8、此时保存的文件就是我们发送到电脑的文件</p>
+<p><img src="https://img-blog.csdnimg.cn/7d334eb66e2b49779484fff7ad61b434.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
 
     </div>
     
