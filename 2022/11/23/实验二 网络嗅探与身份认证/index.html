@@ -148,38 +148,38 @@
 <p>网络嗅探：Wireshark 监听网络流量，抓包。</p>
 <p>ARP欺骗： ArpSpoof，实施ARP欺骗。</p>
 <p>防范： 防范arp欺骗。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924.png" alt="image-20221123124648271"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105604.png" alt="image-20221124105054785"></p>
 <p>​                                                                                                    实验网络拓扑</p>
 <h4 id="1、A主机上外网，B运行sinffer-Wireshark-选定只抓源为A的数据-。"><a href="#1、A主机上外网，B运行sinffer-Wireshark-选定只抓源为A的数据-。" class="headerlink" title="1、A主机上外网，B运行sinffer(Wireshark)选定只抓源为A的数据)。"></a>1、A主机上外网，B运行sinffer(Wireshark)选定只抓源为A的数据)。</h4><h5 id="1-1-写出以上过滤语句。"><a href="#1-1-写出以上过滤语句。" class="headerlink" title="1.1 写出以上过滤语句。"></a><strong>1.1</strong> <strong>写出以上过滤语句。</strong></h5><p>ip.scr == 目的ip</p>
 <h5 id="1-2-在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？"><a href="#1-2-在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？" class="headerlink" title="1.2 在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？"></a><strong>1.2</strong> 在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？</h5><p>能，因为网站使用的是明文的方式传输账户和密码</p>
 <h5 id="2-1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？"><a href="#2-1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？" class="headerlink" title="2.1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？"></a>2.1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？</h5><p>冒充的是网关</p>
 <h5 id="2-2-写出arpspoof命令格式。"><a href="#2-2-写出arpspoof命令格式。" class="headerlink" title="2.2 写出arpspoof命令格式。"></a><strong>2.2</strong> 写出arpspoof命令格式。</h5><p>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</p>
 <p>arpspoof -i eth0 -t 被欺骗ip 伪装的网关ip</p>
-<h5 id="2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"><a href="#2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。" class="headerlink" title="2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"></a>2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-1.png" alt="image-20221123124902602"></p>
+<h5 id="2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"><a href="#2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。" class="headerlink" title="2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"></a>2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105617.png" alt="arp欺骗"></p>
 <h4 id="3-FTP数据还原部分：利用WireShark打开实验实验数据data-pcapng。"><a href="#3-FTP数据还原部分：利用WireShark打开实验实验数据data-pcapng。" class="headerlink" title="3.FTP数据还原部分：利用WireShark打开实验实验数据data.pcapng。"></a>3.FTP数据还原部分：利用WireShark打开实验实验数据data.pcapng。</h4><h5 id="3-1-FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？"><a href="#3-1-FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？" class="headerlink" title="3.1 FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？"></a>3.1 FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？</h5><p>源ip为192.168.182.132给目的ip为192.168.182.1的服务器发送user为student的</p>
 <p>登录请求，所以192.168.182.1为ftp服务器。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-2.png" alt="image-20221123124941694"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105638.png" alt="服务器ip"></p>
 <h5 id="3-2客户端登录FTP服务器的账号和密码分别是什么"><a href="#3-2客户端登录FTP服务器的账号和密码分别是什么" class="headerlink" title="3.2客户端登录FTP服务器的账号和密码分别是什么?"></a>3.2客户端登录FTP服务器的账号和密码分别是什么?</h5><p>名为“student”的用户名和“sN46i5y”的密码登录成功。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-3.png" alt="image-20221123125005815"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105646.png" alt="账户密码"></p>
 <p>3.3 客户端从FTP下载或查看了2个文件，一个为ZIP文件，一个为TXT文件，文件名分别是什么？<strong>提示：文件名有可能是中文。</strong></p>
 <p>使用ftp-data过滤可以看到名为“1.zip”和“复习题.txt”的文件</p>
 <p>（wireshark过滤 ftp-data 是数据传输的数据）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-4.png" alt="image-20221123125021506"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105700.png" alt="1"></p>
 <p>（ftp则是ftp协议的控制数据，控制数据，比如登录，我要传输哪个文件等等，确定传输的文件了，那么就ftp-data了）</p>
 <h5 id="3-4-还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。"><a href="#3-4-还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。" class="headerlink" title="3.4 还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。"></a>3.4 还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。</h5><p>1、打开破解密码的工具ARCHPR</p>
 <p>2、打开加密的zip文件，根据提示在暴力破解范围选项选择“所有数字”。点击开始</p>
 <p>3、根据得到的口令“123456”解压文件即可得到名为“Penguins.jpg”的图片</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-5.png" alt="image-20221123125059161"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-6.png" alt="image-20221123125108589"></p>
-<h5 id="3-5-TXT文件的内容是什么？"><a href="#3-5-TXT文件的内容是什么？" class="headerlink" title="3.5 TXT文件的内容是什么？"></a>3.5 TXT文件的内容是什么？</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-7.png" alt="image-20221123125125284"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105708.png" alt="破解密码"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105806.jpg" alt="Penguins"></p>
+<h5 id="3-5-TXT文件的内容是什么？"><a href="#3-5-TXT文件的内容是什么？" class="headerlink" title="3.5 TXT文件的内容是什么？"></a>3.5 TXT文件的内容是什么？</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105820.png" alt="txt内容"></p>
 <h3 id="网站密码破解部分："><a href="#网站密码破解部分：" class="headerlink" title="网站密码破解部分："></a>网站密码破解部分：</h3><p>  利用人们平时常用的词、句破译，如果说暴力破解是一个一个的尝试那么字典破译就是利用人们习惯用人名、地名或者常见的词语设置成密码的习惯进行破译。字典破译速度比暴力破译更快但是有时候密码设置中包含了没有字典库中的词句就无法破解出来了，因此有好的字典是关键。</p>
 <p>以Metstable2 DVWA为目标网站，构造字典（wordlist），其中包含你的正确密码，利用burpsuite进行字典攻击，实施字典攻击，你是如何判断某个密码为破解得到的正确密码，截图。</p>
 <p>一般是通过判断长度或者响应包里的字段判断的，但是我这个都不行OvO</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-8.png" alt="image-20221123125202500"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155913.png" alt="image-20221123125217496"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105827.png" alt="bp1"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105833.png" alt="bp2"></p>
 <h4 id="4、MD5破解"><a href="#4、MD5破解" class="headerlink" title="4、MD5破解"></a>4、MD5破解</h4><p>  SqlMap得到某数据库用户表信息，用户口令的MD5值为7282C5050CFE7DF5E09A33CA456B94AE</p>
 <p>那么，口令的明文是什么？（提示：MD5值破解）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221123-155924-9.jpg" alt="image-20221123125256264"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105840.png" alt="MD5解密"></p>
 <h4 id="5、John-the-Ripper的作用是什么？"><a href="#5、John-the-Ripper的作用是什么？" class="headerlink" title="5、John the Ripper的作用是什么？"></a>5、John the Ripper的作用是什么？</h4><p>“John the Ripper,是一个快速的密码破解工具,用于在已知密文的情况下尝试破解出明文的破解密码软件,支持大多数的加密算法。</p>
 <h3 id="思考问题："><a href="#思考问题：" class="headerlink" title="思考问题："></a><strong>思考问题：</strong></h3><p><strong>1、 谈谈如何防止ARP攻击</strong></p>
 <p>1.使用防火墙监听网络</p>
