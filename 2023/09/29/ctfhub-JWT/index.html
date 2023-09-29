@@ -138,6 +138,7 @@
         <h1 id="CTFhub里的easy-login-writeup"><a href="#CTFhub里的easy-login-writeup" class="headerlink" title="CTFhub里的easy_login writeup"></a>CTFhub里的easy_login writeup</h1><p>CTFHub链接:<a target="_blank" rel="noopener" href="https://www.ctfhub.com/#/challenge">CTFHub</a></p>
 <p>JWT介绍参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zr1213159840/article/details/122889002">小迪安全学习笔记–第40和41天JAVA安全及预编译CASE注入等目录遍历访问控制XSS等安全问题_小迪安全笔记40_铁锤2号的博客-CSDN博客</a></p>
 <p>先介绍什么是JWT：</p>
+<p><strong><span id="more"></span></strong></p>
 <p>什么是JWT?<br>JSON web Token (JSON web令牌是一种跨域验证身份的方案。JWT不加密传输的数据，但能够通过数字签名来验证数据未被篡改。<br>JwT分为三部分，头部(Header)，声明(claims)，签名(signature)，三个部分以英文句号.隔开。JWT的内容以Base64URL进行了编码。<br>1）头部(Header)<br>{“alg”:“HS256”,</p>
 <p>“typ” : ““JWT””}<br>alg：是说明这个JwT的签名使用的算法的参数，常见值用s256(默认)，Hs512等，也可以为None。HS256表示HMAC SHA256。<br>typ：说明这个token的类型为JWT</p>
 <p>2）JWT固定参数（声明段）有:</p>
