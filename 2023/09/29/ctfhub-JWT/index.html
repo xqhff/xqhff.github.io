@@ -154,27 +154,27 @@
 </code></pre>
 <p>1、用户端登录，用户名和密码在请求中被发往服务器<br>2、(确认登录信息正确后)服务器生成json头部和声明，将登录信息写入JSON的声明中(通常不应写入密码，因为JWT是不加密的)，并用secret用指定算法进行加密,生成该用户的JWT。此时，服务器并没有保存登录状态信息。<br>3、服务器将JWT (通过响应)返回给客户端<br>4、用户下次会话时，客户端会自动将JwT写在HTTF请求头部的Authorization字段中<br>5、服务器对JWT进行验证，若验证成功，则确认此用户的登录状态</p>
 <p>下面是小迪老师总结的JWT漏洞利用：</p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\14.png" alt="image:43538257467"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181533.png" alt="image:43538257467"></p>
 <p>打开靶场后看到是登录注册界面，分别对注册和登录抓包看看情况</p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\1.png" alt="image:45456357467"></p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\2.png" alt="image:32453825754"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181704.png" alt="image:45456357467"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181546.png" alt="image:32453825754"></p>
 <p>在注册包里面没看到什么异常，但是在登录的包里看到了JWT的标志authorization（大概）</p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\3.png" alt="image:4353784537"></p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\4.png" alt="image:44784235347"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181913.png" alt="image:4353784537"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181826.png" alt="image:44784235347"></p>
 <p>将该base64字段拿到<a target="_blank" rel="noopener" href="https://jwt.io解密,分别得到头部、声明、签名三个字段,先保存下来/">https://jwt.io解密，分别得到头部、声明、签名三个字段，先保存下来</a></p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\5.png" alt="image:345477627"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182048.png" alt="image:345477627"></p>
 <p>登录成功后看到flag will be here， 通过题目的提示，该代码使用的是nodejs编写的，所以跳到api配置文件 /controllers/api.js  下发现需要使用admin账号登录下访问/api/flag目录，且admin用户不能注册和直接登录，这时就需要使用JWT漏洞</p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\6.png" alt="image:435543773427"></p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\7.png" alt="image:6765324467"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182144.png" alt="image:435543773427"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182151.png" alt="image:6765324467"></p>
 <p>将之前的头部和声明段分别放到base64编码下，将alg的值改为“none”并且把base64加密后的“=”去掉并保存，声明内容里的secretid值改为空即：”[]”，username的值改为“admin”进行base64编码去掉等号使用“.”拼接在头部后并且在最后添加“.”表示为声明字段为空（secretid值改为“[]”是通过代码审计得出，因为没学过java其中的值分析不了）</p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\8.png" alt="image:324657853467"></p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\9.png" alt="image:43267423467"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182257.png" alt="image:324657853467"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182305.png" alt="image:43267423467"></p>
 <p>重新登录抓包将改完的值添加到authorization上并且将username改为admin即可登录成功</p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\10.png" alt="image:6886453267"></p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\11.png" alt="image:432546757657"></p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\12.png" alt="image:6875347467"></p>
-<p>最后访问/api/flag得到flag</p>
-<p><img src="/2023/09/29/ctfhub-JWT/学习\jwt\13.png" alt="image:9874375267"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182317.png" alt="image:6886453267"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182346.png" alt="image:432546757657"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182406.png" alt="image:6875347467"></p>
+<p>根据api配置文件，最后访问/api/flag得到flag</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182546.png" alt="image:9874375267"></p>
 
     </div>
     
