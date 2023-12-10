@@ -206,33 +206,25 @@
 <p>编辑Path变量，新增变量“%CATALINA_HOME%\bin”</p>
 <p>将“server.p12”和“truststore.jks”放在Tomcat的根目录，“server-cert.pem”和“server-key.pem”放在bin目录下</p>
 <p>配置cof目录下的“server.xml”，修改为下图所示，“root”为生成“server.p12”时的密码，“222222”为生成“truststore.jks”时的密码</p>
-<p>  <code>&lt;Connector executor=&quot;tomcatThreadPool&quot;</code></p>
-<p>​                <code>port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</code></p>
-<pre><code>          `connectionTimeout=&quot;20000&quot;`
+<pre><code>    &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               redirectPort=&quot;443&quot; /&gt;
 </code></pre>
-<p>​             <code>redirectPort=&quot;443&quot; /&gt;</code></p>
-<p>   <code>&lt;Connector port=&quot;443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot;</code></p>
-<p>​        <code>maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;</code></p>
-<p>​        <code>clientAuth=&quot;true&quot; sslProtocol=&quot;TLS&quot;</code></p>
-<pre><code>  `keystoreFile=&quot;server.p12&quot;`
-
-  `keystorePass=&quot;root&quot;` 
-
-  `keystoreType=&quot;PKCS12&quot;`
-
-  `truststoreFile=&quot;truststore.jks&quot;`
-
-  `truststorePass=&quot;222222&quot;` 
-
-  `truststoreType=&quot;JKS&quot;`
-
-  `SSLCertificateFile=&quot;../bin/server-cert.pem&quot;`
-
- `SSLCertificateKeyFile=&quot;../bin/server-key.pem&quot;` 
+<pre><code>    &lt;Connector port=&quot;443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot;
+               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+               clientAuth=&quot;true&quot; sslProtocol=&quot;TLS&quot;
+    keystoreFile=&quot;server.p12&quot;
+    keystorePass=&quot;root&quot; 
+    keystoreType=&quot;PKCS12&quot;
+    truststoreFile=&quot;truststore.jks&quot;
+    truststorePass=&quot;222222&quot; 
+    truststoreType=&quot;JKS&quot;
+    SSLCertificateFile=&quot;../bin/server-cert.pem&quot;
+    SSLCertificateKeyFile=&quot;../bin/server-key.pem&quot; 
+ /&gt;
 </code></pre>
-<p>  <code>/&gt;</code></p>
 <p>保存在bin目录下启动“startup.bat”</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231210-155138.jpg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231210-163651.png" alt="image-20231210163650004"></p>
 <p>访问<a target="_blank" rel="noopener" href="https://localhost,https连接显示不安全,这时需要把证书导入到浏览器中/">https://localhost，https连接显示不安全，这时需要把证书导入到浏览器中</a></p>
 <p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231210-155144.jpg" alt="img"></p>
 <p>在受信任的跟证书颁发机构导入ca的证书“ca.p12.crt”</p>
