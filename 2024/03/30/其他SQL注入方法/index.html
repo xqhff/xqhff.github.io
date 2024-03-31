@@ -351,11 +351,42 @@ ant[uname]=admin&#39; and updatexml (1,concat(0x7e,database()),0) #
 <li>如果存在sql注入漏洞,写入的数据应该为<code>1,库名,3</code></li>
 <li>在另一个页面就可以看到该库名数据</li>
 </ol>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-162912.png" alt="在这里插入图片描述"></p>
+<h4 id="6）HTTP头注入"><a href="#6）HTTP头注入" class="headerlink" title="6）HTTP头注入"></a><strong>6）HTTP头注入</strong></h4><h5 id="1、UserAgent注入"><a href="#1、UserAgent注入" class="headerlink" title="1、UserAgent注入"></a>1、UserAgent注入</h5><pre><code>User-Agent:hacker&#39; and updatexml(1,concat(0xx5e,version(),0x5e),1) and &#39;1&#39;=&#39;1
+</code></pre>
+<h5 id="2、Referer-注入"><a href="#2、Referer-注入" class="headerlink" title="2、Referer 注入"></a>2、Referer 注入</h5><pre><code>Referer:hacker&#39; and updatexml(1,concat(0x5e,version(),0x5e),1) and &#39;1&#39;=&#39;1
+</code></pre>
+<h5 id="3、X-Forwarded-For注入"><a href="#3、X-Forwarded-For注入" class="headerlink" title="3、X-Forwarded-For注入"></a>3、X-Forwarded-For注入</h5><p>X-Forwarded-For（XFF）是用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端最原始的IP地址的HTTP请求头字段。</p>
+<p>如果系统采用了服务器后端获取 X-Forwarded-For数据，如：利用String ip = request.getHeader(“X-Forwarded-For”);进行获取ip，攻击者可以通过X-Forwarded-For请求头信息就行伪造ip，当然了这个ip也可以是一些注入语句，如下：</p>
+<pre><code>X-Forwarded-For：1 and if(now()=sysdate(),sleep(6),0)-- 
+String sql = &quot;select * from table where ip = &#39;&quot;+ip+&quot;&#39;&quot;;
+</code></pre>
+<p>构造X-Forwoarded-For头进行测试，http响应出现变化：</p>
+<pre><code>X-Forwarded-For: -1&#39; OR 3*2*1=6 AND 000958=000958--
+X-Forwarded-For: -1&#39; OR 3*2*1=6 AND 000958=000957--
+</code></pre>
+<p>由此可以判定可能存在注入漏洞的</p>
+<h4 id="7）堆叠注入"><a href="#7）堆叠注入" class="headerlink" title="7）堆叠注入"></a><strong>7）堆叠注入</strong></h4><p>mysql数据库sql语句的默认结束符是以”;”号结尾，在执行多条sql语句时就要使用结束符隔<br>开,而堆叠注入其实就是通过结束符来执行多条sql语句</p>
+<p>比如我们在mysql的命令行界面执行一条查询语句,这时语句的结尾必须加上分号结束</p>
+<pre><code>select * from student;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-163139.png" alt="HTWwvV.png"></p>
+<p>如果我们想要执行多条sql那就用结束符分号进行隔开,比如在查询的同时查看当前登录用户是谁</p>
+<pre><code>select * from student;select current_user();
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-163207.png" alt="HThjHS.png"></p>
+<h5 id="堆叠注入触发条件"><a href="#堆叠注入触发条件" class="headerlink" title="堆叠注入触发条件"></a>堆叠注入触发条件</h5><p>堆叠注入触发的条件很苛刻,因为堆叠注入原理就是通过结束符同时执行多条sql语句,这就需要服务器在访问数据端时使用的是可同时执行多条sql语句的方法,比如php中mysqli_multi_query()函数,这个函数在支持同时执行多条sql语句,而与之对应的mysqli_query()函数一次只能执行一条sql语句,所以要想目标存在堆叠注入,在目标主机没有对堆叠注入进行黑名单过滤的情况下必须存在类似mysqli_multi_query()这样的函数,简单总结下来就是</p>
+<ol>
+<li>目标存在sql注入漏洞</li>
+<li>目标未对”;”号进行过滤</li>
+<li>目标中间层查询数据库信息时可同时执行多条sql语句</li>
+</ol>
 <p>参考链接：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74169008/article/details/130768550">【小迪安全】完整详细笔记01-39天-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48904485/article/details/123628523">SQL注入详解-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2394999">SQL盲注 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2395000">其他注入方式 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42566218/article/details/122998991">sql注入之堆叠注入-CSDN博客</a></p>
 
     </div>
     
