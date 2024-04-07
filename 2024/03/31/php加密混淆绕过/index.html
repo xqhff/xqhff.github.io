@@ -10,7 +10,6 @@
         <meta name="keywords" content="">
         <link rel="icon" href="image/head.png">
         <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
-		<script src="/js/fireworks.min.js"></script>
         <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
         
         <link rel="stylesheet" href="/css/fonts.min.css">
@@ -144,6 +143,8 @@ $c=$a.$s.$_GET[&quot;func2&quot;];
 $c($func);
 ?&gt;
 </code></pre>
+<span id="more"></span>
+
 <h4 id="2-利用字符串函数"><a href="#2-利用字符串函数" class="headerlink" title="2.利用字符串函数"></a>2.利用字符串函数</h4><pre><code>ucwords() //把每个单词的首字符转换为大写
 ucfirst() //首字符转换为大写
 trim() //移除字符串两侧的字符
@@ -386,5 +387,11 @@ $c($fun);
         <script src="/js/showimg.js"></script>
         
 
+		<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
     </body>
 </html>
