@@ -1,152 +1,188 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>剣の魔王の小窝</title>
-        <meta name="author" content="剣の魔王">
-        <meta name="description" content="这个网站没有描述">
-        <meta name="keywords" content="">
-        <link rel="icon" href="image/head.png">
-        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
-        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
-        
-        <link rel="stylesheet" href="/css/fonts.min.css">
-        <link rel="stylesheet" href="/css/particlex.css">
-        
-        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
-    <meta name="generator" content="Hexo 5.4.2"></head>
-    <body>
-				
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/image/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
 			<canvas
 			id="fireworks"
 			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
 			</canvas>
 			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-			<script src="/js/fireworks.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
 			
 			<canvas
 			id="background"
 			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
-			<script src="/js/background.min.js"></script>
-			
-        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
-        <div id="layout">
-            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
-            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
-            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
-            <transition name="into">
-                <div v-show="show_page" style="display: -not-none">
-                    <div id="menu_show">
-                         
-<nav id="menu">
-    <div class="desktop-menu">
-        <a href="/">
-            <span class="title">剣の魔王の小窝</span>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
         </a>
         
         <a href="/">
             <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;home</span>
+            <span>&ensp;Home</span>
         </a>
         
         <a href="/about">
             <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;about</span>
+            <span>&ensp;About</span>
         </a>
         
         <a href="/archives">
             <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;archives</span>
+            <span>&ensp;Archives</span>
         </a>
         
         <a href="/categories">
             <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;categories</span>
+            <span>&ensp;Categories</span>
         </a>
         
         <a href="/tags">
             <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;tags</span>
+            <span>&ensp;Tags</span>
         </a>
         
-    </div>
-    <div :class="'phone-menu ' + menu_show" id="phone-menu">
-        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
-        <div :class="'title'" @click="menu_show = !menu_show">
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
             <i class="fa-solid fa-bars fa-fw"></i>
             <span>&emsp;剣の魔王の小窝</span>
         </div>
         <transition name="slide">
-        <div class="items" v-show="menu_show">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-house fa-fw"></i>
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
-                </div>
-            </a>
-            
-            <a href="/about">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-id-card fa-fw"></i>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
-                </div>
-            </a>
-            
-            <a href="/categories">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
-                </div>
-            </a>
-            
-            <a href="/tags">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-tags fa-fw"></i>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
-                </div>
-            </a>
-            
-        </div>
+                </a>
+                
+            </div>
         </transition>
-    </div>
-</nav>
-                    </div>
-                    <div id="main">
-                        
-<div class="article">
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
     <div>
-        <h1> </h1>
+        <h1></h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2022/11/23
         </span>
         
         
     </div>
+    
     <div class="content" v-pre>
         <h1 id="手机和PC连接同一热点，捕获TCP流"><a href="#手机和PC连接同一热点，捕获TCP流" class="headerlink" title="手机和PC连接同一热点，捕获TCP流"></a>手机和PC连接同一热点，捕获TCP流</h1><p> 参考：<a target="_blank" rel="noopener" href="http://anineg.space/2022/10/04/tcptest/">TCP 协议传输数据还原测试 | ANINEG の小屋</a></p>
 <p>1、首先，先使手机和pc连接同一WiFi活着电脑连接手机热点</p>
@@ -169,34 +205,75 @@
     </div>
     
     
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
 </div>
-                         
-<footer id="footer">
-    <div class="footer-wrap">
+
+            <footer id="footer">
+    <div id="footer-wrap">
         <div>
-            © 2022 - 2024 剣の魔王の小窝
-            <span class="footer-icon">
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
-            @剣の魔王
+            &commat;剣の魔王
         </div>
-        <div></div>
-        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
-                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
         
     </div>
 </footer>
-                    </div>
-                </div>
-            </transition>	
-            <div id="img_show">
-                <img id="img_content" alt="img_show">
-            </div>
-        </div>
-        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
-        <script src="/js/particlex.js"></script>
-        <script src="/js/showimg.js"></script>
-        
 
-    </body>
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
 </html>
