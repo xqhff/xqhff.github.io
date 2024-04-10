@@ -187,6 +187,67 @@
         
 
 <div class="post">
+    <a href="/2024/04/09/xss%E6%B5%8B%E8%AF%95%E5%8F%8A%E7%BB%95%E8%BF%87/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/4/9
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="一、XSS的测试技巧和工具："><a href="#一、XSS的测试技巧和工具：" class="headerlink" title="一、XSS的测试技巧和工具："></a>一、XSS的测试技巧和工具：</h2><h3 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h3><p>1、工具扫描：APPscan、awvs、burpsuite、XSSER XSSF</p>
+<p>2、手动测试：Burpsuite、firefox(hackbar)<br>      1）在目标站点上找到输入点,比如查询接口,留言板等;<br>      2）输入一组”特殊字符+唯一识别字符”,点击提交后,查看返回的源码,是否有做对应的处理;<br>      3）通过搜索定位到唯一字符,结合唯一字符前后语法确认是否可以构造执行js的条件(构造闭合);提交构造的脚本代码,看是否可以成功执      行,如果成功执行则说明存在XSS漏洞;</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/04/09/xss%E6%B5%8B%E8%AF%95%E5%8F%8A%E7%BB%95%E8%BF%87/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/04/08/xss%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/4/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h2><h3 id="xss原理"><a href="#xss原理" class="headerlink" title="xss原理"></a>xss原理</h3><p>HTML是一种超文本标记语言，通过将一些字符特殊地对待来区别文本和标记，例如，小于符号（&lt;）被看作是HTML标签的开始，之间的字符是页面的标题等等。当动态页面中插入的内容含有这些特殊字符（如&lt;）时，用户浏览器会将其误认为是插入了HTML标签，当这些HTML标签引入了一段JavaScript脚本时，这些脚本程序就将会在用户浏览器中执行。所以，当这些特殊字符不能被动态页面检查或检查出现失误时，就将会产生XSS漏洞。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/04/08/xss%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/03/31/php%E5%8A%A0%E5%AF%86%E6%B7%B7%E6%B7%86%E7%BB%95%E8%BF%87/">
         <h2 class="post-title"></h2>
     </a>
@@ -461,71 +522,6 @@ and exists (select * from sysobjects) &gt;0
         
     </div>
     <a href="/2024/01/16/CFS%20%E4%B8%89%E5%B1%82%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83-%E6%9F%90%20CTF%20%E7%BA%BF%E4%B8%8B%202019/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/01/08/%E8%84%8F%E7%89%9B%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E-Linux%E6%8F%90%E6%9D%83/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/1/8
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="脏牛内核漏洞-Linux内网提权"><a href="#脏牛内核漏洞-Linux内网提权" class="headerlink" title="脏牛内核漏洞-Linux内网提权"></a>脏牛内核漏洞-Linux内网提权</h1><p>靶机下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/xxe-lab-1,254/"><a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/lampiao-1,249/">Lampião: 1 ~ VulnHub</a></a></p>
-<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/MCTSOG/article/details/124640418">第63天-权限提升-Linux 脏牛内核漏洞&amp;SUID&amp;信息收_linux提权手法总结.pdf-CSDN博客</a></p>
-<p>Linux信息探针地址：<a target="_blank" rel="noopener" href="https://github.com/The-Z-Labs/linux-exploit-suggester">The-Z-Labs/linux-exploit-suggester: Linux privilege escalation auditing tool (github.com)</a></p>
-<p>脏牛exp：<a target="_blank" rel="noopener" href="https://github.com/gbonacini/CVE-2016-5195">https://github.com/gbonacini/CVE-2016-5195</a></p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/01/08/%E8%84%8F%E7%89%9B%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E-Linux%E6%8F%90%E6%9D%83/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/12/10/tomcat%E9%85%8D%E7%BD%AEhttps%E5%8F%8C%E5%90%91%E8%AE%A4%E8%AF%81/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/12/10
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="Tomcat配置HTTPS实现双向认证"><a href="#Tomcat配置HTTPS实现双向认证" class="headerlink" title="Tomcat配置HTTPS实现双向认证"></a>Tomcat配置HTTPS实现双向认证</h1><p>这几天写应用密码学实验写到人傻了……</p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2023/12/10/tomcat%E9%85%8D%E7%BD%AEhttps%E5%8F%8C%E5%90%91%E8%AE%A4%E8%AF%81/" class="go-post">阅读全文</a>
 </div>
 
 
