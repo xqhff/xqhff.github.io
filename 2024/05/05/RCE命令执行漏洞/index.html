@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="RCE——远程命令执行漏洞"><a href="#RCE——远程命令执行漏洞" class="headerlink" title="RCE——远程命令执行漏洞"></a>RCE——远程命令执行漏洞</h2><p><strong>什么是RCE</strong></p>
+<p>RCE又称远程代码执行漏洞，可以让攻击者直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。</p>
+<p><strong>RCE产生原因</strong></p>
+<p>服务器没有对执行命令的函数做严格的过滤，最终导致命令被执行。<span id="more"></span></p>
+<p><strong>命令执行函数</strong></p>
+<pre><code>PHP代码执行函数：
+eval()、assert()、preg_replace()、create_function()、array_map()、call_user_func()、call_user_func_array()、array_filter()、uasort()、base64_decode、 gzinflate、gzuncompress、gzdecode、str_rot13等
+PHP命令执行函数：
+system()、exec()、shell_exec()、pcntl_exec()、popen()、proc_popen()、passthru()、assert、``等
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-145745.png" alt="在这里插入图片描述"></p>
+<h4 id="远程命令执行原理："><a href="#远程命令执行原理：" class="headerlink" title="远程命令执行原理："></a>远程命令执行原理：</h4><p>很多应用系统从设计上需要给用户提供指定的远程命令操作的接口</p>
+<blockquote>
+<p>比如很多网络设备的web管理界面上一般会有一个ping操作的web界面，用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。 而如果设计者在完成该功能时，没有做严格的安全控制，则可能会导致攻击者通过该接口提交“意想不到”的命令，从而让后台进行执行，从而控制整个后台服务器 。</p>
+</blockquote>
+<p>现在很多的甲方企业都开始实施自动化运维,大量的系统操作会通过”自动化运维平台”进行操作。 在这种平台上往往会出现远程系统命令执行的漏洞</p>
+<h4 id="远程代码执行原理："><a href="#远程代码执行原理：" class="headerlink" title="远程代码执行原理："></a>远程代码执行原理：</h4><p>同样的道理,因为需求设计,后台有时也会把用户的输入作为代码的一部分进行执行,也就造成了远程代码执行漏洞。<br>因此，如果需要给前端用户提供操作类的API接口，一定需要对接口输入的内容进行严格的判断，比如实施严格的白名单策略会是一个比较好的方法。</p>
+<h4 id="系统命令拼接方式"><a href="#系统命令拼接方式" class="headerlink" title="系统命令拼接方式"></a>系统命令拼接方式</h4><pre><code>|           管道符，前面命令标准输出，后面命令的标准输入。例如：help |more
+&amp;           commandA &amp; commandB 先运行命令A，然后运行命令B 
+||           commandA || commandB 运行命令A，如果失败则运行命令B
+&amp;&amp;            commandA &amp;&amp; commandB 运行命令A，如果成功则运行命令B 
+</code></pre>
+<p>ping命令案例</p>
+<pre><code># 正常情况下，web输入框要求输入ip地址，回车即可开始ping
+192.168.1.1
+# 给ip后拼上其他命令
+192.168.1.1 &amp; whoami
+# 整体命令变为
+ping 192.168.1.1 &amp; whoami
+</code></pre>
+<h4 id="典型案例"><a href="#典型案例" class="headerlink" title="典型案例"></a>典型案例</h4><p>Apache Struts漏洞（CVE-2017-5638）：这是一个非常著名的RCE漏洞案例，影响了Apache Struts框架。攻击者可以通过发送恶意的HTTP请求利用该漏洞，执行任意代码并获取服务器的控制权。这个漏洞被广泛利用，导致了多个大规模数据泄露事件。</p>
+<p>Microsoft Windows SMB漏洞（MS17-010）：这是一个影响微软Windows操作系统的RCE漏洞。攻击者可以通过发送特制的SMB请求，利用该漏洞在远程系统上执行任意代码。这个漏洞被用于传播WannaCry勒索软件，造成了全球范围内的大规模攻击和数据损失。</p>
+<p>Drupal漏洞（CVE-2018-7600）：这是一个影响Drupal内容管理系统的RCE漏洞。攻击者可以通过发送特制的请求，利用该漏洞执行任意代码，并获取网站服务器的控制权。这个漏洞被广泛利用，导致了许多Drupal网站被入侵和操纵。</p>
+<p>Apache Tomcat漏洞（CVE-2020-1938）：这是一个影响Apache Tomcat服务器的RCE漏洞。攻击者可以通过发送特制的请求，利用该漏洞执行任意代码，并获取服务器的控制权。这个漏洞被称为“Ghostcat”，影响了许多Tomcat服务器。</p>
+<p>Jenkins漏洞（CVE-2018-1000861）：这是一个影响Jenkins持续集成工具的RCE漏洞。攻击者可以通过发送特制的请求，利用该漏洞在受影响的Jenkins服务器上执行任意代码。这个漏洞被广泛利用，导致了许多Jenkins服务器被入侵和滥用。</p>
+<h4 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h4><p>假定所有输入都是可疑的</p>
+<ol>
+<li>尝试对所有输入提交可能执行命令的构造语句进行严格的检查或者控制外部输入<br>系统命令执行函数的参数不允许外部传递。</li>
+<li>不仅要验证数据的类型，还要验证其格式、长度、范围和内容。</li>
+<li>不要仅仅在客户端做数据的验证与过滤，关键的过滤步骤在服务端进行。</li>
+<li>对输出的数据也要检查，数据库里的值有可能会在一个大网站的多处都有输出<br>即使在输入做了编码等操作，在各处的输出点时也要进行安全检查。</li>
+</ol>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2395026">远程命令和代码执行漏洞 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74169008/article/details/130768550">【小迪安全】完整详细笔记01-39天-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/391439312">命令执行(RCE)面对各种过滤，骚姿势绕过总结 - 知乎 (zhihu.com)</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

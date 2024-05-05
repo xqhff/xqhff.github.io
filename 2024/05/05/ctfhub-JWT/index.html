@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="CTFhub里的easy-login-writeup"><a href="#CTFhub里的easy-login-writeup" class="headerlink" title="CTFhub里的easy_login writeup"></a>CTFhub里的easy_login writeup</h1><p>CTFHub链接:<a target="_blank" rel="noopener" href="https://www.ctfhub.com/#/challenge">CTFHub</a></p>
+<p>JWT介绍参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zr1213159840/article/details/122889002">小迪安全学习笔记–第40和41天JAVA安全及预编译CASE注入等目录遍历访问控制XSS等安全问题_小迪安全笔记40_铁锤2号的博客-CSDN博客</a></p>
+<p>先介绍什么是JWT：</p>
+<p><strong><span id="more"></span></strong></p>
+<p>什么是JWT?<br>JSON web Token (JSON web令牌是一种跨域验证身份的方案。JWT不加密传输的数据，但能够通过数字签名来验证数据未被篡改。<br>JwT分为三部分，头部(Header)，声明(claims)，签名(signature)，三个部分以英文句号.隔开。JWT的内容以Base64URL进行了编码。<br>1）头部(Header)<br>{“alg”:“HS256”,</p>
+<p>“typ” : ““JWT””}<br>alg：是说明这个JwT的签名使用的算法的参数，常见值用s256(默认)，Hs512等，也可以为None。HS256表示HMAC SHA256。<br>typ：说明这个token的类型为JWT</p>
+<p>2）JWT固定参数（声明段）有:</p>
+<p>iss:发行人</p>
+<p>exp:到期时间</p>
+<p>sub:主题</p>
+<p>aud:用户</p>
+<p>nbf:在此之前不可用</p>
+<p>iat:发布时间</p>
+<p>jti: JWT ID用于标识该JWT</p>
+<p>3）签名(signatura)<br>服务器有一个不会发送给客户端的密码(secret)，用头部中指定的算法对头部和声明的内容用此密码进行加密，生成的字符串就是JwT的签名。<br>下面是一个用Hs256生成JwT的代码例子</p>
+<pre><code>HMACSHA256(base64UrlEncode (header) + “.”+base64URlEncode(payload) ,secret)
+</code></pre>
+<p>1、用户端登录，用户名和密码在请求中被发往服务器<br>2、(确认登录信息正确后)服务器生成json头部和声明，将登录信息写入JSON的声明中(通常不应写入密码，因为JWT是不加密的)，并用secret用指定算法进行加密,生成该用户的JWT。此时，服务器并没有保存登录状态信息。<br>3、服务器将JWT (通过响应)返回给客户端<br>4、用户下次会话时，客户端会自动将JwT写在HTTF请求头部的Authorization字段中<br>5、服务器对JWT进行验证，若验证成功，则确认此用户的登录状态</p>
+<p>下面是小迪老师总结的JWT漏洞利用：</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181533.png" alt="image:43538257467"></p>
+<p>打开靶场后看到是登录注册界面，分别对注册和登录抓包看看情况</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181704.png" alt="image:45456357467"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181546.png" alt="image:32453825754"></p>
+<p>在注册包里面没看到什么异常，但是在登录的包里看到了JWT的标志authorization（大概）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181913.png" alt="image:4353784537"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-181826.png" alt="image:44784235347"></p>
+<p>将该base64字段拿到<a target="_blank" rel="noopener" href="https://jwt.io解密,分别得到头部、声明、签名三个字段,先保存下来/">https://jwt.io解密，分别得到头部、声明、签名三个字段，先保存下来</a></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182048.png" alt="image:345477627"></p>
+<p>登录成功后看到flag will be here， 通过题目的提示，该代码使用的是nodejs编写的，所以跳到api配置文件 /controllers/api.js  下发现需要使用admin账号登录下访问/api/flag目录，且admin用户不能注册和直接登录，这时就需要使用JWT漏洞</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182144.png" alt="image:435543773427"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182151.png" alt="image:6765324467"></p>
+<p>将之前的头部和声明段分别放到base64编码下，将alg的值改为“none”并且把base64加密后的“=”去掉并保存，声明内容里的secretid值改为空即：”[]”，username的值改为“admin”进行base64编码去掉等号使用“.”拼接在头部后并且在最后添加“.”表示为声明字段为空（secretid值改为“[]”是通过代码审计得出，因为没学过java其中的值分析不了）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182257.png" alt="image:324657853467"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182305.png" alt="image:43267423467"></p>
+<p>重新登录抓包将改完的值添加到authorization上并且将username改为admin即可登录成功</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182317.png" alt="image:6886453267"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182346.png" alt="image:432546757657"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182406.png" alt="image:6875347467"></p>
+<p>根据api配置文件，最后访问/api/flag得到flag</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20231005-182546.png" alt="image:9874375267"></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

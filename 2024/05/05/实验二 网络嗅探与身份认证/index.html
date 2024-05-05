@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="实验二-网络嗅探与身份认证"><a href="#实验二-网络嗅探与身份认证" class="headerlink" title="实验二 网络嗅探与身份认证"></a><strong>实验二 网络嗅探与身份认证</strong></h1><h2 id="1-实验目的和要求"><a href="#1-实验目的和要求" class="headerlink" title="1. 实验目的和要求"></a>1. 实验目的和要求</h2><p>1、通过使用Wireshark软件掌握Sniffer（嗅探器）工具的使用方法，实现捕捉HTTP等协议的数据包，以理解TCP/IP协议中多种协议的数据结构、通过实验了解HTTP等协议明文传输的特性。</p>
+<p>2、研究交换环境下的网络嗅探实现及防范方法，研究并利用ARP协议的安全漏洞，通过Arpspoof实现ARP欺骗以捕获内网其他用户数据。</p>
+<p>3、能利用BrupSuite实现网站登录暴力破解获得登录密码。</p>
+<p>4、能实现ZIP密码破解，理解安全密码的概念和设置。</p>
+<p>系统环境：Kali Linux 2、Windows</p>
+<p>网络环境：交换网络结构</p>
+<p>实验工具：Arpspoof、WireShark、BurpSuite、fcrackzip（用于zip密码破解）。</p>
+<p><strong><span id="more"></span></strong></p>
+<h2 id="2-实验步骤"><a href="#2-实验步骤" class="headerlink" title="2.实验步骤"></a>2.实验步骤</h2><p>实验步骤和内容：</p>
+<p>网络嗅探部分：</p>
+<p>网络嗅探：Wireshark 监听网络流量，抓包。</p>
+<p>ARP欺骗： ArpSpoof，实施ARP欺骗。</p>
+<p>防范： 防范arp欺骗。</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105604.png" alt="image-20221124105054785"></p>
+<p>​                                                                                                    实验网络拓扑</p>
+<h4 id="1、A主机上外网，B运行sinffer-Wireshark-选定只抓源为A的数据-。"><a href="#1、A主机上外网，B运行sinffer-Wireshark-选定只抓源为A的数据-。" class="headerlink" title="1、A主机上外网，B运行sinffer(Wireshark)选定只抓源为A的数据)。"></a>1、A主机上外网，B运行sinffer(Wireshark)选定只抓源为A的数据)。</h4><h5 id="1-1-写出以上过滤语句。"><a href="#1-1-写出以上过滤语句。" class="headerlink" title="1.1 写出以上过滤语句。"></a><strong>1.1</strong> <strong>写出以上过滤语句。</strong></h5><p>ip.scr == 目的ip</p>
+<h5 id="1-2-在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？"><a href="#1-2-在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？" class="headerlink" title="1.2 在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？"></a><strong>1.2</strong> 在互联网上找到任意一个以明文方式传递用户帐号、密码的网站，B是否能看到A和外网（该网站）的通信（A刚输入的帐户和口令）？为什么？</h5><p>能，因为网站使用的是明文的方式传输账户和密码</p>
+<h5 id="2-1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？"><a href="#2-1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？" class="headerlink" title="2.1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？"></a>2.1为了捕获A到外网的数据，B实施ARP欺骗攻击，B将冒充该子网的什么实体？</h5><p>冒充的是网关</p>
+<h5 id="2-2-写出arpspoof命令格式。"><a href="#2-2-写出arpspoof命令格式。" class="headerlink" title="2.2 写出arpspoof命令格式。"></a><strong>2.2</strong> 写出arpspoof命令格式。</h5><p>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</p>
+<p>arpspoof -i eth0 -t 被欺骗ip 伪装的网关ip</p>
+<h5 id="2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"><a href="#2-3-B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。" class="headerlink" title="2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。"></a>2.3 B是否能看到A和外网的通信（A输入的帐户和口令）？截图Wireshark中显示的明文信息。</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105617.png" alt="arp欺骗"></p>
+<h4 id="3-FTP数据还原部分：利用WireShark打开实验实验数据data-pcapng。"><a href="#3-FTP数据还原部分：利用WireShark打开实验实验数据data-pcapng。" class="headerlink" title="3.FTP数据还原部分：利用WireShark打开实验实验数据data.pcapng。"></a>3.FTP数据还原部分：利用WireShark打开实验实验数据data.pcapng。</h4><h5 id="3-1-FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？"><a href="#3-1-FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？" class="headerlink" title="3.1 FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？"></a>3.1 FTP服务器的IP地址是多少？你是如何发现其为FTP服务器的？</h5><p>源ip为192.168.182.132给目的ip为192.168.182.1的服务器发送user为student的</p>
+<p>登录请求，所以192.168.182.1为ftp服务器。</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105638.png" alt="服务器ip"></p>
+<h5 id="3-2客户端登录FTP服务器的账号和密码分别是什么"><a href="#3-2客户端登录FTP服务器的账号和密码分别是什么" class="headerlink" title="3.2客户端登录FTP服务器的账号和密码分别是什么?"></a>3.2客户端登录FTP服务器的账号和密码分别是什么?</h5><p>名为“student”的用户名和“sN46i5y”的密码登录成功。</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105646.png" alt="账户密码"></p>
+<p>3.3 客户端从FTP下载或查看了2个文件，一个为ZIP文件，一个为TXT文件，文件名分别是什么？<strong>提示：文件名有可能是中文。</strong></p>
+<p>使用ftp-data过滤可以看到名为“1.zip”和“复习题.txt”的文件</p>
+<p>（wireshark过滤 ftp-data 是数据传输的数据）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105700.png" alt="1"></p>
+<p>（ftp则是ftp协议的控制数据，控制数据，比如登录，我要传输哪个文件等等，确定传输的文件了，那么就ftp-data了）</p>
+<h5 id="3-4-还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。"><a href="#3-4-还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。" class="headerlink" title="3.4 还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。"></a>3.4 还原ZIP文件并打开（ZIP有解压密码，试图破解，提示：密码全为数字，并为6位）。截图破解过程。</h5><p>1、打开破解密码的工具ARCHPR</p>
+<p>2、打开加密的zip文件，根据提示在暴力破解范围选项选择“所有数字”。点击开始</p>
+<p>3、根据得到的口令“123456”解压文件即可得到名为“Penguins.jpg”的图片</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105708.png" alt="破解密码"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105806.jpg" alt="Penguins"></p>
+<h5 id="3-5-TXT文件的内容是什么？"><a href="#3-5-TXT文件的内容是什么？" class="headerlink" title="3.5 TXT文件的内容是什么？"></a>3.5 TXT文件的内容是什么？</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105820.png" alt="txt内容"></p>
+<h3 id="网站密码破解部分："><a href="#网站密码破解部分：" class="headerlink" title="网站密码破解部分："></a>网站密码破解部分：</h3><p>  利用人们平时常用的词、句破译，如果说暴力破解是一个一个的尝试那么字典破译就是利用人们习惯用人名、地名或者常见的词语设置成密码的习惯进行破译。字典破译速度比暴力破译更快但是有时候密码设置中包含了没有字典库中的词句就无法破解出来了，因此有好的字典是关键。</p>
+<p>以Metstable2 DVWA为目标网站，构造字典（wordlist），其中包含你的正确密码，利用burpsuite进行字典攻击，实施字典攻击，你是如何判断某个密码为破解得到的正确密码，截图。</p>
+<p>一般是通过判断长度或者响应包里的字段判断的，但是我这个都不行OvO</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105827.png" alt="bp1"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105833.png" alt="bp2"></p>
+<h4 id="4、MD5破解"><a href="#4、MD5破解" class="headerlink" title="4、MD5破解"></a>4、MD5破解</h4><p>  SqlMap得到某数据库用户表信息，用户口令的MD5值为7282C5050CFE7DF5E09A33CA456B94AE</p>
+<p>那么，口令的明文是什么？（提示：MD5值破解）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20221124-105840.png" alt="MD5解密"></p>
+<h4 id="5、John-the-Ripper的作用是什么？"><a href="#5、John-the-Ripper的作用是什么？" class="headerlink" title="5、John the Ripper的作用是什么？"></a>5、John the Ripper的作用是什么？</h4><p>“John the Ripper,是一个快速的密码破解工具,用于在已知密文的情况下尝试破解出明文的破解密码软件,支持大多数的加密算法。</p>
+<h3 id="思考问题："><a href="#思考问题：" class="headerlink" title="思考问题："></a><strong>思考问题：</strong></h3><p><strong>1、 谈谈如何防止ARP攻击</strong></p>
+<p>1.使用防火墙监听网络</p>
+<p>2.IP传输使用”proxy”代理</p>
+<p>3.添加静态arp映射表，不让主机刷新设定好的映射表，该做法适用于网络中主机位置稳定，不适用在主机更换频繁的局域网中。</p>
+<p>4.停止使用arp，将arp作为永久条目保存在映射表中。</p>
+<p><strong>2、</strong> <strong>安全的密码（口令）应遵循的原则</strong></p>
+<p>1.避免使用弱口令</p>
+<p>2.密码口令位数大于等于八位</p>
+<p>3.使用字母、数字、字符组合的方法</p>
+<p>4.避免全部账号使用同一密码</p>
+<p><strong>3、</strong> <strong>谈谈字典攻击中字典的重要性</strong></p>
+<p>字典攻击破解密码的时候使用的是字典里的密码逐一破解，字典中的密码组合决定了能否破解成功</p>
+<h2 id="3-实验小结"><a href="#3-实验小结" class="headerlink" title="3.实验小结"></a>3.实验小结</h2><p>1、在设置口令时，尽量使用强口令</p>
+<p>2、保持防火墙一直开着能防止各种攻击</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

