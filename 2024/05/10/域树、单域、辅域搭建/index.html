@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/10
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）"><a href="#渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）" class="headerlink" title="渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）"></a>渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）</h2><p>网络拓扑图如下：</p>
+<span id="more"></span>
+
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-123912.png" alt="image-20240513114507389"></p>
+<p>关于虚拟机的安装可以参考网上教程</p>
+<p>镜像文件下载：<a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/?ang=2h-cn">MSDN, 我告诉你 - 做一个安静的工具站 (itellyou.cn)</a></p>
+<h5 id="虚拟网卡安装及配置"><a href="#虚拟网卡安装及配置" class="headerlink" title="虚拟网卡安装及配置"></a>虚拟网卡安装及配置</h5><p>首先打开编辑-&gt;虚拟网络编辑器</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-192027.png" alt="image-20240510192026334"></p>
+<p>选择更改设置（要使用管理员身份打开VMware）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-192123.png" alt="image-20240510192122746"></p>
+<p>填写子网IP和子网掩码</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-192231.png" alt="image-20240510192230692"></p>
+<p>将域中主机的网卡改为新添加的网卡</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-192603.png" alt="image-20240510192602289"></p>
+<h3 id="主父域控制器搭建-Windows-Server-2016"><a href="#主父域控制器搭建-Windows-Server-2016" class="headerlink" title="主父域控制器搭建(Windows Server 2016)"></a>主父域控制器搭建(Windows Server 2016)</h3><p>1、设置主域控服务器的固定IP地址，根据下图配置好</p>
+<pre><code>IP : 10.10.10.10
+子网掩码：255.255.255.0
+默认网关：10.10.10.1
+DNS：10.10.10.10（这个需要和IP一摸一样）
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-193334.png" alt="image-20240510193333088"></p>
+<p>2、在开始菜单点击服务器管理</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-193540.png" alt="image-20240510193539094"></p>
+<p>3、选择添加角色和功能</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-193617.png" alt="image-20240510193617040"></p>
+<p>4、前几步一直点“下一步”，在“服务器角色”勾选“Active Directory 域服务”，</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-193733.png" alt="image-20240510193732916"></p>
+<p>如果出现安装失败的这种情况（由于没遇见这情况就直接拿参考博主的图了）：</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-202516.png!small" alt="img"></p>
+<p>因为AD域服务属于服务器功能，所以要求windows server 机器的服务中开启 “Server”服务。</p>
+<p>检查 “控制面板”-“系统与安全”-“管理工具”-“服务”（或者直接在“运行”中输入“services.msc”），在其中选择 “Server” ，双击进入其属性页面，将启动类型改为 “自动”，然后“应用”，“启动”服务:</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-202530.png!small" alt="img"></p>
+<p>5、点击下一步到最后安装，安装成功后，选择“将此服务器提升为域控制器”</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-194122.png" alt="image-20240510194121164"></p>
+<p>6、选择添加新林，根域名为“redteam.com”，点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-194230.png" alt="image-20240510194230144"></p>
+<p>7、设置还原模式密码：Redteam.com    ，点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-194352.png" alt="image-20240510194351723"></p>
+<p>8、DNS选项默认，点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-194436.png" alt="image-20240510194435827"></p>
+<p>9、“NetBIOS域名”使用系统默认生成的就好，点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-194537.png" alt="image-20240510194536496"></p>
+<p>10、路径默认，下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-194641.png" alt="image-20240510194640311"></p>
+<p>11、来到“先决条件检查”，发现报错了：<strong>域控制器升级的先决条件验证失败。 本地 Administrator 帐户将成为域 Administrator 帐户。无法新建域，因为本地 Administrator 帐户密码不符合要求</strong>，原因是因为 administrator 当前机器没有设置密码且密码是一个弱密码，我们只需要给 administrator 设置一个强密码即可！我们以管理员权限打开命令提示符给 administrator 设置一个新密码，在命令行里输入： net user administrator admin!@#45  ，将administrator的密码设置为：<strong>admin!@#45</strong></p>
+<p>点击“重新运行先决条件检查”后点击“安装”即可</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-194826.png" alt="image-20240510194825877"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-195832.png" alt="image-20240510195831700"></p>
+<p>12、在经过几次重启后再去修改一次DNS</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-200714.png" alt="image-20240510200713248"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-200726.png" alt="image-20240510200726033"></p>
+<p>14、修改完之后重启电脑就完成了域森林中的⽗域控制器（redteam.com）的安装。</p>
+<p>15、接下来需要同步配置一下域控制器的DNS区域传输：</p>
+<p>现在主域控制器和 DNS 集成，为了让后期搭建完辅域控制器的 DNS 同步主域控制器 DNS ，需要把主域控制器的 DNS 服务器_msdcs.redteam.com和 redteam.com 的起始授权机构(SOA)区域传送设置成允许:</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-201139.png" alt="image-20240510201138558"></p>
+<h3 id="添加用户机器到父域-redteam-com"><a href="#添加用户机器到父域-redteam-com" class="headerlink" title="添加用户机器到父域 redteam.com"></a>添加用户机器到父域 redteam.com</h3><h4 id="web-2012（Windows-2012-R2）加入域"><a href="#web-2012（Windows-2012-R2）加入域" class="headerlink" title="web-2012（Windows 2012 R2）加入域"></a>web-2012（Windows 2012 R2）加入域</h4><p>父域创建完成之后使用命令“net user /domain”查看只有父域控制器一台机子，那么接下来将web-2012添加到该域中</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-201400.png" alt="image-20240510201359943"></p>
+<p>1、修改该计算机的网卡为上面添加网卡</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-204334.png" alt="image-20240510204333703"></p>
+<p>2、更改主机的网络配置</p>
+<pre><code>IP : 10.10.10.12
+子网掩码：255.255.255.0
+默认网光：10.10.10.1
+DNS：10.10.10.10（也就是父域控制器的IP）
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-204700.png" alt="image-20240510204659336"></p>
+<p>3、右击计算机-&gt;属性-&gt;更改设置</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-203156.png" alt="image-20240510203155158"></p>
+<p>4、将计算机名修改为web-2012后加入父域：redteam.com</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-204127.png" alt="image-20240510204126643"></p>
+<p>5、点击确定后输入父域控制器的账号密码： administrator/admin!@#45</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-204901.png" alt="image-20240510204900218"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-204914.png" alt="image-20240510204913397"></p>
+<p>这时web-2012已经加入父域，重启使修改生效</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-205005.png" alt="image-20240510205004784"></p>
+<h4 id="Web-2003（Windows-2003）加入域"><a href="#Web-2003（Windows-2003）加入域" class="headerlink" title="Web-2003（Windows 2003）加入域"></a>Web-2003（Windows 2003）加入域</h4><p>1、修改Web-2003的虚拟网卡</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240510-205203.png" alt="image-20240510205202194"></p>
+<p>2、设置 web-2003 这台机器的 IP地址、DNS、网关：</p>
+<pre><code>IP ： 10.10.10.3
+子网掩码：255.255.255.0
+默认网光：10.10.10.1
+DNS ：10.10.10.10（也就是父域控的IP地址）
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-102543.png" alt="image-20240511102542427"></p>
+<p>2、开始菜单找到我的电脑，右键属性来到系统属性，选择更改</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-102743.png" alt="image-20240511102742943"></p>
+<p>3、计算机名修改为：“web-2003“，加入域”redteam.com“</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-102939.png" alt="image-20240511102938269"></p>
+<p>若遇到这种情况，需要把父域控制器打开</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-103201.png" alt="image-20240511103201082"></p>
+<p>然后输入域控的账号密码： administrator/admin!@#45</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-103239.png" alt="image-20240511103238186"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-103317.png" alt="image-20240511103316548"></p>
+<p>这时web-2003已经加入父域，需要重启一遍电脑才能生效</p>
+<h3 id="辅域控制器搭建（Windows-Server-2016）"><a href="#辅域控制器搭建（Windows-Server-2016）" class="headerlink" title="辅域控制器搭建（Windows Server 2016）"></a>辅域控制器搭建（Windows Server 2016）</h3><p>辅域存在原因：在父域出现问题时，用来应急使用</p>
+<p>1、在VMware里更改网卡，在系统中设置辅域控制器的IP、DNS和网关：</p>
+<pre><code>IP : 10.10.10.11
+子网掩码：255.255.255.0
+默认网光：10.10.10.1
+首选DNS：10.10.10.10（这个需要填父域控制器的IP）
+备选DNS：10.10.10.11（这个就填写自己的IP地址就好）
+</code></pre>
+<p>2、设置完IP后设置，管理员打开命令提示符，使用命令为本地管理员设置密码：</p>
+<pre><code>net user administrator admin!@#45
+</code></pre>
+<p>3、把当前计算机添加到域</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-113642.png" alt="image-20240511113641972"></p>
+<p>4、加入域成功后重启，使用administrator/admin!@#45 域控登陆，来的服务器管理器-&gt;添加角色和功能，像父域控制器一样安装</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-114152.png" alt="image-20240511114151268"></p>
+<p>然后点击“将此服务器提升为域控制器”</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-114311.png" alt="image-20240511114311083"></p>
+<p>5、这时我们将域控制器添加到现有域，域名填写： redteam.com，我们需要将AD2-2016\Administrator（当前用户）更改为父域的域控账户密码：(这⾥需要注意的是，如果辅助域控之前没有加⼊主域控制器，我的当前登录凭据为灰⾊，只能选择备⽤凭据进⾏验证)</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-114927.png" alt="image-20240511114926872"></p>
+<p>6、来到“域控制器选项 ”这里，我们需要选择默认选择域名系统（DNS）服务器和全局编录，设置新的 DSRM 密码：Redteam.com</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-115127.png" alt="image-20240511115127042"></p>
+<p>7、选择下一步来到“其他选项”，选择“任何域控制”，点击下一步然后在”先决条件检查“后点击安装</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-115504.png" alt="image-20240511115503377"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-115443.png" alt="image-20240511115442853"></p>
+<p>8、辅助域控制器安装成功还需要设置一下 DNS:</p>
+<pre><code>⾸选DNS为：10.10.10.11（辅域DNS）
+备⽤DNS为：10.10.10.10（⽗域DNS）
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-120918.png" alt="image-20240511120917807"></p>
+<p>9、配置完首选DNS为辅域控制器的IP后，需要设置一下辅域服务器重启后检查DNS服务器是否已获取到主域控制器传输过来的DNS服务器配置，检查正常后需要把辅域控制器的DNS服务器_msdcs.redteam.com 和 redteam.com 的起始授权机构(SOA)区域传送设置成允许</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-120809.png" alt="image-20240511120808645"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-121152.png" alt="image-20240511121151147"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-121255.png" alt="image-20240511121254336"></p>
+<p>到此辅域就安装完成，需要注意的是安装辅域控制器，如果主域控制器DNS和AD集成，辅域控制器会在安装AD后⾃动同步DNS记录。</p>
+<h3 id="子域控制器搭建（Windows-Server-2016）"><a href="#子域控制器搭建（Windows-Server-2016）" class="headerlink" title="子域控制器搭建（Windows Server 2016）"></a>子域控制器搭建（Windows Server 2016）</h3><p>在这里跟参考链接里一样使用Windows Server 2016作为子域控制器，因为搭建子域控制器必须要和主父域控制器的操作系统是同一个版本，不然你版本太低了会显示不兼容</p>
+<p>1、搭建⼦域控制器前需要先把 DNS 指向主域控制器的 IP地址，然后委派完DNS再把⼦域控制器DNS指向⾃⼰</p>
+<pre><code>⽗域控制器：redteam.com 
+⼦域控制器：saul.redteam.com
+
+子域控制器：
+IP：10.10.10.20
+子网掩码：255.255.255.0
+默认网光：10.10.10.1
+首选DNS：10.10.10.10（父域控制器的IP）
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-140924.png" alt="image-20240511140923106"></p>
+<p>2、下一步把计算机名改为saul，不需要将其加到父域中</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-141345.png" alt="image-20240511141344421"></p>
+<p>3、设置完重启后，再次到服务器管理器里添加角色，然后创建一个域控</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-142251.png" alt="image-20240511142250222"></p>
+<p>4、选择”将新域添加到现有林“，选择类型子域，域名为saul</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-142618.png" alt="image-20240511142618033"></p>
+<p>5、选择更改凭证，输入父域控制器账号密码，然后点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-142547.png" alt="image-20240511142546914"></p>
+<p>6、在域控制器选项，按照下图配置，DSRM密码为：Redteam.com</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-143450.png" alt="image-20240511143449155"></p>
+<p>7、在DNS选项、其他选项、路径和查看选项里都选择默认安装</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-143551.png" alt="image-20240511143550993"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-143621.png" alt="image-20240511143621089"></p>
+<p>8、先决条件失败大概率没添加密码，管理员模式命令行下使用命令，之后点击“重新运行先决条件检查”，选择安装</p>
+<pre><code>net user administrator admin!@#45
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-143904.png" alt="image-20240511143903763"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240511-182739.png" alt="image-20240511182738758"></p>
+<p>如果安装报错“无法验证FSMO 角色所有权，因为其目录分区尚未与至少一个复制伙伴成功地复制。”（未解决，只能重新全部安装一遍）</p>
+<p>9、安装完重启后子域控就安装完成了</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-095028.png" alt="image-20240512095027333"></p>
+<h4 id="子域添加域机器和用户（Win-7-个人机-work-win7）"><a href="#子域添加域机器和用户（Win-7-个人机-work-win7）" class="headerlink" title="子域添加域机器和用户（Win 7 个人机 - work-win7）"></a>子域添加域机器和用户（Win 7 个人机 - work-win7）</h4><p>将win7的网卡改为新建的网卡，然后将win7加入到子域中</p>
+<p>1、首先设置一个固定的 IP</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-102037.png" alt="image-20240512102036223"></p>
+<p>2、修改用户名并加入域，使用子域控的账号密码修改（如果域按钮为灰色的，有可能是安装的家庭版被阉割过了）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-111928.png" alt="image-20240512111927080"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-112047.png" alt="image-20240512112047025"></p>
+<p>这个时候⼦域控制器、子域机器用户也都搭建完毕。</p>
+<h3 id="子域控制器1搭建（Windows-Server-2016）"><a href="#子域控制器1搭建（Windows-Server-2016）" class="headerlink" title="子域控制器1搭建（Windows Server 2016）"></a>子域控制器1搭建（Windows Server 2016）</h3><p>依照上面的步骤再搭建一个子域控即可</p>
+<pre><code>⽗域控制器：redteam.com 
+⼦域控制器：saul2.redteam.com
+
+子域控制器：
+IP：10.10.10.30
+子网掩码：255.255.255.0
+默认网光：10.10.10.1
+首选DNS：10.10.10.10
+</code></pre>
+<h3 id="添加域用户到-redteam-域内"><a href="#添加域用户到-redteam-域内" class="headerlink" title="添加域用户到 redteam 域内"></a>添加域用户到 redteam 域内</h3><p>搭建完环境之后，使用net user /domain 发现用户很少，接下来就是加入域用户，域内主机就可以使用域用户登陆域</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-112344.png" alt="image-20240512112343130"></p>
+<p>1、来到主域控制器、子域控制器的Active Directory 用户和计算机</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-112527.png" alt="image-20240512112526231"></p>
+<p>2、选择的域名：`redteam.com`-“Users”-“新建”-“用户”</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-112623.png" alt="image-20240512112622824"></p>
+<p>3、添加一个用户为：`saulgoodman`，密码为：`Saul!@#45`,选择“密码永不过期”</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-112714.png" alt="image-20240512112714016"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-112744.png" alt="image-20240512112743700"></p>
+<p>5、这个时候就在主域控账号下就可以看到一个`saulgoodman`的域用户</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-113239.png" alt="image-20240512113238757"></p>
+<p>主域用户列表：</p>
+<pre><code>saulgoodman        web-2012    administrator    alice    bob        web001    web002
+</code></pre>
+<p>6、重复上面的操作，我们给子域 <strong>saul.redteam.com</strong>也添加几个域用户</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240512-114348.png" alt="image-20240512114347556"></p>
+<p>子域用户：</p>
+<pre><code>saulgoodman        administrator        web011        web012
+</code></pre>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/287514.html">渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器） - FreeBuf网络安全行业门户</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/lihuahuangyu/suat9b/ry3itsdkeqq2sev2#ZCLkR">内网渗透01域环境搭建 (yuque.com)</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
