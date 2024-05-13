@@ -200,9 +200,71 @@
 <p>Base DN：LDAP 目录树的最顶部就是根，也就是所谓的 “Base DN”，如 “DC=moonxy,DC=com”。</p>
 <p>除了 DN 与 RDN 这两个对象名称外，另外还有如下两个名称：</p>
 <p>全局唯一标识符（Global Unique Identifier，GUID）：GUID 是一个128位的数值，系统会自动为每个对象指定一个唯一的GUID。虽然可以改变对象的名称，但是其GUID永远不会改变。</p>
-<p>用户主体名称（User Principal Name，UPN）：每个用户还可以有一个比DN更短、更容易记忆的 UPN，例如上面的张三隶属于 moonxy.com，则其 UPN 可以为 <a href="mailto:&#122;&#x68;&#97;&#110;&#x67;&#115;&#x61;&#110;&#64;&#109;&#111;&#111;&#110;&#x78;&#x79;&#46;&#x63;&#x6f;&#109;">&#122;&#x68;&#97;&#110;&#x67;&#115;&#x61;&#110;&#64;&#109;&#111;&#111;&#110;&#x78;&#x79;&#46;&#x63;&#x6f;&#109;</a>。用户登录时所输入的账户名最好是 UPN，因为无论此用户的账户被移动到哪一个域，其 UPN 都不会改变，因此用户可以一直使用同一个名称来登录。</p>
+<p>用户主体名称（User Principal Name，UPN）：每个用户还可以有一个比DN更短、更容易记忆的 UPN，例如上面的张三隶属于 moonxy.com，则其 UPN 可以为 <a href="mailto:&#122;&#104;&#x61;&#x6e;&#x67;&#x73;&#x61;&#x6e;&#x40;&#x6d;&#x6f;&#x6f;&#x6e;&#120;&#x79;&#46;&#x63;&#111;&#109;">&#122;&#104;&#x61;&#x6e;&#x67;&#x73;&#x61;&#x6e;&#x40;&#x6d;&#x6f;&#x6f;&#x6e;&#120;&#x79;&#46;&#x63;&#111;&#109;</a>。用户登录时所输入的账户名最好是 UPN，因为无论此用户的账户被移动到哪一个域，其 UPN 都不会改变，因此用户可以一直使用同一个名称来登录。</p>
 <p>AD 与 LDAP 的关系：LDAP 是一种用来访问 AD 数据库的目录服务协议，AD DS 会通过 LDAP 名称路径来表示对象在 AD 数据库中的位置，以便用它来访问 AD 数据库内的对象。LDAP 的名称路径包括有 DN、RDN。</p>
 <p>openLDAP（Linux），Active Directory（Microsoft）等是对 LDAP 目录访问协议的具体实现，除了实现协议的功能，还对它进行了扩展。</p>
+<h3 id="导出AD域用户信息"><a href="#导出AD域用户信息" class="headerlink" title="导出AD域用户信息"></a>导出AD域用户信息</h3><p>在渗透一整个域时，我们需要通过信息收集来获得域中用户信息</p>
+<h4 id="1-通过SAMR-协议查询"><a href="#1-通过SAMR-协议查询" class="headerlink" title="(1) 通过SAMR 协议查询"></a>(1) 通过SAMR 协议查询</h4><p>samr 也不算是一种专门的协议，就是一个RPC接口，我们平常使用的net user /domain就是使用samr进行查询</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-130736.png" alt="image-20240513130707464"></p>
+<h4 id="2-通过ldifde-exe查询"><a href="#2-通过ldifde-exe查询" class="headerlink" title="(2)通过ldifde.exe查询"></a>(2)通过ldifde.exe查询</h4><p>ldifde.exe是一个基于命令行的工具，它使用LDAP Data Interchange Format (LDIF) - 一种标准化的数据格式，来表示目录服务中的数据。该工具通常用于批量处理用户账户、组织单元、权限设置等信息。</p>
+<p>ldifde.exe的主要功能：</p>
+<ul>
+<li><strong>数据导出</strong>：从Active Directory导出数据到LDIF文件。</li>
+<li><strong>数据导入</strong>：将LDIF文件中的数据导入到Active Directory。</li>
+<li><strong>查询AD对象</strong>：通过特定的查询参数搜索AD对象。</li>
+</ul>
+<h5 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h5><pre><code>ldifde -f 输出文件名.ldif -s 服务器名称 -d &quot;起始DN&quot; -p 范围 -r 过滤器 -l 属性列表xxxxxxxxxx ldifde -f 输出文件名.ldif -s 服务器名称 -d &quot;起始DN&quot; -p 范围 -r 过滤器 -l 属性列表ldifde -i -f 输入文件名.ldif -s 服务器名称
+</code></pre>
+<ul>
+<li><p><code>-f</code> 指定输出文件。</p>
+</li>
+<li><p><code>-s</code> 指定要连接的服务器。</p>
+</li>
+<li><p><code>-d</code> 指定导出数据的起始位置（DN）。</p>
+</li>
+<li><p><code>-p</code> 设置搜索范围。</p>
+</li>
+<li><p><code>-r</code> 设置过滤条件。</p>
+</li>
+<li><p><code>-l</code> 指定要导出的属性。</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-132452.png" alt="image-20240513132451388"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-132516.png" alt="image-20240513132515734"></p>
+</li>
+</ul>
+<h5 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h5><pre><code>ldifde -i -f 输入文件名.ldif -s 服务器名称
+</code></pre>
+<ul>
+<li><code>-i</code> 表示导入模式。</li>
+<li><code>-f</code> 指定输入文件。</li>
+<li><code>-s</code> 指定要连接的服务器。</li>
+</ul>
+<h4 id="（3）使用csvde"><a href="#（3）使用csvde" class="headerlink" title="（3）使用csvde"></a>（3）使用csvde</h4><p>注意：windows server版本自带csvde，而window标准版不自带csvde。而且只要是域成员都可以导出活动目录</p>
+<ul>
+<li><code>-i</code>                              启用导入模式(默认为导出)</li>
+<li><code>-f filename</code>           输入或输出文件名</li>
+<li><code>-s servername</code>       要绑定到的服务器(默认为计算机域的域控制器)</li>
+<li><code>-v</code>                              启用详细模式</li>
+<li><code>-c FromDN ToDN</code>     将目前使用的所有 FromDN 替换为 ToDN</li>
+<li><code>-j path</code>                    日志文件的位置</li>
+<li><code>-t port</code>                     端口号(默认为 389)</li>
+<li><code>-u</code>                               使用 Unicode 格式</li>
+<li><code>-h </code>                                启用 SASL 层签名和加密</li>
+<li><code>-? </code>                                帮助</li>
+</ul>
+<p>使用命令</p>
+<pre><code>csvde.exe -f user.csv
+</code></pre>
+<p>就可以直接导出域中信息</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-133548.png" alt="image-20240513133547394"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-133600.png" alt="image-20240513133559929"></p>
+<p>如果是子域控成员，默认导出为主域控活动目录，主域控导出的数据只有其域内用户，想要导出子域控活动目录，就得使用-s 指定子域控ip。子域控的活动目录包括子域控的sid以级域内的所有账号，组以及机器名</p>
+<pre><code>csvde.exe -f saul_user.csv  -s 10.10.10.20    //导出子域控0的活动目录
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-202456.png" alt="image-20240513202454859"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240513-202543.png" alt="image-20240513202542271"></p>
+<p>而且只要是域中的成员就可以使用csvde.exe导出任意域的活动目录</p>
+<pre><code>csvde.exe -f saul1_user.csv -s 10.10.10.30    //导出子域控1的活动目录
+</code></pre>
 <h3 id="域用户"><a href="#域用户" class="headerlink" title="域用户"></a>域用户</h3><p>​    在域的domain user组中的用户称为域用户，在本地user组的用户称为本地用户。在计算机加入域时，会把domain users组添加到user组中。因此对客户机来说，两者完全是一样的。</p>
 <p>​    区别只在于当其他客户机也加入域时，也添加了domain users组，因此域用户帐号还可以访问其他客户机。 用户名和密码到域控制器验证，域账户可以在任意一台加入域的电脑上登陆，多台电脑也可以同时登陆一个用户。</p>
 <h3 id="信任域"><a href="#信任域" class="headerlink" title="信任域"></a>信任域</h3><p><strong>信任关系分为:可传递和不可传递</strong></p>
@@ -224,6 +286,8 @@
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cnjavahome/p/9029665.html">AD 域服务简介（一）- 基于 LDAP 的 AD 域服务器搭建及其使用 - 沐小悠 - 博客园 (cnblogs.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46079471/article/details/133795785">域and信任关系_域信任-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liliyuanshangcao/p/13751274.html">内网渗透之初识域渗透 - 只言 - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39819974/article/details/110806912">域用户组成员 导出_Windows内网协议学习LDAP篇之域用户和计算机用户介绍-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/lihuahuangyu/suat9b/gupzqvemqpd9zyzx#XEmZo">内网信息搜集 (yuque.com)</a></p>
 
     </div>
     
