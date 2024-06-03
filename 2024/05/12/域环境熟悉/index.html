@@ -200,7 +200,7 @@
 <p>Base DN：LDAP 目录树的最顶部就是根，也就是所谓的 “Base DN”，如 “DC=moonxy,DC=com”。</p>
 <p>除了 DN 与 RDN 这两个对象名称外，另外还有如下两个名称：</p>
 <p>全局唯一标识符（Global Unique Identifier，GUID）：GUID 是一个128位的数值，系统会自动为每个对象指定一个唯一的GUID。虽然可以改变对象的名称，但是其GUID永远不会改变。</p>
-<p>用户主体名称（User Principal Name，UPN）：每个用户还可以有一个比DN更短、更容易记忆的 UPN，例如上面的张三隶属于 moonxy.com，则其 UPN 可以为 <a href="mailto:&#122;&#104;&#x61;&#x6e;&#x67;&#x73;&#x61;&#x6e;&#x40;&#x6d;&#x6f;&#x6f;&#x6e;&#120;&#x79;&#46;&#x63;&#111;&#109;">&#122;&#104;&#x61;&#x6e;&#x67;&#x73;&#x61;&#x6e;&#x40;&#x6d;&#x6f;&#x6f;&#x6e;&#120;&#x79;&#46;&#x63;&#111;&#109;</a>。用户登录时所输入的账户名最好是 UPN，因为无论此用户的账户被移动到哪一个域，其 UPN 都不会改变，因此用户可以一直使用同一个名称来登录。</p>
+<p>用户主体名称（User Principal Name，UPN）：每个用户还可以有一个比DN更短、更容易记忆的 UPN，例如上面的张三隶属于 moonxy.com，则其 UPN 可以为 <a href="mailto:&#x7a;&#104;&#97;&#x6e;&#x67;&#115;&#x61;&#110;&#64;&#109;&#x6f;&#111;&#x6e;&#120;&#x79;&#x2e;&#99;&#111;&#x6d;">&#x7a;&#104;&#97;&#x6e;&#x67;&#115;&#x61;&#110;&#64;&#109;&#x6f;&#111;&#x6e;&#120;&#x79;&#x2e;&#99;&#111;&#x6d;</a>。用户登录时所输入的账户名最好是 UPN，因为无论此用户的账户被移动到哪一个域，其 UPN 都不会改变，因此用户可以一直使用同一个名称来登录。</p>
 <p>AD 与 LDAP 的关系：LDAP 是一种用来访问 AD 数据库的目录服务协议，AD DS 会通过 LDAP 名称路径来表示对象在 AD 数据库中的位置，以便用它来访问 AD 数据库内的对象。LDAP 的名称路径包括有 DN、RDN。</p>
 <p>openLDAP（Linux），Active Directory（Microsoft）等是对 LDAP 目录访问协议的具体实现，除了实现协议的功能，还对它进行了扩展。</p>
 <h3 id="导出AD域用户信息"><a href="#导出AD域用户信息" class="headerlink" title="导出AD域用户信息"></a>导出AD域用户信息</h3><p>在渗透一整个域时，我们需要通过信息收集来获得域中用户信息</p>
@@ -267,6 +267,28 @@
 </code></pre>
 <h3 id="域用户"><a href="#域用户" class="headerlink" title="域用户"></a>域用户</h3><p>​    在域的domain user组中的用户称为域用户，在本地user组的用户称为本地用户。在计算机加入域时，会把domain users组添加到user组中。因此对客户机来说，两者完全是一样的。</p>
 <p>​    区别只在于当其他客户机也加入域时，也添加了domain users组，因此域用户帐号还可以访问其他客户机。 用户名和密码到域控制器验证，域账户可以在任意一台加入域的电脑上登陆，多台电脑也可以同时登陆一个用户。</p>
+<h4 id="krbtgt账号"><a href="#krbtgt账号" class="headerlink" title="krbtgt账号"></a>krbtgt账号</h4><p>这个账户是提升或升级域中的第一台域控制器时自动创建的。该账号不能删除或重命名。但可以修改它的密码。KRBTGT账号的密码哈希是用来加密TGT票证的，如果被盗就产生非常严重的安全漏洞。这个账号默认是禁用的，而且要通过高级功能才会显示出来。想要了解krbtgt账号的用处，就得了解<em>Kerberos</em>协议。</p>
+<h3 id="Kerberos协议"><a href="#Kerberos协议" class="headerlink" title="Kerberos协议"></a><em>Kerberos</em>协议</h3><p>Kerberos协议是由麻省理工学院提出的一种网络身份验证协议，提供了一种在开放的非安全网络中认证识别用户身份信息的方法。它旨在通过使用密钥加密技术为客户端/服务端应用程序提供强身份验证。</p>
+<h4 id="Kerberos的设计目标"><a href="#Kerberos的设计目标" class="headerlink" title="Kerberos的设计目标"></a>Kerberos的设计目标</h4><p>通过使用对称密钥系统为客户机/服务器应用程序提供强大的第三方认证服务。</p>
+<ul>
+<li>每个用户或应用服务器与Kerberos分享一个对称密钥。</li>
+<li>允许一个用户通过交换加密消息在整个网络上与另一个用户或应用服务器互相证明身份，Kerberos给通讯双方提供对称密钥。</li>
+<li>客户端用票据Ticket证明自己身份</li>
+</ul>
+<h4 id="Kerberos系统组成"><a href="#Kerberos系统组成" class="headerlink" title="Kerberos系统组成"></a>Kerberos系统组成</h4><p>（1）两个服务对象：客户（Client），服务器（Server）；</p>
+<p>（2）两类凭证：票证（ TGT ），鉴别码（Authenticator）；</p>
+<p>（3）两个库：  中心数据库  ，应用程序库；</p>
+<p>（4）两个服务器：认证服务器（AS），票据分配服务器（TGS）</p>
+<h4 id="Kerberos系统-工作过程"><a href="#Kerberos系统-工作过程" class="headerlink" title="Kerberos系统 工作过程"></a>Kerberos系统 工作过程</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-112220.png" alt="image-20240514112219017"></p>
+<p>（1）认证服务交换，用户从AS取得入场劵：<br>        ① 客户向AS发出访问TGS请求（用TS1表示是新请求）</p>
+<p>​        ② AS向C发出应答</p>
+<p>（2）入场劵许可服务交换，用户从TGS获取服务许可凭证：</p>
+<p>​        ③ C向TGS发出请求，内容包括服务器识别码、入场劵和鉴别码</p>
+<p>​        ④ TGS经验证，向C发出服务许可凭证</p>
+<p>（3）客户-服务器相互认证交换，用户从服务器获取服务：</p>
+<p>​        ⑤ C向服务器证明自己身份（用TicketS和AuthenticatorS）</p>
+<p>​        ⑥ 服务器向客户证明自己身份</p>
+<p>这个过程结束，客户C与服务器S之间就建立起了共享会话密钥，以便以后进行加密通信或交换新密钥。</p>
 <h3 id="信任域"><a href="#信任域" class="headerlink" title="信任域"></a>信任域</h3><p><strong>信任关系分为:可传递和不可传递</strong></p>
 <p>**可传递的:**如果A域和B域之间的信任是可传递的,B域和C域之间的信任也是可传递的,那么A域和C域之间则会自动创建信任关系。</p>
 <p>**可传递的:**如果A域和B域之间的信任是不可传递的,或者B域和C域之间的信任是不可传递的,那么A域和C域之间不会自动创建了信任关系。</p>
@@ -281,6 +303,49 @@
 <p><strong>内部信任：</strong>内部信任指在同一个林中域之间的信任关系,这种信任关系是可传递的。</p>
 <p><strong>外部信任：</strong>外部信任指不同林之间域的信任关系,这种信任关系是单向或者双向不可传递的。</p>
 <h3 id="安全域的划分"><a href="#安全域的划分" class="headerlink" title="安全域的划分"></a>安全域的划分</h3><p>划分安全域的目的是将一组安全等级相同的计算机划入同一个网段。这个网段内的计算机拥有相同的网络边界，并在网络边界上通过部署防火墙来实现对其他安全域的网络访问控制策略（NACL）</p>
+<h3 id="组的作用域"><a href="#组的作用域" class="headerlink" title="组的作用域"></a>组的作用域</h3><ul>
+<li>本地域组(domain local group)：它主要是被用来分配对其所属域内资源的访问权限，以便可以访问该域内的资源<ul>
+<li>其成员可以包含任何一个域内的用户、全局组、通用组；也可以包含相同域内的本地域组；但无法包含其他域内的本地域组</li>
+<li>本地域组只能够访问该域内的资源，无法访问其他不同域内的资源，换句话说在设置权限时，只能设置相同域内的本地域组的权限，无法设置其他不同域内的本地域组的权限</li>
+</ul>
+</li>
+<li>全局组(global group)：它主要是用来组织用户，也就是可以将多个即将被赋予相同权限的用户账户，加入到同一个全局群组内。<ul>
+<li>全局组内的成员，只能够包含相同域内的用户和全局组</li>
+<li>全局组可以访问任何一个域内的资源，也就是说可以在任何一个域内设置全局组的权限(这个全局组可以位于任何一个域内)，以便让全局组具备权限来访问该域内的资源</li>
+</ul>
+</li>
+<li>通用组(universal group)：它可以在所有域内被设置访问权限，以便访问所有域内的资源<ul>
+<li>通用组具备”通用范围”特性，其成员可以包含林中任何一个域内的用户、全局组、通用组。但是它无法包含任何一个域内的本地域组。</li>
+<li>通用组可以访问任何一个域内的资源，也就是说可以在任何一个域内设置通用组的权限(这个通用组可以位于任何一个域内)，以便让此全局组具备权限来访问该域内的资源</li>
+</ul>
+</li>
+</ul>
+<h3 id="AD-DS内置的组"><a href="#AD-DS内置的组" class="headerlink" title="AD DS内置的组"></a>AD DS内置的组</h3><h4 id="内置的本地域组"><a href="#内置的本地域组" class="headerlink" title="内置的本地域组"></a>内置的本地域组</h4><p>这些本地域组本身已被赋予一些权限，以便让其具备管理AD DS域的能力。只要将用户或组账户加入到这些组内，这些账户也会自动具备相同的权限。</p>
+<ul>
+<li><strong>Account Operators：</strong>其成员默认可以在容器与组织单位内新建/删除/修改用户、组与计算机账户，不过部分内置的容器例外，例如Builtin容器与Domain Controllers组织单位，同时也不允许在部分内置的容器内新建计算机账户，例如Users。他们也无法更改大部分组的成员，例如Administrators等</li>
+<li><strong>Administrators：</strong>其成员具备系统管理员权限，他们对所有域控制器拥有最大的控制权限，可以执行AD DS管理工作，内置系统管理员Administrator就是此组的成员，而且无法将其从此组内删除</li>
+<li><strong>Backup Operators：</strong>其成员可以通过Windows Server Backup工具来备份与还原域控制器内的文件，不论他们是否有权限访问这些文件。其成员也可以将域控制器关机。</li>
+<li><strong>Guests：</strong>其成员无法永久改变其桌面环境，当他们登录时，系统会为他们建立一个临时的用户配置文件，而注销时此配置文件就会被删除，此组默认的成员为用户账户Guest与全局组Domain Guests</li>
+<li><strong>Network Configuration Operators：</strong>其成员可在域控制器上执行常规的网络配置工作，例如更改IP地址，但不可以安装、删除驱动程序与服务，也不能执行与网络服务器设置有关的工作，例如DNS与DHCP服务器的配置</li>
+<li><strong>Performance Monitor Users：</strong>其成员可监视域控制器的工作性能</li>
+<li><strong>Pre-Windows 2000 Compatible Access：</strong>此组主要是为了与Windows NT 4.0(或更旧的系统)兼容，其成员可以读取AD DS域内的所有用户和组账户。其默认的成员为特殊组Authenticed Users。请仅在用户的计算机时Windows NT 4.0或更旧的系统时，才将用户加入到此组内</li>
+<li><strong>Print Operators：</strong>其成员可以管理域控制器上的打印机，也可以将 域控制器关机</li>
+<li><strong>Remote Desktop Users：</strong>其成员可以从远程计算机通过远程桌面来登录</li>
+<li><strong>Server Operators：</strong>其成员可以备份与还原域控制器内的文件；锁定与解锁域控制器；将域控制器上的硬盘格式化；更改域控制器的系统时间；将域控制器关机等。</li>
+<li><strong>Users：</strong>其成员仅拥有一些基本权限，例如执行应用程序，但是他们不能修改操作系统的设置，不能更改其他用户的数据、不能将服务器关机。此组默认的成员为全局组Domain Users</li>
+</ul>
+<h4 id="内置的全局组"><a href="#内置的全局组" class="headerlink" title="内置的全局组"></a>内置的全局组</h4><p>AD DS内置的全局组本身并没有任何的权限，但是可以将其加入到具备权限的本地域组，或另外直接给此全局组分配权限。这些内置全局组时位于Users容器内</p>
+<ul>
+<li><strong>Domain Admins：</strong>域成员计算机会自动将此组加入到其本地组Administrators内，因此Domain Admins组内的每一个成员，在域内的每一台计算机上都具备系统管理员权限。此组默认的成员为域用户Administrator</li>
+<li><strong>Domain Computers：</strong>所有的域成员计算机(域控制器除外)都会被自动加入到此组内。</li>
+<li><strong>Domain Controllers：</strong>域内的所有域控制器都会被自动加入到此组内</li>
+<li><strong>Domain Users：</strong>域成员计算机会自动将此组加入到其本地组Users内，因此Domain Users内的用户将享有本地组Users所拥有的权限，例如拥有允许本地登录的权限。此组默认的成员为域用户Administrator，而以后新建的域用户账户都自动会隶属于此组</li>
+<li><strong>Domain Guests：</strong>域成员计算机会自动将此组加入到本地组Guests内。此组默认的成员为域用户账户Guests</li>
+</ul>
+<h4 id="内置的通用组"><a href="#内置的通用组" class="headerlink" title="内置的通用组"></a>内置的通用组</h4><ul>
+<li><strong>Enterprise Admins：</strong>此组只存在于林根域，其成员具备管理林内的所有域。此组默认的成员为林根域内的用户Administrator</li>
+<li><strong>Schema Admins：</strong>此组只存在于林根域，其成员具备管理架构(Schema)的权限。此组默认的成员为林根域内的用户Administrator</li>
+</ul>
 <p>参考链接：</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/NBeveryday/articles/ldap.html">域渗透入门-LDAP的粗略认识 - 壹個人坐在角落 - 博客园 (cnblogs.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cnjavahome/p/9029665.html">AD 域服务简介（一）- 基于 LDAP 的 AD 域服务器搭建及其使用 - 沐小悠 - 博客园 (cnblogs.com)</a></p>
@@ -288,6 +353,9 @@
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liliyuanshangcao/p/13751274.html">内网渗透之初识域渗透 - 只言 - 博客园 (cnblogs.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39819974/article/details/110806912">域用户组成员 导出_Windows内网协议学习LDAP篇之域用户和计算机用户介绍-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.yuque.com/lihuahuangyu/suat9b/gupzqvemqpd9zyzx#XEmZo">内网信息搜集 (yuque.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34274029/article/details/92925374">你所不知道的Kerberos 整理笔记（五）-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shuteer_xu/article/details/129253005">全网最详细 | Kerberos协议详解-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hongliang888/p/16615923.html">域组账户 - hongliang888 - 博客园 (cnblogs.com)</a></p>
 
     </div>
     

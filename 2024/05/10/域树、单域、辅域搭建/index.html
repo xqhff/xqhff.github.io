@@ -381,6 +381,15 @@ IP：10.10.10.30
 <p>子域用户：</p>
 <pre><code>saulgoodman        administrator        web011        web012
 </code></pre>
+<h3 id="域信任关系建立"><a href="#域信任关系建立" class="headerlink" title="域信任关系建立"></a>域信任关系建立</h3><p>在域控中选择“Active Directory 域和信任关系”</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-142741.png" alt="image-20240514142740542"></p>
+<p>来到域信任这里，点击“新建信任”</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-142908.png" alt="image-20240514142907755"></p>
+<p>然后下一步。输入信任域的dns名称或者netbios名称（netbios名称默认域名去掉com）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-143329.png" alt="image-20240514143328927"></p>
+<p>来到下一步，如果不是服务器的话可以选择“领域信任”，如果是服务器的话选择“与一个Windows域建立信任”，这里选择服务器建立信任</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-143852.png" alt="image-20240514143851172"></p>
+<p>因为没有”test”这个域，下面做不了了</p>
 <p>参考链接：</p>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/287514.html">渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器） - FreeBuf网络安全行业门户</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.yuque.com/lihuahuangyu/suat9b/ry3itsdkeqq2sev2#ZCLkR">内网渗透01域环境搭建 (yuque.com)</a></p>

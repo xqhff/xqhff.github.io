@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/14
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="域渗透之信息收集"><a href="#域渗透之信息收集" class="headerlink" title="域渗透之信息收集"></a>域渗透之信息收集</h1><h2 id="域渗透思路"><a href="#域渗透思路" class="headerlink" title="域渗透思路"></a>域渗透思路</h2><p>域渗透思路：通过域成员主机，定位出域控制器IP及域管理员账号，利用域成员主机作为跳板，扩大渗透范围，利用域管理员可以登陆域中任何成员主机的特性，定位出域管理员登陆过的主机 IP，设法从域成员主机内存中 dump 出域管理员密码，进而拿下域控制器、渗透整个内网</p>
+<span id="more"></span>
+
+<h2 id="域信息收集"><a href="#域信息收集" class="headerlink" title="域信息收集"></a>域信息收集</h2><p>在信息收集阶段，通常要解决三个问题：本机角色是什么？本机内网拓扑图？本机所在区域？（图片出处右下角）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-150740.png" alt="在这里插入图片描述"></p>
+<h3 id="1-判断是否存在域"><a href="#1-判断是否存在域" class="headerlink" title="1. 判断是否存在域"></a>1. 判断是否存在域</h3><h4 id="1-1-查询网络信息"><a href="#1-1-查询网络信息" class="headerlink" title="1.1. 查询网络信息"></a>1.1. 查询网络信息</h4><p>一般通过查询IP网络或系统信息时，就能够发现域控。</p>
+<pre><code>ipconfig /all
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-153053.png" alt="image-20240514153052660"></p>
+<pre><code>systeminfo
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-153144.png" alt="image-20240514153143828"></p>
+<h4 id="1-2-查询当前登录域与域环境"><a href="#1-2-查询当前登录域与域环境" class="headerlink" title="1.2. 查询当前登录域与域环境"></a>1.2. 查询当前登录域与域环境</h4><p>通过查询可以判断当前的登录的域与域环境。</p>
+<pre><code>net config workstation
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-153309.png" alt="image-20240514153308822"></p>
+<h4 id="1-3-判断主域"><a href="#1-3-判断主域" class="headerlink" title="1.3. 判断主域"></a>1.3. 判断主域</h4><p>域服务器通常都会作为时间服务器，可以通过下列的命令来判断主域。</p>
+<pre><code>net time /domain
+</code></pre>
+<p>存在域，并且当前用户为域用户。</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-153706.png" alt="image-20240514153705799"></p>
+<p>存在域，但当前用户不属于域用户</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-155235.png" alt="image-20240514155234095"></p>
+<p>工作环境为工作组，不存在域。（拿的博主图片）</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-155408.png" alt="在这里插入图片描述"></p>
+<h3 id="2-查找域控制器"><a href="#2-查找域控制器" class="headerlink" title="2. 查找域控制器"></a>2. 查找域控制器</h3><p>在得到域名后，就可以通过域名进一步的获取域控制器的地址及其它信息。</p>
+<h4 id="2-1-查询DNS地址"><a href="#2-1-查询DNS地址" class="headerlink" title="2.1. 查询DNS地址"></a>2.1. 查询DNS地址</h4><p>一般情况下DNS地址就是域控制器的地址。</p>
+<pre><code>ping 域名
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-155545.png" alt="image-20240514155544113"></p>
+<pre><code>nslookup 域名
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-155635.png" alt="image-20240514155634156"></p>
+<h4 id="2-2-查看域控制器的机器名"><a href="#2-2-查看域控制器的机器名" class="headerlink" title="2.2. 查看域控制器的机器名"></a>2.2. 查看域控制器的机器名</h4><pre><code>nltest /DCLIST:域名
+或者
+net time /domain
+或者
+Nslookup -type=SRV _ldap._tcp
+或者
+net group &quot;Domain Controllers&quot; /domain
+或者
+netdom query pdc
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-155742.png" alt="image-20240514155741793"></p>
+<h4 id="2-3-查看域控制器"><a href="#2-3-查看域控制器" class="headerlink" title="2.3. 查看域控制器"></a>2.3. 查看域控制器</h4><pre><code>net group &quot;Domain Controllers&quot; /domain
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-155940.png" alt="image-20240514155940028"></p>
+<h3 id="3-获取域内用户和管理员"><a href="#3-获取域内用户和管理员" class="headerlink" title="3. 获取域内用户和管理员"></a>3. 获取域内用户和管理员</h3><p>这里主要我们需要收集的就是域内的一下用户以及管理员信息。</p>
+<h4 id="3-1-查询域内所有用户组列表"><a href="#3-1-查询域内所有用户组列表" class="headerlink" title="3.1. 查询域内所有用户组列表"></a>3.1. 查询域内所有用户组列表</h4><pre><code>net group /domain
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-160101.png" alt="image-20240514160101064"></p>
+<h4 id="3-2-查询域管理员列表"><a href="#3-2-查询域管理员列表" class="headerlink" title="3.2. 查询域管理员列表"></a>3.2. 查询域管理员列表</h4><pre><code>net group &quot;Domain Admins&quot; /domain
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-160156.png" alt="image-20240514160155101"></p>
+<h4 id="3-3-获取所有域用户列表"><a href="#3-3-获取所有域用户列表" class="headerlink" title="3.3. 获取所有域用户列表"></a>3.3. 获取所有域用户列表</h4><pre><code>net user /domain
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-160932.png" alt="image-20240514160931848"></p>
+<h4 id="3-4-获取指定域用户的详细信息"><a href="#3-4-获取指定域用户的详细信息" class="headerlink" title="3.4. 获取指定域用户的详细信息"></a>3.4. 获取指定域用户的详细信息</h4><pre><code>net user 用户名称 /domain
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-161128.png" alt="image-20240514161127646"></p>
+<h4 id="3-5-查看域密码策略"><a href="#3-5-查看域密码策略" class="headerlink" title="3.5. 查看域密码策略"></a>3.5. 查看域密码策略</h4><pre><code>net accounts /domain
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-161205.png" alt="image-20240514161204202"></p>
+<h4 id="3-6-查看加入域的所有计算机名"><a href="#3-6-查看加入域的所有计算机名" class="headerlink" title="3.6. 查看加入域的所有计算机名"></a>3.6. 查看加入域的所有计算机名</h4><pre><code>net group &quot;domain computers&quot; /domain
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-165338.png" alt="image-20240514165337942"></p>
+<h4 id="3-7-获取加入域计算机地址"><a href="#3-7-获取加入域计算机地址" class="headerlink" title="3.7. 获取加入域计算机地址"></a>3.7. 获取加入域计算机地址</h4><pre><code>ping 计算机名
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-165727.png" alt="image-20240514165726176"></p>
+<h4 id="3-8-获取域内信任信息"><a href="#3-8-获取域内信任信息" class="headerlink" title="3.8.获取域内信任信息"></a>3.8.获取域内信任信息</h4><pre><code>nltest /domain_trusts
+</code></pre>
+<pre><code>查询本地管理员组用户
+net localgroup administrators
+
+查询所有用户详细信息
+wmic useraccount get /all
+
+查询域管理员用户组
+net group &quot;domain admins&quot; /domain
+
+查询管理员用户组
+net group &quot;Enterprise Admins&quot; /domain
+</code></pre>
+<h3 id="4-获取操作系统相关信息"><a href="#4-获取操作系统相关信息" class="headerlink" title="4.获取操作系统相关信息"></a>4.获取操作系统相关信息</h3><h4 id="4-1-查看操作系统以及版本"><a href="#4-1-查看操作系统以及版本" class="headerlink" title="4.1.查看操作系统以及版本"></a>4.1.查看操作系统以及版本</h4><pre><code>systeminfo | findstr /B /C:&quot;OS 名称&quot; /C:&quot;OS 版本&quot;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-170113.png" alt="image-20240514170112278"></p>
+<h4 id="4-2-查看系统体系结构"><a href="#4-2-查看系统体系结构" class="headerlink" title="4.2.查看系统体系结构"></a>4.2.查看系统体系结构</h4><pre><code>echo %PROCESSOR_ARCHITECTURE%
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-170235.png" alt="image-20240514170234677"></p>
+<h4 id="4-3-查看安装的软件及其版本、路径等"><a href="#4-3-查看安装的软件及其版本、路径等" class="headerlink" title="4.3.查看安装的软件及其版本、路径等"></a>4.3.查看安装的软件及其版本、路径等</h4><pre><code>wmic product get name,version
+或者
+powershell &quot;Get-WmiObject -class Win32_Product |Select-Object -Property name,version&quot;
+</code></pre>
+<p>我这里没安装软件，就直接使用博主的图片</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-192024.jpeg" alt="QQ图片20210523205110.png"></p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-192033.jpeg" alt="QQ图片20210523205255.png"></p>
+<h4 id="4-4-查询本机信息"><a href="#4-4-查询本机信息" class="headerlink" title="4.4.查询本机信息"></a>4.4.查询本机信息</h4><pre><code>wmic service list brief
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-192208.png" alt="image-20240514192207630"></p>
+<h4 id="4-5-查询正在运行的进程"><a href="#4-5-查询正在运行的进程" class="headerlink" title="4.5.查询正在运行的进程"></a>4.5.查询正在运行的进程</h4><pre><code>tasklist
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-192301.png" alt="image-20240514192300572"></p>
+<h4 id="4-6-查看开机自启的程序信息（web-2012没有，就用主域控看一下）"><a href="#4-6-查看开机自启的程序信息（web-2012没有，就用主域控看一下）" class="headerlink" title="4.6.查看开机自启的程序信息（web-2012没有，就用主域控看一下）"></a>4.6.查看开机自启的程序信息（web-2012没有，就用主域控看一下）</h4><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-194716.png" alt="image-20240514194715775"></p>
+<h4 id="4-7-查看计划任务"><a href="#4-7-查看计划任务" class="headerlink" title="4.7.查看计划任务"></a>4.7.查看计划任务</h4><pre><code>schtasks /query
+如果这里运行命令报错的话输入
+chcp 437
+</code></pre>
+<p>调整下CMD编码为美国编码即可</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-195024.png" alt="image-20240514195023625"></p>
+<h4 id="4-8-查看主机开机时间"><a href="#4-8-查看主机开机时间" class="headerlink" title="4.8.查看主机开机时间"></a>4.8.查看主机开机时间</h4><pre><code>net statistics workstation
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-202158.png" alt="image-20240514202157906"></p>
+<h4 id="4-9-查看用户列表"><a href="#4-9-查看用户列表" class="headerlink" title="4.9.查看用户列表"></a>4.9.查看用户列表</h4><pre><code>net user
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-202356.png" alt="image-20240514202355883"></p>
+<h4 id="4-10-查看本地管理员用户组（由于没有管理员用户组，就直接用博主图片）"><a href="#4-10-查看本地管理员用户组（由于没有管理员用户组，就直接用博主图片）" class="headerlink" title="4.10.查看本地管理员用户组（由于没有管理员用户组，就直接用博主图片）"></a>4.10.查看本地管理员用户组（由于没有管理员用户组，就直接用博主图片）</h4><pre><code>net localgroup Administrators
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-203001.jpeg" alt="QQ图片20210524152017.png"></p>
+<h4 id="4-11-查看当前在线用户"><a href="#4-11-查看当前在线用户" class="headerlink" title="4.11.查看当前在线用户"></a>4.11.查看当前在线用户</h4><pre><code>query user || qwinsta
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-203049.png" alt="image-20240514203048783"></p>
+<h4 id="4-12-列出本地计算机与所连接的客户端的会话"><a href="#4-12-列出本地计算机与所连接的客户端的会话" class="headerlink" title="4.12.列出本地计算机与所连接的客户端的会话"></a>4.12.列出本地计算机与所连接的客户端的会话</h4><pre><code>net session
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240514-203141.png" alt="image-20240514203141040"></p>
+<h4 id="4-13-查询端口列表"><a href="#4-13-查询端口列表" class="headerlink" title="4.13.查询端口列表"></a>4.13.查询端口列表</h4><pre><code>netstat -ano
+</code></pre>
+<h4 id="4-14-其他一些命令"><a href="#4-14-其他一些命令" class="headerlink" title="4.14.其他一些命令"></a>4.14.其他一些命令</h4><pre><code>systeminfo 或者 wmic qfe get Caption,Description,HotFixID        //查看本机补丁
+net share  或者 wmic share get name,path,status        //查看共享列表
+
+route print        //查询路由表
+apr -a            //所有可用接口的API缓存表
+
+netsh firewall show config        //查看防火墙相关配置
+reg query &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;    //查看系统代理
+
+REG QUERY &quot;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&quot; /V PortNumber        //查看远程桌面连接服务
+wmic /namespace:\\root\CIMV2\TerminalServices PATH Win32_TerminalServiceSetting WHERE (__CLASS !=&quot;&quot;) CALL SetAllowTSConnections 1        //开启远程桌面连接服务
+
+whoami            //查看当前会话权限
+whoami /all        //获取域SID
+net user 用户名        //查看指定用户的详细信息
+</code></pre>
+<h3 id="5-定位域管"><a href="#5-定位域管" class="headerlink" title="5.定位域管"></a>5.定位域管</h3><p>在取得了域中的普通权限后，想要进行横向移动，就一定要知道域用户所登陆的位置以及相对应的权限，能够定位域用户的工具有许多，这里介绍两种</p>
+<h4 id="5-1-psloggedon-exe"><a href="#5-1-psloggedon-exe" class="headerlink" title="5.1. psloggedon.exe"></a>5.1. psloggedon.exe</h4><p>下载地址：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/psloggedon">https://docs.microsoft.com/zh-cn/sysinternals/downloads/psloggedon</a></p>
+<pre><code>psloggedon.exe \\主机名
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240516-104639.png" alt="image-20240516104624263"></p>
+<h4 id="5-2-Netview"><a href="#5-2-Netview" class="headerlink" title="5.2.Netview"></a>5.2.Netview</h4><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/mubix/netview/releases/tag/latest">https://github.com/mubix/netview/releases/tag/latest</a></p>
+<p>Netview是一个枚举工具，可以枚举共享，用户等信息</p>
+<pre><code>netview.exe -d
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240516-110611.png" alt="image-20240516110610227"></p>
+<h3 id="6-探测域内其他主机信息"><a href="#6-探测域内其他主机信息" class="headerlink" title="6.探测域内其他主机信息"></a>6.探测域内其他主机信息</h3><h4 id="6-1-利用nbtscan扫描内网（nmap同理）"><a href="#6-1-利用nbtscan扫描内网（nmap同理）" class="headerlink" title="6.1.利用nbtscan扫描内网（nmap同理）"></a>6.1.利用nbtscan扫描内网（nmap同理）</h4><p>下载地址：<a target="_blank" rel="noopener" href="https://xiazai.zol.com.cn/detail/60/592831.shtml">【NBscan】NBscan 1.0-ZOL软件下载</a></p>
+<pre><code>nbtscan.exe 10.10.10.1/24
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240516-112803.png" alt="image-20240516112802747"></p>
+<h4 id="6-2-利用ping命令探测内网"><a href="#6-2-利用ping命令探测内网" class="headerlink" title="6.2.利用ping命令探测内网"></a>6.2.利用ping命令探测内网</h4><pre><code>for /L %I in (1,1,5) DO @ping -w 1 -n 1 10.10.10.%I | findstr &quot;TTL&quot;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240516-113346.png" alt="image-20240516113346119"></p>
+<p>这个方法探测比较慢，所以这里就设置了5个IP意思意思。。。</p>
+<h4 id="6-3-使用ARP探测内网"><a href="#6-3-使用ARP探测内网" class="headerlink" title="6.3.使用ARP探测内网"></a>6.3.使用ARP探测内网</h4><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/QbsuranAlang/arp-scan-windows-">QbsuranAlang/arp-scan-windows-: send arp request to whole specific LAN (github.com)</a></p>
+<pre><code>arp-scan -t 10.10.10.1/24
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240516-165104.png" alt="image-20240516165103455"></p>
+<h4 id="6-4-使用telnet扫描端口"><a href="#6-4-使用telnet扫描端口" class="headerlink" title="6.4.使用telnet扫描端口"></a>6.4.使用telnet扫描端口</h4><p>得安装telnet客户端</p>
+<pre><code>telnet 10.10.10.3 22
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240516-165524.png" alt="image-20240516165523972"></p>
+<h4 id="6-5-使用MSF进行端口扫描"><a href="#6-5-使用MSF进行端口扫描" class="headerlink" title="6.5.使用MSF进行端口扫描"></a>6.5.使用MSF进行端口扫描</h4><p>需要扫描机器在域中</p>
+<pre><code>use auxiliary/scanner/portscan/tcp
+show options
+set port 1-1000
+set rhosts 10.10.10.1
+set threads 20
+run
+</code></pre>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44268918/article/details/130613884">内网渗透—域环境之信息收集_手动获取用户域环境信息-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/A_991128a/article/details/132010961">内网渗透之信息收集-CSDN博客</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

