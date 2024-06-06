@@ -208,57 +208,6 @@
 cd ssrf_vul
 docekr-compose up -d
 </code></pre>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-111119.png" alt="image-20240605110832962"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-111120.png" alt="image-20240605111114669"></p>
-<p>靶场网络拓扑图：</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-111308.png" alt="total"></p>
-<p>先理清一下攻击流程，172.72.23.21 这个服务器的 Web 80 端口存在 SSRF 漏洞，并且 80 端口映射到了公网的 8080，此时攻击者通过这个 8080 端口可以借助 SSRF 漏洞发起对 172 目标内网的探测和攻击。</p>
-<h3 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h3><p>SSRF形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档，等等。</p>
-<p>访问docker下的ip:8080端口，能够对外网发起请求的地方，就有可能存在SSRF。看一下这个站点的正常功能，是一个站点快照获取。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-112025.png" alt="image-20240605112023787"></p>
-<p>先尝试获取外网 URL 试试看，测试一下经典的 百度 robots.txt：</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-111951.png" alt="image-20240605111919526"></p>
-<h4 id="172-72-21-SSRF获取本地信息"><a href="#172-72-21-SSRF获取本地信息" class="headerlink" title="172.72.21 -SSRF获取本地信息"></a>172.72.21 -SSRF获取本地信息</h4><h5 id="利用file协议尝试读取文件："><a href="#利用file协议尝试读取文件：" class="headerlink" title="利用file协议尝试读取文件："></a>利用file协议尝试读取文件：</h5><p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-112248.png" alt="image-20240605112246372"></p>
-<h5 id="dict协议探测内网端口"><a href="#dict协议探测内网端口" class="headerlink" title="dict协议探测内网端口"></a>dict协议探测内网端口</h5><p>发现内网的地址为172.72.23.21，使用dict协议进行内网探测，IP跑完全部，端口就跑常见的</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-115723.png" alt="image-20240605115721481"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-113149.png" alt="image-20240605113146268"></p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-113158.png" alt="image-20240605113156096"></p>
-<p>探测结果：</p>
-<pre><code>172.72.23.21 80
-172.72.23.22 80
-172.72.23.23 80
-172.72.23.23 3306
-172.72.23.24 80
-172.72.23.25 80
-172.72.23.26 8080
-172.72.23.27 6379
-172.72.23.28 6379
-172.72.23.29 3306
-</code></pre>
-<h5 id="dict指纹识别"><a href="#dict指纹识别" class="headerlink" title="dict指纹识别"></a>dict指纹识别</h5><p>通过dict返回的指纹信息判断开启的服务，仔细查看可以发现开启了未授权Redis服务得回来的信息是这样的，一般在6379端口存在Redis服务。</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-122246.png" alt="image-20240605122244270"></p>
-<p>而有授权的Redis服务是这样子（由于我dict没有扫到这个redis，所以直接用其他师傅的）</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-143524" alt="img"></p>
-<h4 id="172-72-23-22-代码注入"><a href="#172-72-23-22-代码注入" class="headerlink" title="172.72.23.22 - 代码注入"></a>172.72.23.22 - 代码注入</h4><p>由于我用自己的kali docker下来的，所以可以直接访问，如果想其他主机也访问，可以开一个socket代理</p>
-<ul>
-<li><strong>index.php</strong></li>
-</ul>
-<p>一个正常的提示页面，啥都没有：</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-144611.png" alt="image-20240605144609116"></p>
-<ul>
-<li><strong>phpinfo.php</strong></li>
-</ul>
-<p>凑数勉强算是一个敏感文件吧：</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-144644.png" alt="image-20240605144642731"></p>
-<ul>
-<li><strong>shell.php</strong></li>
-</ul>
-<p>一个经典的 system 一句话木马：</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-144715.png" alt="image-20240605144711952"></p>
-<h4 id="SSRF-之目录扫描"><a href="#SSRF-之目录扫描" class="headerlink" title="SSRF 之目录扫描"></a>SSRF 之目录扫描</h4><p><a target="_blank" rel="noopener" href="https://github.com/cpkkcb/fuzzDicts">cpkkcb/fuzzDicts: 渗透测试路径字典，爆破字典。内容来自互联网和实战积累。 (github.com)</a></p>
-<p>如果想要利用 SSRF 漏洞对内网 Web 资产进行目录扫描的话，使用传统的 dirsearch 等工具就不是很方便了，这种场景下使用的是 Burpsuite 抓包，然后导入字典批量遍历路径参数，请求包如下：</p>
-<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240605-172534.png" alt="image-20240605172531465"></p>
-
             
         </div>
     </div>
