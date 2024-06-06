@@ -187,6 +187,99 @@
         
 
 <div class="post">
+    <a href="/2024/05/05/xss%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h2><h3 id="xss原理"><a href="#xss原理" class="headerlink" title="xss原理"></a>xss原理</h3><p>HTML是一种超文本标记语言，通过将一些字符特殊地对待来区别文本和标记，例如，小于符号（&lt;）被看作是HTML标签的开始，之间的字符是页面的标题等等。当动态页面中插入的内容含有这些特殊字符（如&lt;）时，用户浏览器会将其误认为是插入了HTML标签，当这些HTML标签引入了一段JavaScript脚本时，这些脚本程序就将会在用户浏览器中执行。所以，当这些特殊字符不能被动态页面检查或检查出现失误时，就将会产生XSS漏洞。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/05/xss%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/05/05/xss%E6%B5%8B%E8%AF%95%E5%8F%8A%E7%BB%95%E8%BF%87/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="一、XSS的测试技巧和工具："><a href="#一、XSS的测试技巧和工具：" class="headerlink" title="一、XSS的测试技巧和工具："></a>一、XSS的测试技巧和工具：</h2><h3 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h3><p>1、工具扫描：APPscan、awvs、burpsuite、XSSER XSSF</p>
+<p>2、手动测试：Burpsuite、firefox(hackbar)<br>      1）在目标站点上找到输入点,比如查询接口,留言板等;<br>      2）输入一组”特殊字符+唯一识别字符”,点击提交后,查看返回的源码,是否有做对应的处理;<br>      3）通过搜索定位到唯一字符,结合唯一字符前后语法确认是否可以构造执行js的条件(构造闭合);提交构造的脚本代码,看是否可以成功执      行,如果成功执行则说明存在XSS漏洞;</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/05/xss%E6%B5%8B%E8%AF%95%E5%8F%8A%E7%BB%95%E8%BF%87/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/05/05/wordpress%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="WordPress远程命令执行漏洞-墨者靶场"><a href="#WordPress远程命令执行漏洞-墨者靶场" class="headerlink" title="WordPress远程命令执行漏洞-墨者靶场"></a>WordPress远程命令执行漏洞-墨者靶场</h1><p>墨者靶场链接：<a target="_blank" rel="noopener" href="https://www.mozhe.cn/bug/detail/Zis0bC9SUnlJZEtBdlZkT01QVXRsUT09bW96aGUmozhe">https://www.mozhe.cn/bug/detail/Zis0bC9SUnlJZEtBdlZkT01QVXRsUT09bW96aGUmozhe</a></p>
+<p>下图是CMS漏洞发现的思维导图</p>
+<p><strong></strong></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/05/wordpress%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/05/05/vulnhub-xxelab1-writeup/">
         <h2 class="post-title"></h2>
     </a>
@@ -417,108 +510,6 @@ $c($func);
         
     </div>
     <a href="/2024/05/05/MySQL%E6%B3%A8%E5%85%A5/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/05/Mssql%E6%B3%A8%E5%85%A5/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="MSSQL数据库注入"><a href="#MSSQL数据库注入" class="headerlink" title="MSSQL数据库注入"></a>MSSQL数据库注入</h1><h4 id="第一步：注入点类型的判断"><a href="#第一步：注入点类型的判断" class="headerlink" title="第一步：注入点类型的判断"></a>第一步：注入点类型的判断</h4><p>首先要对MsSQL注入点进行一下基本的注入检测，然后判断是否是MsSQL注入点</p>
-<pre><code># 如果页面返回正常，则说明为MsSQL注入点。
-and exists (select * from sysobjects) &gt;0
-</code></pre>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/05/Mssql%E6%B3%A8%E5%85%A5/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/05/Kali%20Linux%E6%A1%A5%E6%8E%A5%E3%80%81NAT%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%B8%BB%E6%9C%BAIP%E7%9A%84%E5%85%B3%E7%B3%BB/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="Kali-Linux桥接、NAT模式与主机IP的关系"><a href="#Kali-Linux桥接、NAT模式与主机IP的关系" class="headerlink" title="Kali Linux桥接、NAT模式与主机IP的关系"></a>Kali Linux桥接、NAT模式与主机IP的关系</h1><p>参考：<a target="_blank" rel="noopener" href="http://anineg.space/2022/10/05/vmnet/">桥接模式、NAT模式和仅主机模式 | ANINEGの小屋</a></p>
-<h2 id="一、桥接模式"><a href="#一、桥接模式" class="headerlink" title="一、桥接模式"></a><strong>一、桥接模式</strong></h2><p>当虚拟机系统的网络连接模式为桥接模式时,相当于在主机系统和虚拟机系统之间连接了一个网桥,而网桥两端的网络都属于同一网络,主机和虚拟机是处于同一网络中的对等主机。简单来说，桥接模式就是将虚拟网卡和主机相连，然后一同连接到网络。在这时，虚拟机相当于一台独立出来的机子</p>
-<p>虚拟机IP、子网掩码、网关：  <img src="https://img-blog.csdnimg.cn/b5899e8f56c5450f87faf45521dc1e29.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p> 主机的IP、子网掩码、网关：<img src="https://img-blog.csdnimg.cn/3c1cde4d1cbb4ef884dfb2efb5b4c098.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p> 可以看到虚拟机的IP和网关的网段和主机相同</p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/05/Kali%20Linux%E6%A1%A5%E6%8E%A5%E3%80%81NAT%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%B8%BB%E6%9C%BAIP%E7%9A%84%E5%85%B3%E7%B3%BB/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/05/ctfhub-JWT/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="CTFhub里的easy-login-writeup"><a href="#CTFhub里的easy-login-writeup" class="headerlink" title="CTFhub里的easy_login writeup"></a>CTFhub里的easy_login writeup</h1><p>CTFHub链接:<a target="_blank" rel="noopener" href="https://www.ctfhub.com/#/challenge">CTFHub</a></p>
-<p>JWT介绍参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zr1213159840/article/details/122889002">小迪安全学习笔记–第40和41天JAVA安全及预编译CASE注入等目录遍历访问控制XSS等安全问题_小迪安全笔记40_铁锤2号的博客-CSDN博客</a></p>
-<p>先介绍什么是JWT：</p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/05/ctfhub-JWT/" class="go-post">阅读全文</a>
 </div>
 
 

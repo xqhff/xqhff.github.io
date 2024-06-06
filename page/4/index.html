@@ -187,6 +187,108 @@
         
 
 <div class="post">
+    <a href="/2024/05/05/Mssql%E6%B3%A8%E5%85%A5/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="MSSQL数据库注入"><a href="#MSSQL数据库注入" class="headerlink" title="MSSQL数据库注入"></a>MSSQL数据库注入</h1><h4 id="第一步：注入点类型的判断"><a href="#第一步：注入点类型的判断" class="headerlink" title="第一步：注入点类型的判断"></a>第一步：注入点类型的判断</h4><p>首先要对MsSQL注入点进行一下基本的注入检测，然后判断是否是MsSQL注入点</p>
+<pre><code># 如果页面返回正常，则说明为MsSQL注入点。
+and exists (select * from sysobjects) &gt;0
+</code></pre>
+<p><strong></strong></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/05/Mssql%E6%B3%A8%E5%85%A5/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/05/05/Kali%20Linux%E6%A1%A5%E6%8E%A5%E3%80%81NAT%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%B8%BB%E6%9C%BAIP%E7%9A%84%E5%85%B3%E7%B3%BB/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="Kali-Linux桥接、NAT模式与主机IP的关系"><a href="#Kali-Linux桥接、NAT模式与主机IP的关系" class="headerlink" title="Kali Linux桥接、NAT模式与主机IP的关系"></a>Kali Linux桥接、NAT模式与主机IP的关系</h1><p>参考：<a target="_blank" rel="noopener" href="http://anineg.space/2022/10/05/vmnet/">桥接模式、NAT模式和仅主机模式 | ANINEGの小屋</a></p>
+<h2 id="一、桥接模式"><a href="#一、桥接模式" class="headerlink" title="一、桥接模式"></a><strong>一、桥接模式</strong></h2><p>当虚拟机系统的网络连接模式为桥接模式时,相当于在主机系统和虚拟机系统之间连接了一个网桥,而网桥两端的网络都属于同一网络,主机和虚拟机是处于同一网络中的对等主机。简单来说，桥接模式就是将虚拟网卡和主机相连，然后一同连接到网络。在这时，虚拟机相当于一台独立出来的机子</p>
+<p>虚拟机IP、子网掩码、网关：  <img src="https://img-blog.csdnimg.cn/b5899e8f56c5450f87faf45521dc1e29.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> 主机的IP、子网掩码、网关：<img src="https://img-blog.csdnimg.cn/3c1cde4d1cbb4ef884dfb2efb5b4c098.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> 可以看到虚拟机的IP和网关的网段和主机相同</p>
+<p><strong></strong></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/05/Kali%20Linux%E6%A1%A5%E6%8E%A5%E3%80%81NAT%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%B8%BB%E6%9C%BAIP%E7%9A%84%E5%85%B3%E7%B3%BB/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/05/05/ctfhub-JWT/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="CTFhub里的easy-login-writeup"><a href="#CTFhub里的easy-login-writeup" class="headerlink" title="CTFhub里的easy_login writeup"></a>CTFhub里的easy_login writeup</h1><p>CTFHub链接:<a target="_blank" rel="noopener" href="https://www.ctfhub.com/#/challenge">CTFHub</a></p>
+<p>JWT介绍参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zr1213159840/article/details/122889002">小迪安全学习笔记–第40和41天JAVA安全及预编译CASE注入等目录遍历访问控制XSS等安全问题_小迪安全笔记40_铁锤2号的博客-CSDN博客</a></p>
+<p>先介绍什么是JWT：</p>
+<p><strong></strong></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/05/ctfhub-JWT/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/05/05/CSRF%E6%BC%8F%E6%B4%9E/">
         <h2 class="post-title"></h2>
     </a>

