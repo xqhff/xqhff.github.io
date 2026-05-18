@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>剣の魔王の小窝</title>
+    <title> | 剣の魔王の小窝</title>
     <meta name="author" content="剣の魔王" />
     <meta name="description" content="这个网站没有描述" />
     <meta name="keywords" content="" />
@@ -41,7 +41,9 @@
 
 
 
-<script src="/js/lib/home.js"></script>
+
+
+
 
 <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
 <link rel="stylesheet" href="/css/main.css" />
@@ -166,32 +168,11 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="home-head">
-    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg,/images/background1.png,/images/background2.png,/images/background3.png,/images/background4.png,/images/background5.png,/images/background6.png"></div>
-    <div id="home-info" @click="homeClick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>剣の魔王の小窝</h1>
-                <h3></h3>
-                <h5>这个网站没有描述</h5>
-            </div>
-        </span>
+            <div class="article">
+    <div>
+        <h1></h1>
     </div>
-</div>
-<div id="home-posts-wrap" true ref="homePostsWrap">
-    <div id="home-posts">
-        
-
-<div class="post">
-    <a href="/2026/05/16/%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B8%97%E9%80%8F%E6%9C%80%E5%85%A8%E6%80%BB%E7%BB%93/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
+    <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
@@ -201,10 +182,9 @@
         
         
     </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>免责声明</p>
+    
+    <div class="content" v-pre>
+        <p>免责声明</p>
 <pre><code>作者:balala4533
 原文链接:https://forum.butian.net/index.php/share/2602
 </code></pre>
@@ -259,405 +239,17 @@
 <h4 id="验证码技巧"><a href="#验证码技巧" class="headerlink" title="验证码技巧"></a>验证码技巧</h4><p>在找回密码方面，填写完账号名，要给A发短信验证码，通过burp拦截包，给B发送短信验证码。这样的话，就能用B的验证码提交给A用，造成任意账号密码重置</p>
 <p>本文仅用于技术讨论与学习，利用此文所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，文章作者及本公众号不为此承担任何责任。</p>
 
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2026/05/16/%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B8%97%E9%80%8F%E6%9C%80%E5%85%A8%E6%80%BB%E7%BB%93/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/07/01/CVE-2024-4577%E5%A4%8D%E7%8E%B0/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/7/1
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="PHP-CGI-Windows平台远程代码执行漏洞复现"><a href="#PHP-CGI-Windows平台远程代码执行漏洞复现" class="headerlink" title="PHP CGI Windows平台远程代码执行漏洞复现"></a>PHP CGI Windows平台远程代码执行漏洞复现</h1><h2 id="1-漏洞描述："><a href="#1-漏洞描述：" class="headerlink" title="1.漏洞描述："></a>1.漏洞描述：</h2><p>PHP（Hypertext Preprocessor，超文本预处理器）是一种广泛使用的开源脚本语言，主要用于Web开发，用于生成动态网页内容。PHP的语法借鉴了C、Java、Perl等语言的特点，易于学习，并且可以快速执行。</p>
-<p>漏洞产生的本质其实是Windows系统内字符编码转换的Best-Fit特性导致的，导致未经身份认证的远程攻击者可以通过特定的字符序列绕过此前CVE-2012-1823的防护，通过参数注入攻击在远程PHP服务器上执行任意代码，从而导致远程代码执行。</p>
-<p>由于Windows系统内字符编码转换的Best-Fit特性导致PHP原本的安全限制被绕过，再加上一些特殊的PHP CGI环境配置导致了这个问题，最终导致漏洞利用的算是一些PHP的小技巧</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/07/01/CVE-2024-4577%E5%A4%8D%E7%8E%B0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/05/%E5%9B%BD%E5%85%89ssrf%E9%9D%B6%E5%9C%BA%E6%89%93%E7%A9%BF%E5%86%85%E7%BD%91/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="国光ssrf靶场打穿内网"><a href="#国光ssrf靶场打穿内网" class="headerlink" title="国光ssrf靶场打穿内网"></a>国光ssrf靶场打穿内网</h2><h3 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h3><pre><code>git clone https://github.com/Duoduo-chino/ssrf_vul.git
-cd ssrf_vul
-docekr-compose up -d
-</code></pre>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/06/05/%E5%9B%BD%E5%85%89ssrf%E9%9D%B6%E5%9C%BA%E6%89%93%E7%A9%BF%E5%86%85%E7%BD%91/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/04/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/4
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p><strong>环境：kali 192.168.145.128</strong></p>
-<p><strong>docker主机：192.168.145.129</strong></p>
-<h2 id="CVE-2010-3863：Apache-Shiro-认证绕过漏洞"><a href="#CVE-2010-3863：Apache-Shiro-认证绕过漏洞" class="headerlink" title="CVE-2010-3863：Apache Shiro 认证绕过漏洞"></a>CVE-2010-3863：Apache Shiro 认证绕过漏洞</h2><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>Apache Shiro是一款开源安全框架，提供身份验证、授权、密码学和会话管理。Shiro框架直观、易用，同时也能提供健壮的安全性。</p>
-<p>在Apache Shiro 1.1.0以前的版本中，shiro 进行权限验证前未对url 做标准化处理，攻击者可以构造/、//、/./、/…/ 等绕过权限验证。</p>
-<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>shiro &lt; 1.1.0和 JSecurity 0.9.x</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/06/04/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/03/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/3
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="Redis未授权访问漏洞复现"><a href="#Redis未授权访问漏洞复现" class="headerlink" title="Redis未授权访问漏洞复现"></a>Redis未授权访问漏洞复现</h2><h3 id="一、漏洞简介"><a href="#一、漏洞简介" class="headerlink" title="一、漏洞简介"></a>一、漏洞简介</h3><p>redis是一个数据库，默认端口是6379，redis默认是没有密码验证的，可以免密码登录操作，攻击者可以通过操作redis进一步控制服务器。</p>
-<p>Redis未授权访问在4.x/5.0.5以前版本下，可以使用master/slave模式加载远程模块，通过动态链接库的方式执行任意命令。</p>
-<h3 id="二、漏洞影响"><a href="#二、漏洞影响" class="headerlink" title="二、漏洞影响"></a>二、漏洞影响</h3><p>影响版本</p>
-<p>Redis 4.x/5.0.5以前版本</p>
-<p><strong></strong></p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/06/03/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/24
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>在前面域环境熟悉中已经简单介绍过信任域的概念，接下来就深入讨论域之间的信任关系，网络拓扑图如下，要实现两个域之间的访问就需要建立域信任关系，而在子域和父域之间同样如此</p>
-<p>首先在原来的基础上增加一个新域，也就是外域external.com，网络配置如下</p>
-<pre><code>IP : 10.10.10.100
-子网掩码：255.255.255.0
-默认网关：10.10.10.1
-DNS：10.10.10.10
-根域名：external.com
-还原模式密码：External.com
-</code></pre>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/24/%E5%9F%9F%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E6%B7%B1%E5%85%A5/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/16/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/16
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/16/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/14/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/14
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="域渗透之信息收集"><a href="#域渗透之信息收集" class="headerlink" title="域渗透之信息收集"></a>域渗透之信息收集</h1><h2 id="域渗透思路"><a href="#域渗透思路" class="headerlink" title="域渗透思路"></a>域渗透思路</h2><p>域渗透思路：通过域成员主机，定位出域控制器IP及域管理员账号，利用域成员主机作为跳板，扩大渗透范围，利用域管理员可以登陆域中任何成员主机的特性，定位出域管理员登陆过的主机 IP，设法从域成员主机内存中 dump 出域管理员密码，进而拿下域控制器、渗透整个内网</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/14/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/12/%E5%9F%9F%E7%8E%AF%E5%A2%83%E7%86%9F%E6%82%89/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/12
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="什么是LDAP"><a href="#什么是LDAP" class="headerlink" title="什么是LDAP"></a>什么是LDAP</h3><p>LDAP(Light Directory Access Portocol)，是一种基于X.500标准的轻量级目录访问协议，用来查询与更新Active Directory的目录服务通信协议。AD域服务利用LDAP命名路径(LDAP naming path)来表示对象在AD内的位置，以便用它来访问AD内的对象。</p>
-<p>LDAP 数据的组织方式：</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/12/%E5%9F%9F%E7%8E%AF%E5%A2%83%E7%86%9F%E6%82%89/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/10/%E5%9F%9F%E6%A0%91%E3%80%81%E5%8D%95%E5%9F%9F%E3%80%81%E8%BE%85%E5%9F%9F%E6%90%AD%E5%BB%BA/">
-        <h2 class="post-title"></h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/10
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）"><a href="#渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）" class="headerlink" title="渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）"></a>渗透测试之内网攻防篇：搭建大型域环境（父域控制器、辅域控制器、父域内机器、子域控制器、子域内机器）</h2><p>网络拓扑图如下：</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/05/10/%E5%9F%9F%E6%A0%91%E3%80%81%E5%8D%95%E5%9F%9F%E3%80%81%E8%BE%85%E5%9F%9F%E6%90%AD%E5%BB%BA/" class="go-post">阅读全文</a>
-</div>
-
-
-        <div class="page-current">
-    
-    <span class="current">1</span>
-    
-    <a class="page-num" href="/page/2">2</a>
-    
-    
-    <a class="page-num" href="/page/3">3</a>
-    
-    
-    <span class="page-omit">...</span>
-    <a class="page-num" href="/page/4">4</a>
-    
-    
-    <a class="page-num" href="/page/2/">
-        <i class="fa-solid fa-caret-right fa-fw"></i>
-    </a>
-    
-</div>
-
     </div>
     
-    <div id="home-card">
-        <div id="card-style">
-    <div id="card-div">
-        <div class="avatar">
-            <img src="/images/head.png" alt="avatar" />
-        </div>
-        <div class="name">剣の魔王</div>
-        <div class="description">
-            <p>博主不想描述自己…</p>
-
-        </div>
-        
-        <div class="icon-links">
-            
-            <span class="icon-link">
-                <a target="_blank" rel="noopener" href="https://github.com/argvchs">
-                    <i
-                        class="fa-brands fa-github fa-fw"
-                    ></i>
-                </a>
-            </span>
-            
-            <span class="icon-link">
-                <a target="_blank" rel="noopener" href="http://wpa.qq.com/msgrd?v=3&uin=3364555156&site=qq&menu=yes">
-                    <i
-                        class="fa-brands fa-qq fa-fw"
-                    ></i>
-                </a>
-            </span>
-            
-            <span class="icon-link">
-                <a target="_blank" rel="noopener" href="https://twitter.com/argvchs">
-                    <i
-                        class="fa-brands fa-twitter fa-fw"
-                    ></i>
-                </a>
-            </span>
-            
-            <span class="icon-link">
-                <a href="mailto:argvchs@outlook.com">
-                    <i
-                        class="fa-solid fa-envelope fa-fw"
-                    ></i>
-                </a>
-            </span>
-            
-        </div>
-        
-        
-        <div class="friend-links">
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://blog.yuzi.dev">Yuzi</a>
-            </div>
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://lynxcatthethird.github.io">LynxCatTheThird</a>
-            </div>
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://shanlunjiajian.github.io">ShanLunjiaJian</a>
-            </div>
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://rickyxrc.cc">Rickyxrc</a>
-            </div>
-            
-        </div>
-        
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
     </div>
-</div>
-
-    </div>
+    
+    
+    
     
 </div>
 
@@ -696,6 +288,29 @@ DNS：10.10.10.10
             document.body.append(document.createRange().createContextualFragment(html));
         }
     </script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="argvchs/giscus-comments"
+    data-repo-id="R_kgDOI_uC-w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOI_uC-84CUToF"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="https://static-argvchs.netlify.app/css/giscus.css"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
     
 </body>
 </html>
