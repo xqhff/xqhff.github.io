@@ -184,13 +184,14 @@
     </div>
     
     <div class="content" v-pre>
-        <p>免责声明</p>
+        <h1 id="验证码渗透总结"><a href="#验证码渗透总结" class="headerlink" title="验证码渗透总结"></a>验证码渗透总结</h1><p>免责声明</p>
 <pre><code>作者:balala4533
 原文链接:https://forum.butian.net/index.php/share/2602
 </code></pre>
 <p><strong>前言</strong></p>
 <p>不少人在碰见验证码的时候，大多数只是看了一眼就过去了，没想到验证码还有啥可测试的。但其实验证码也能在项目中导致<strong>高危</strong>,并且验证码漏洞能在一定情况下造成危害。</p>
 <h2 id="验证码总结"><a href="#验证码总结" class="headerlink" title="验证码总结"></a>验证码总结</h2><p>验证码分为两块内容，一块是图形验证码，一块是短信验证码。下面是对这些技巧总结的思维导图</p>
+<p><strong><span id="more"></span></strong></p>
 <p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20260516-175337.png" alt="image.png"></p>
 <h3 id="图形验证码"><a href="#图形验证码" class="headerlink" title="图形验证码"></a>图形验证码</h3><h4 id="图形验证码长宽可控"><a href="#图形验证码长宽可控" class="headerlink" title="图形验证码长宽可控"></a>图形验证码长宽可控</h4><p>简单测试方法，就是看到一个登录框，然后新建打开图片链接，在图片链接中就有机会看到两个参数值，一个是 width，一个是 length。这两个参数是计算图片验证码的长宽，如果长宽过高就会过度消耗的是服务器的 CPU 资源。</p>
 <p><img src="https://raw.githubusercontent.com/xqhff/picture/main/Img/20260518-091342.png" alt="image.png"></p>
